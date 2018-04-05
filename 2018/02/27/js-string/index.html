@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/02/27/js-string/index.html">
 <meta property="og:site_name" content="Swallow的博客">
 <meta property="og:description" content="字符方法访问字符串中特定字符的方法：  charAt()和charCodeAt()。这两个方法都接收一个参数，即基于0的字符位置。    charAt() charCodeAt()      以单个字符字符串的形式返回给定位置的那个字符 返回给定位置的那个字符的字符编码    var stringValue = &amp;quot;hello world&amp;quot;;  stringValue.charA">
-<meta property="og:updated_time" content="2018-02-28T03:15:59.775Z">
+<meta property="og:updated_time" content="2018-04-05T03:22:25.873Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript  String类型">
 <meta name="twitter:description" content="字符方法访问字符串中特定字符的方法：  charAt()和charCodeAt()。这两个方法都接收一个参数，即基于0的字符位置。    charAt() charCodeAt()      以单个字符字符串的形式返回给定位置的那个字符 返回给定位置的那个字符的字符编码    var stringValue = &amp;quot;hello world&amp;quot;;  stringValue.charA">
@@ -196,6 +196,7 @@
 </tr>
 </tbody>
 </table>
+<a id="more"></a> 
 <h3 id="字符串操作方法"><a href="#字符串操作方法" class="headerlink" title="字符串操作方法"></a>字符串操作方法</h3><h4 id="1、concat（）方法，将一或多个字符串拼接起来，返回拼接得到的新字符串"><a href="#1、concat（）方法，将一或多个字符串拼接起来，返回拼接得到的新字符串" class="headerlink" title="1、concat（）方法，将一或多个字符串拼接起来，返回拼接得到的新字符串"></a>1、concat（）方法，将一或多个字符串拼接起来，返回拼接得到的新字符串</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">     var stringValue = <span class="string">"hello "</span>;</div><div class="line">      var result = stringValue.concat(<span class="string">"world"</span>);</div><div class="line">      //stringValue的值为<span class="string">"hello "</span>,result的值为“hello world”</div><div class="line">   var result1 = stringValue.concat(<span class="string">"world"</span>,<span class="string">"!"</span>);</div><div class="line">//stringValue的值为<span class="string">"hello "</span>,result1的值为“hello world!”</div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">虽然concat（）是专门用来拼接字符串的方法，但在实践中更多的还是用加号操作符（+）</div></pre></td></tr></table></figure>
 <h4 id="2、基于子字符串创建新字符串的方法：slice-、substr-、substring"><a href="#2、基于子字符串创建新字符串的方法：slice-、substr-、substring" class="headerlink" title="2、基于子字符串创建新字符串的方法：slice()、substr()、substring()"></a>2、基于子字符串创建新字符串的方法：slice()、substr()、substring()</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">相同点：</div><div class="line">*都会返回被操作字符串的一个子字符串，</div><div class="line">*而且也都接受一或两个参数，第一个参数指定字符串的开始位置，第二个参数表示子字符串到哪里结束。</div><div class="line">*没有传递第二个参数，则将字符串的末尾作为结束位置</div><div class="line">*slice（）、substring()和substr()都不会修改字符串本身的值</div><div class="line">不同点：</div><div class="line">*slice()和substring的第二个参数指定的是子字符串最后一个字符后面的位置。substr()的第二个参数指定的是返回字符个数。</div><div class="line">*传递给方法的参数是负数时，slice（）会将传入的负值与字符串的长度相加，substring（）将负的第一个参数加上字符串的长度，而将负的第二个参数转化为0，substr（）将所有负值参数都转化为0。</div></pre></td></tr></table></figure>
