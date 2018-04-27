@@ -175,25 +175,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="字符方法"><a href="#字符方法" class="headerlink" title="字符方法"></a>字符方法</h3><h4 id="访问字符串中特定字符的方法："><a href="#访问字符串中特定字符的方法：" class="headerlink" title="访问字符串中特定字符的方法："></a>访问字符串中特定字符的方法：</h4><p>  charAt()和charCodeAt()。这两个方法都接收一个参数，即基于0的字符位置。</p>
-<table>
-<thead>
-<tr>
-<th>charAt()</th>
-<th>charCodeAt()</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> <code>以单个字符字符串的形式返回给定位置的那个字符</code></td>
-<td><code>返回给定位置的那个字符的字符编码</code></td>
-</tr>
-<tr>
-<td> <code>var stringValue = &quot;hello world&quot;;  stringValue.charAt(1) //返回“e”</code></td>
-<td><code>var stringValue = &quot;hello world&quot;; stringValue.charCodeAt(1) //返回&quot;101&quot;</code></td>
-</tr>
-</tbody>
-</table>
+        <p>本内容<a href="http://caibaojian.com/mobile-responsive-demo.html" target="_blank" rel="external">参考地址</a></p>
+<h3 id="移动端的自适应"><a href="#移动端的自适应" class="headerlink" title="移动端的自适应"></a>移动端的自适应</h3><h4 id="研究样本"><a href="#研究样本" class="headerlink" title="研究样本"></a>研究样本</h4><ol>
+<li>手机淘宝</li>
+<li>天猫首页</li>
+<li>手机携程<h4 id="研究结论"><a href="#研究结论" class="headerlink" title="研究结论"></a>研究结论</h4><ol>
+<li>手机淘宝<br>获取手机dpr(window.devicePixelRatio（分辨率）)，动态生成viewport。<br>换取手机宽度，分成10份，每一份的宽度即是rem的尺寸。<br>根据设计稿尺寸(px)通过计算，转换成rem去布局。<br>ps:海外淘宝并没有这样做，而是scale1.0并且图片大概都是2倍图。</li>
+</ol>
+</li>
+</ol>
+<p>2.天猫<br>采用scale=1.0 写死viewport。<br>flex布局，笃定认为布局尺寸是375 (iPhone6)<br>rem 确定非flex的元素</p>
+<p>3.手机携程<br>采用scale=1.0 写死viewport<br>px + 百分比布局</p>
         
           <a class="article-more-a" href="/2018/04/23/aliFirstInterview-4/#more">more >></a>
         
