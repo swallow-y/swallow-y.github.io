@@ -6,14 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018 | Swallow的博客</title>
+  <title>git项目版本管理 | Swallow的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Swallow的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+  <meta name="description" content="前言今天闲来无事（其实是不想动），就打算将最近学习的东西以基本项目案例的形式记录实践下来，但是，又不想简简单单写个工程，所以打算自己还是像正规项目那样，能有个版本控制工具，由于以前的项目都是用的svn，所以，这次我打算换一换，尝试用现在主流的git作为项目版本管理工具。  ##开始（这个是基本前提工作都完成的情况：比如git 已经安装） 在github上创建仓库(这一步只是管理者需要做的事情) 在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git项目版本管理">
+<meta property="og:url" content="http://yoursite.com/2018/05/18/git-project-version/index.html">
 <meta property="og:site_name" content="Swallow的博客">
+<meta property="og:description" content="前言今天闲来无事（其实是不想动），就打算将最近学习的东西以基本项目案例的形式记录实践下来，但是，又不想简简单单写个工程，所以打算自己还是像正规项目那样，能有个版本控制工具，由于以前的项目都是用的svn，所以，这次我打算换一换，尝试用现在主流的git作为项目版本管理工具。  ##开始（这个是基本前提工作都完成的情况：比如git 已经安装） 在github上创建仓库(这一步只是管理者需要做的事情) 在">
+<meta property="og:image" content="http://yoursite.com/2018/05/18/git-project-version/images/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/18/git-project-version/images/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/18/git-project-version/images/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/18/git-project-version/images/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/18/git-project-version/images/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/18/git-project-version/images/7.png">
+<meta property="og:updated_time" content="2018-05-18T13:30:13.761Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swallow的博客">
+<meta name="twitter:title" content="git项目版本管理">
+<meta name="twitter:description" content="前言今天闲来无事（其实是不想动），就打算将最近学习的东西以基本项目案例的形式记录实践下来，但是，又不想简简单单写个工程，所以打算自己还是像正规项目那样，能有个版本控制工具，由于以前的项目都是用的svn，所以，这次我打算换一换，尝试用现在主流的git作为项目版本管理工具。  ##开始（这个是基本前提工作都完成的情况：比如git 已经安装） 在github上创建仓库(这一步只是管理者需要做的事情) 在">
+<meta name="twitter:image" content="http://yoursite.com/2018/05/18/git-project-version/images/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Swallow的博客" type="application/atom+xml">
   
@@ -153,292 +164,194 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-git-project-version" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      git项目版本管理
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/18/git-project-version/" class="archive-article-date">
+
+        
+        <a href="/2018/05/18/git-project-version/" class="archive-article-date">
   	<time datetime="2018-05-18T13:19:48.727Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-18</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/18/git-project-version/">git项目版本管理</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天闲来无事（其实是不想动），就打算将最近学习的东西以基本项目案例的形式记录实践下来，但是，又不想简简单单写个工程，所以打算自己还是像正规项目那样，能有个版本控制工具，由于以前的项目都是用的svn，所以，这次我打算换一换，尝试用现在主流的git作为项目版本管理工具。</p>
+<p><hr></p>
+<p>##开始（这个是基本前提工作都完成的情况：比如git 已经安装）</p>
+<h3 id="在github上创建仓库-这一步只是管理者需要做的事情"><a href="#在github上创建仓库-这一步只是管理者需要做的事情" class="headerlink" title="在github上创建仓库(这一步只是管理者需要做的事情)"></a>在github上创建仓库(这一步只是管理者需要做的事情)</h3><p><img src="./images/1.png" alt="怎么在github上创建仓库" title="1.png"></p>
+<h3 id="在本地创建仓库（以下是都需要做的）"><a href="#在本地创建仓库（以下是都需要做的）" class="headerlink" title="在本地创建仓库（以下是都需要做的）"></a>在本地创建仓库（以下是都需要做的）</h3><ol>
+<li>在想要放项目的文件夹（当前的整个路径都是纯英文的）上右击，选择<strong>Git Bash here</strong></li>
+<li><p>创建项目文件夹，<strong>mkdir hello</strong>,这个“hello”是我的项目名称（最好和git服务器上的项目名称一致）。</p>
+<p><img src="./images/2.png" alt="新建一个hello项目文件夹" title="2.png"></p>
+</li>
+<li>输入<strong>ls</strong>查看当前文件夹下面的文件目录</li>
+<li>输入cd hello-world进入新文件夹，注意在输入命令时，你可以用Tab键来自动补全</li>
+<li>输入git init初始化Git仓库。此时用ls -a查看当前目录，可以看到多了一个.git/的文件夹，此文件夹保存了版本控制的所有相关信息。<br><img src="./images/3.png" alt="进入项目文件夹，生成git版本控制文件" title="3.png"></li>
+<li>输入echo “This is a simple practise” &gt; readme.txt，创建一个readme.txt文件。</li>
+<li><p>输入git status查看当前版本库状态，在Untracked files(未跟踪文件)下，会出现红色的readme.txt，代表此文件还未被Git所管理。</p>
+<p><img src="./images/4.png" alt="查看文件提交状态" title="4.png"></p>
+</li>
+<li>使用git add readme.txt，将该文件加入缓冲区，如果你确定所有的修改都需要提交，可以使用git add .来加入所有修改。现在用git status查看，将看到文件名变为绿色。</li>
+<li><p>使用git commit -m “This is my first commit via Git!”来提交修改，-m后面所带的参数是本次提交信息，一般用来记录本次提交的主要意图。</p>
+<p><img src="./images/5.png" alt="提交未提交的新文件或修改过的文件" title="5.png"></p>
+</li>
+<li>提交成功后，可以用git log查看历史提交记录。每个记录都会有提交id，作者和提交日期。</li>
+<li>你可以用git branch查看当前有哪些分支，当然，因为我们没有创建任何分支，目前只会有一个master分支。</li>
+<li><p>使用git checkout -b feature创建一个名为feature的分支，再用git branch查看一下。</p>
+<h3 id="克隆项目到本地"><a href="#克隆项目到本地" class="headerlink" title="克隆项目到本地"></a>克隆项目到本地</h3><h4 id="第一步-从GitHub上下载我们的项目代码。"><a href="#第一步-从GitHub上下载我们的项目代码。" class="headerlink" title="第一步. 从GitHub上下载我们的项目代码。"></a>第一步. 从GitHub上下载我们的项目代码。</h4><p>1.以Hello-World项目为例，点击绿色按钮Clone or download，然后在弹出窗口中点击剪切板图标，复制仓库的URL。</p>
+<p><img src="./images/7.png" alt="复制当前项目的路径，以便后来的克隆" title="7.png"><br>2.在git bash中输入git clone <a href="https://github.com/feicui-android/Hello-World.git，下载项目源码。" target="_blank" rel="external">https://github.com/feicui-android/Hello-World.git，下载项目源码。</a><br>####第二步. 查看版本历史</p>
+</li>
+<li>cd到项目文件夹下，使用git log能看到我们的历史提交记录。</li>
+<li>要回到某一历史版本，可以使用git checkout commitId，看完后要回到最新代码，使用git checkout master。<br>####第三步. 本地修改代码<ol>
+<li>下载新代码：git pull。</li>
+<li>从master出捡出一个新的分支：git checkout -b feature。feature是分支名称，你可以随意取名，但请用英文。</li>
+<li>在feature分支上随意修改，改完后你可以提交你的修改：git commit -m “some message”。</li>
+<li>此时要同步代码，请先切回主分支：git checkout master，然后更新git pull。</li>
+<li>如果想删除自己建立的分支，使用git branch -D feature，注意执行此命令后分支被强制删除，无法恢复。<br><a href="https://blog.csdn.net/javaandroid730/article/details/53522872" target="_blank" rel="external">当前文章参考基本来源，感谢这位陌生人的不错的文章</a></li>
+</ol>
+</li>
+</ol>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zhifubao.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/05/18/git-project-version/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/23/aliFirstInterview-4/" class="archive-article-date">
-  	<time datetime="2018-04-23T14:39:05.146Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-23</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/23/aliFirstInterview-4/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">移动端的自适应</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/23/aliFirstInterview-4/">移动端的自适应</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/20/aliFirstInterview-3/" class="archive-article-date">
-  	<time datetime="2018-04-20T07:42:45.285Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/20/aliFirstInterview-3/">js的原型链</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/19/aliFirstInterview-1/" class="archive-article-date">
-  	<time datetime="2018-04-19T02:45:33.683Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/19/aliFirstInterview-1/">ES5的新特性</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/18/aliFirstInterview-2/" class="archive-article-date">
-  	<time datetime="2018-04-18T07:54:55.586Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/18/aliFirstInterview-2/">JavaScript的基本知识</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/05/pushBlog/" class="archive-article-date">
-  	<time datetime="2018-04-05T03:13:42.208Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/05/pushBlog/">将本地修改或添加的博客推送到gitbub上</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/05/jsOperateArray/" class="archive-article-date">
-  	<time datetime="2018-04-05T02:52:12.318Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/05/jsOperateArray/">JavaScript（原生js）操作array的方法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/27/js-string/" class="archive-article-date">
-  	<time datetime="2018-02-27T12:31:07.404Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/27/js-string/">JavaScript  String类型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/27/createVueProject/" class="archive-article-date">
-  	<time datetime="2018-01-27T08:00:05.849Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/27/createVueProject/">vue项目的创建</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/23/Rendering-Engine/" class="archive-article-date">
-  	<time datetime="2018-01-23T08:05:50.223Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/23/Rendering-Engine/">主流浏览器及其内核</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -461,8 +374,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
