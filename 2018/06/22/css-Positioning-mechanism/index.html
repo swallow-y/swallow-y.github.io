@@ -6,14 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Swallow的博客</title>
+  <title>css定位机制 | Swallow的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Swallow的博客">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="css定位机制有三种：文档流、浮动（float）、定位（position） 一、文档流（常规流）什么是文档流（）1从直观上理解文档流（正常流）指的是元素按照其在HTML中的位置顺序决定排布的过程，主要形式是自上而下，一行接一行，每行从左到右的顺序排列页面元素。 文档流的类型1.块级元素的块级格式2.行内元素的行内格式3.两种元素的相互定位方式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css定位机制">
+<meta property="og:url" content="http://yoursite.com/2018/06/22/css-Positioning-mechanism/index.html">
 <meta property="og:site_name" content="Swallow的博客">
+<meta property="og:description" content="css定位机制有三种：文档流、浮动（float）、定位（position） 一、文档流（常规流）什么是文档流（）1从直观上理解文档流（正常流）指的是元素按照其在HTML中的位置顺序决定排布的过程，主要形式是自上而下，一行接一行，每行从左到右的顺序排列页面元素。 文档流的类型1.块级元素的块级格式2.行内元素的行内格式3.两种元素的相互定位方式">
+<meta property="og:image" content="http://yoursite.com/2018/06/22/css-Positioning-mechanism/images/ct_css_positioning_floating_right_example.gif">
+<meta property="og:image" content="http://yoursite.com/2018/06/22/css-Positioning-mechanism/images/ct_css_positioning_floating_left_example.gif">
+<meta property="og:image" content="http://yoursite.com/2018/06/22/css-Positioning-mechanism/images/ct_css_positioning_floating_left_example_2.gif">
+<meta property="og:updated_time" content="2018-06-22T03:26:24.482Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swallow的博客">
+<meta name="twitter:title" content="css定位机制">
+<meta name="twitter:description" content="css定位机制有三种：文档流、浮动（float）、定位（position） 一、文档流（常规流）什么是文档流（）1从直观上理解文档流（正常流）指的是元素按照其在HTML中的位置顺序决定排布的过程，主要形式是自上而下，一行接一行，每行从左到右的顺序排列页面元素。 文档流的类型1.块级元素的块级格式2.行内元素的行内格式3.两种元素的相互定位方式">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/22/css-Positioning-mechanism/images/ct_css_positioning_floating_right_example.gif">
   
     <link rel="alternative" href="/atom.xml" title="Swallow的博客" type="application/atom+xml">
   
@@ -153,289 +161,207 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-css-Positioning-mechanism" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      css定位机制
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/22/css-Positioning-mechanism/" class="archive-article-date">
+
+        
+        <a href="/2018/06/22/css-Positioning-mechanism/" class="archive-article-date">
   	<time datetime="2018-06-22T00:49:29.650Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/22/css-Positioning-mechanism/">css定位机制</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>css定位机制有三种：文档流、浮动（float）、定位（position）</p>
+<h2 id="一、文档流（常规流）"><a href="#一、文档流（常规流）" class="headerlink" title="一、文档流（常规流）"></a>一、文档流（常规流）</h2><h3 id="什么是文档流（）"><a href="#什么是文档流（）" class="headerlink" title="什么是文档流（）"></a>什么是文档流（）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">从直观上理解文档流（正常流）指的是元素按照其在HTML中的位置顺序决定排布的过程，主要形式是自上而下，一行接一行，每行从左到右的顺序排列页面元素。</div></pre></td></tr></table></figure>
+<h3 id="文档流的类型"><a href="#文档流的类型" class="headerlink" title="文档流的类型"></a>文档流的类型</h3><p>1.块级元素的块级格式<br>2.行内元素的行内格式<br>3.两种元素的相互定位方式<br><a id="more"></a></p>
+<h3 id="什么情况下会导致元素脱离文档流"><a href="#什么情况下会导致元素脱离文档流" class="headerlink" title="什么情况下会导致元素脱离文档流"></a>什么情况下会导致元素脱离文档流</h3><ul>
+<li>浮动（float）</li>
+<li>绝对定位(position:absolute\fixed)<br><em>这两种的区别在于宽度缺失</em><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">由于使用了相对定位和绝对定位的元素都会产生宽度缺失,因此会造成层叠的情况。层叠顺序基本按照后者覆盖前者的顺序。但是如果要改变顺序的话,就需要使用z-index属性。</div><div class="line"></div><div class="line">需要注意的是:z-index只有在position值为relative,absolute和fixed的元素上有效。而其比较的规则遵循“拼爹原则”,即先比较具有z-index属性的父辈元素,父辈元素z-index大的子辈元素都大。</div><div class="line"></div><div class="line">但更需要注意的是:并非使用了absolute来进行定位就一定要设置z-index,大量的z-index会使项目无法维护</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="不脱离文档流的情况"><a href="#不脱离文档流的情况" class="headerlink" title="不脱离文档流的情况"></a>不脱离文档流的情况</h3><ul>
+<li>块级</li>
+<li>行内</li>
+<li>相对定位</li>
+<li>设置position：static可以取消继承，还原元素定位的默认</li>
+</ul>
+<h2 id="二、浮动（float-）"><a href="#二、浮动（float-）" class="headerlink" title="二、浮动（float ）"></a>二、浮动（float ）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">浮动的框可以向左或向右移动，直到它的外边缘碰到包含框或另一个浮动框的边框为止。</div><div class="line"></div><div class="line">由于浮动框不在文档的普通流中，所以文档的普通流中的块框表现得就像浮动框不存在一样。</div></pre></td></tr></table></figure>
+<p><strong>看下图，当把框 1 向右浮动时，它脱离文档流并且向右移动，直到它的右边缘碰到包含框的右边缘：</strong><br><img src="./images/ct_css_positioning_floating_right_example.gif" alt="enter description here" title="ct_css_positioning_floating_right_example.gif"></p>
+<p> <strong>再请看下图，当框 1 向左浮动时，它脱离文档流并且向左移动，直到它的左边缘碰到包含框的左边缘。因为它不再处于文档流中，所以它不占据空间，实际上覆盖住了框 2，使框 2 从视图中消失。</strong></p>
+<p><strong>如果把所有三个框都向左移动，那么框 1 向左浮动直到碰到包含框，另外两个框向左浮动直到碰到前一个浮动框。</strong></p>
+<p><img src="./images/ct_css_positioning_floating_left_example.gif" alt="enter description here" title="ct_css_positioning_floating_left_example.gif"></p>
+<p> <strong>如下图所示，如果包含框太窄，无法容纳水平排列的三个浮动元素，那么其它浮动块向下移动，直到有足够的空间。如果浮动元素的高度不同，那么当它们向下移动时可能被其它浮动元素“卡住”：</strong><br>  <img src="./images/ct_css_positioning_floating_left_example_2.gif" alt="enter description here" title="ct_css_positioning_floating_left_example_2.gif"></p>
+<p><strong>clear 属性规定元素的哪一侧不允许其他浮动元素。<br>clear的值有以下几个</strong><br> 值 | 描述<br> — | —<br>left | 在左侧不允许浮动元素<br>right | 在右侧不允许浮动元素<br>none | 默认值。允许浮动元素出现在两侧<br>both | 在左右两侧均不允许浮动元素<br>inherit | 规定应该从父元素继承clear属性的值</p>
+<h2 id="定位（position）"><a href="#定位（position）" class="headerlink" title="定位（position）"></a>定位（position）</h2><ol>
+<li>positon:static; 静态定位（默认的 ）  </li>
+</ol>
+<p>　　所有标准文档流中的元素都是静态定位。元素框正常生成。块级元素生成一个矩形框，作为文档流的一部分，行内元素则会创建一个或多个行框，置于其父元素中。</p>
+<ol>
+<li>positon:relative;  相对定位</li>
+</ol>
+<p>　　不脱离标准文档流，“老家留坑，形影分离”。元素框偏移某个距离。元素仍保持其未定位前的形状，它原本所占的空间仍保留。</p>
+<p>　　特点：如果设置了相对定位并且设置了top、left、right、bottom属性，那么将来盒子会以盒子原来所在的位置进行偏移</p>
+<p>　　相对定位的用途：一般不用于做“压盖效果”，就两个作用：</p>
+<p>　　（1）微调元素</p>
+<p>　　（2）绝对定位的参考，子绝父相</p>
+<p>　　可以用left、right来描述盒子右、左的偏移；可以用top、bottom来描述盒子下、上的偏移</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">position</span>：relative；</div><div class="line"><span class="attribute">top</span>：<span class="number">10px</span>;</div><div class="line"><span class="attribute">left</span>：<span class="number">10px</span>;   <span class="comment">//相对于原来位置向右下移10px</span></div><div class="line"><span class="attribute">position</span>：relative;</div><div class="line"><span class="attribute">top</span>:-<span class="number">10px</span>;</div><div class="line"><span class="attribute">left</span>:-<span class="number">10px</span>;   <span class="comment">//相对于原来位置向左上移10px</span></div></pre></td></tr></table></figure>
+<ol>
+<li>position:absolute;  绝对定位</li>
+</ol>
+<p>　　脱离标准文档流 。元素框从文档流完全删除，并相对于其包含块定位。包含块可能是文档中的另一个元素或者是初始包含块。元素原先在正常文档流中所占的空间会关闭，就好像元素原来不存在一样。元素定位后生成一个块级框，而不论原来它在正常流中生成何种类型的框。</p>
+<p>　　特点：（1）如果这个元素没有父元素，那么将来top、left、right、bottom是相对于浏览器窗口来定位的</p>
+<p>　　　　　（2）如果绝对定位的元素有父元素，但父元素没有相对定位，那么这个时候top、left、right、bottom还是相对于浏览窗口来定位的</p>
+<p>　　　　　（3）如果绝对定位的元素有父元素，而且父元素有定位（非static），那么这个绝对定位的元素偏移是以自己的父元素为基础</p>
+<p>　　　　　（4）绝对定位之后的元素在页面上不会占据位置</p>
+<ol>
+<li>position:fixed;   固定定位</li>
+</ol>
+<p>　　脱离标准文档流。元素框的表现类似于将 position 设置为 absolute，不过其包含块是视窗本身。</p>
+<p>　　固定定位的用途：页面中的某些小广告，需要固定在页面中的一个位置不变</p>
+<p>总结：将来在写页面的时候，用的最多的不是绝对定位也不是相对定位，而是绝对定位与相对定位一起使用.相对定位实际上被看作普通流定位模型的一部分，因为元素的位置相对于它在普通流中的位置。</p>
+<p>规范：子绝父相（子元素使用绝对定位，父元素使用相对定位）</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zhifubao.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/06/22/css-Positioning-mechanism/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/07/javascript-script/" class="archive-article-date">
-  	<time datetime="2018-06-07T02:29:00.812Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-07</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/07/javascript-script/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">主流浏览器及其内核</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/07/javascript-script/">主流浏览器及其内核</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/18/git-project-version/" class="archive-article-date">
-  	<time datetime="2018-05-18T13:19:48.727Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-18</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/23/aliFirstInterview-4/" class="archive-article-date">
-  	<time datetime="2018-04-23T14:39:05.146Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/23/aliFirstInterview-4/">移动端的自适应</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/20/aliFirstInterview-3/" class="archive-article-date">
-  	<time datetime="2018-04-20T07:42:45.285Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/20/aliFirstInterview-3/">js的原型链</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/19/aliFirstInterview-1/" class="archive-article-date">
-  	<time datetime="2018-04-19T02:45:33.683Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/19/aliFirstInterview-1/">ES5的新特性</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/18/aliFirstInterview-2/" class="archive-article-date">
-  	<time datetime="2018-04-18T07:54:55.586Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/18/aliFirstInterview-2/">JavaScript的基本知识</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/05/pushBlog/" class="archive-article-date">
-  	<time datetime="2018-04-05T03:13:42.208Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/05/pushBlog/">将本地修改或添加的博客推送到gitbub上</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/05/jsOperateArray/" class="archive-article-date">
-  	<time datetime="2018-04-05T02:52:12.318Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/05/jsOperateArray/">JavaScript（原生js）操作array的方法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/27/js-string/" class="archive-article-date">
-  	<time datetime="2018-02-27T12:31:07.404Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/27/js-string/">JavaScript  String类型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -459,8 +385,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
