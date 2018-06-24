@@ -6,14 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Swallow的博客</title>
+  <title>git仓库的基本使用 | Swallow的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Swallow的博客">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="前言今天闲来无事（其实是不想动），就打算将最近学习的东西以基本项目案例的形式记录实践下来，但是，又不想简简单单写个工程，所以打算自己还是像正规项目那样，能有个版本控制工具，由于以前的项目都是用的svn，所以，这次我打算换一换，尝试用现在主流的git作为项目版本管理工具。   开始（这个是基本前提工作都完成的情况：比如git 已经安装）在github上创建仓库(这一步只是管理者需要做的事情) 在本地">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git仓库的基本使用">
+<meta property="og:url" content="http://yoursite.com/2018/06/24/git-project-version1/index.html">
 <meta property="og:site_name" content="Swallow的博客">
+<meta property="og:description" content="前言今天闲来无事（其实是不想动），就打算将最近学习的东西以基本项目案例的形式记录实践下来，但是，又不想简简单单写个工程，所以打算自己还是像正规项目那样，能有个版本控制工具，由于以前的项目都是用的svn，所以，这次我打算换一换，尝试用现在主流的git作为项目版本管理工具。   开始（这个是基本前提工作都完成的情况：比如git 已经安装）在github上创建仓库(这一步只是管理者需要做的事情) 在本地">
+<meta property="og:image" content="https://img-blog.csdn.net/2018051817295986?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWxsb3dfeQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="http://yoursite.com/2018/06/24/git-project-version1/images/1_3.png">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518192451681?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWxsb3dfeQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518200103696?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWxsb3dfeQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518201521895?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWxsb3dfeQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518201858640?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWxsb3dfeQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518205024866?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWxsb3dfeQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:updated_time" content="2018-06-24T02:17:35.173Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swallow的博客">
+<meta name="twitter:title" content="git仓库的基本使用">
+<meta name="twitter:description" content="前言今天闲来无事（其实是不想动），就打算将最近学习的东西以基本项目案例的形式记录实践下来，但是，又不想简简单单写个工程，所以打算自己还是像正规项目那样，能有个版本控制工具，由于以前的项目都是用的svn，所以，这次我打算换一换，尝试用现在主流的git作为项目版本管理工具。   开始（这个是基本前提工作都完成的情况：比如git 已经安装）在github上创建仓库(这一步只是管理者需要做的事情) 在本地">
+<meta name="twitter:image" content="https://img-blog.csdn.net/2018051817295986?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWxsb3dfeQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
   
     <link rel="alternative" href="/atom.xml" title="Swallow的博客" type="application/atom+xml">
   
@@ -153,44 +165,83 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-jsOperateArray" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-git-project-version1" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/05/jsOperateArray/">JavaScript（原生js）操作array的方法</a>
+    <h1 class="article-title" itemprop="name">
+      git仓库的基本使用
     </h1>
   
 
         
-        <a href="/2018/04/05/jsOperateArray/" class="archive-article-date">
-  	<time datetime="2018-04-05T02:52:12.318Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-05</time>
+        <a href="/2018/06/24/git-project-version1/" class="archive-article-date">
+  	<time datetime="2018-06-24T02:21:59.464Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="原生js操作数组的方法"><a href="#原生js操作数组的方法" class="headerlink" title="原生js操作数组的方法"></a><strong>原生js操作数组的方法</strong></h1><ul>
-<li><strong>Array 对象方法 </strong></li>
-<li><strong>concat() 连接两个或更多的数组，并返回结果</strong></li>
-<li><strong>join() 把数组的所有元素放入一个字符串。元素通过指定的分隔符进行分隔。</strong></li>
-<li><strong>pop() 删除并返回数组的最后一个元素 </strong></li>
-<li><strong>reverse() 颠倒数组中元素的顺序。</strong></li>
-<li><strong>shift() 删除并返回数组的第一个元素</strong></li>
-<li><strong>slice() 从某个已有的数组返回选定的元素 </strong></li>
-<li><strong>sort() 对数组的元素进行排序</strong></li>
-<li><strong>toSource() 返回该对象的源代码。 </strong></li>
-<li><strong>toLocaleString() 把数组转换为本地数组，并返回结果。</strong></li>
-<li><strong>valueOf() 返回数组对象的原始值</strong></li>
-</ul>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天闲来无事（其实是不想动），就打算将最近学习的东西以基本项目案例的形式记录实践下来，但是，又不想简简单单写个工程，所以打算自己还是像正规项目那样，能有个版本控制工具，由于以前的项目都是用的svn，所以，这次我打算换一换，尝试用现在主流的git作为项目版本管理工具。</p>
+<hr>
+
+<h2 id="开始（这个是基本前提工作都完成的情况：比如git-已经安装）"><a href="#开始（这个是基本前提工作都完成的情况：比如git-已经安装）" class="headerlink" title="开始（这个是基本前提工作都完成的情况：比如git 已经安装）"></a>开始（这个是基本前提工作都完成的情况：比如git 已经安装）</h2><h3 id="在github上创建仓库-这一步只是管理者需要做的事情"><a href="#在github上创建仓库-这一步只是管理者需要做的事情" class="headerlink" title="在github上创建仓库(这一步只是管理者需要做的事情)"></a>在github上创建仓库(这一步只是管理者需要做的事情)</h3><p><img src="https://img-blog.csdn.net/2018051817295986?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWxsb3dfeQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="怎么在github上创建仓库"></p>
+<h3 id="在本地创建仓库（以下是都需要做的）"><a href="#在本地创建仓库（以下是都需要做的）" class="headerlink" title="在本地创建仓库（以下是都需要做的）"></a>在本地创建仓库（以下是都需要做的）</h3><a id="more"></a> 
+<ol>
+<li>在想要放项目的文件夹（当前的整个路径都是纯英文的）上右击，选择<strong>Git Bash here</strong></li>
+<li>创建项目文件夹，<strong>mkdir hello</strong>,这个“hello”是我的项目名称（最好和git服务器上的项目名称一致）。<br><img src="./images/1_3.png" alt="enter description here" title="1.png"><br><img src="https://img-blog.csdn.net/20180518192451681?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWxsb3dfeQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="新建一个hello项目文件夹"></li>
+<li>输入<strong>ls</strong>查看当前文件夹下面的文件目录</li>
+<li>输入cd hello-world进入新文件夹，注意在输入命令时，你可以用Tab键来自动补全</li>
+<li>输入git init初始化Git仓库。此时用ls -a查看当前目录，可以看到多了一个.git/的文件夹，此文件夹保存了版本控制的所有相关信息。<br><img src="https://img-blog.csdn.net/20180518200103696?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWxsb3dfeQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="进入项目文件夹，生成git版本控制文件"></li>
+<li>输入echo “This is a simple practise” &gt; readme.txt，创建一个readme.txt文件。</li>
+<li>输入git status查看当前版本库状态，在Untracked files(未跟踪文件)下，会出现红色的readme.txt，代表此文件还未被Git所管理。<br><img src="https://img-blog.csdn.net/20180518201521895?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWxsb3dfeQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></li>
+<li>使用git add readme.txt，将该文件加入缓冲区，如果你确定所有的修改都需要提交，可以使用git add .来加入所有修改。现在用git status查看，将看到文件名变为绿色。</li>
+<li>使用git commit -m “This is my first commit via Git!”来提交修改，-m后面所带的参数是本次提交信息，一般用来记录本次提交的主要意图。<br><img src="https://img-blog.csdn.net/20180518201858640?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWxsb3dfeQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="提交未提交的新文件或修改过的文件"></li>
+<li>提交成功后，可以用git log查看历史提交记录。每个记录都会有提交id，作者和提交日期。</li>
+<li>你可以用git branch查看当前有哪些分支，当然，因为我们没有创建任何分支，目前只会有一个master分支。</li>
+<li>使用git checkout -b feature创建一个名为feature的分支，再用git branch查看一下。<h3 id="克隆项目到本地"><a href="#克隆项目到本地" class="headerlink" title="克隆项目到本地"></a>克隆项目到本地</h3><h4 id="第一步-从GitHub上下载我们的项目代码。"><a href="#第一步-从GitHub上下载我们的项目代码。" class="headerlink" title="第一步. 从GitHub上下载我们的项目代码。"></a>第一步. 从GitHub上下载我们的项目代码。</h4>1.以Hello-World项目为例，点击绿色按钮Clone or download，然后在弹出窗口中点击剪切板图标，复制仓库的URL。<br><img src="https://img-blog.csdn.net/20180518205024866?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWxsb3dfeQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="复制当前项目的路径，以便后来的克隆"><br>2.在git bash中输入git clone <a href="https://github.com/feicui-android/Hello-World.git，下载项目源码。" target="_blank" rel="external">https://github.com/feicui-android/Hello-World.git，下载项目源码。</a><h4 id="第二步-查看版本历史"><a href="#第二步-查看版本历史" class="headerlink" title="第二步. 查看版本历史"></a>第二步. 查看版本历史</h4></li>
+<li>cd到项目文件夹下，使用git log能看到我们的历史提交记录。</li>
+<li>要回到某一历史版本，可以使用git checkout commitId，看完后要回到最新代码，使用git checkout master。<h4 id="第三步-本地修改代码"><a href="#第三步-本地修改代码" class="headerlink" title="第三步. 本地修改代码"></a>第三步. 本地修改代码</h4><ol>
+<li>下载新代码：git pull。</li>
+<li>从master出捡出一个新的分支：git checkout -b feature。feature是分支名称，你可以随意取名，但请用英文。</li>
+<li>在feature分支上随意修改，改完后你可以提交你的修改：git commit -m “some message”。</li>
+<li>此时要同步代码，请先切回主分支：git checkout master，然后更新git pull。</li>
+<li>如果想删除自己建立的分支，使用git branch -D feature，注意执行此命令后分支被强制删除，无法恢复。<br><a href="https://blog.csdn.net/swallow_y/article/details/80369676" target="_blank" rel="external">当前文章参考图片无法正常展示，查看我的CSDN博客</a><br><a href="%E5%BD%93%E5%89%8D%E6%96%87%E7%AB%A0%E5%8F%82%E8%80%83%E5%9F%BA%E6%9C%AC%E6%9D%A5%E6%BA%90%EF%BC%8C%E6%84%9F%E8%B0%A2%E8%BF%99%E4%BD%8D%E9%99%8C%E7%94%9F%E4%BA%BA%E7%9A%84%E4%B8%8D%E9%94%99%E7%9A%84%E6%96%87%E7%AB%A0">当前文章参考基本来源，感谢这位陌生人的不错的文章</a></li>
+</ol>
+</li>
+</ol>
 
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zhifubao.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -199,16 +250,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/05/jsOperateArray/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/06/24/git-project-version1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/24/MistakeAnalysis/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ES5的新特性</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -228,390 +338,12 @@
 
 
 
-
-  
-    <article id="post-js-string" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/27/js-string/">JavaScript  String类型</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/27/js-string/" class="archive-article-date">
-  	<time datetime="2018-02-27T12:31:07.404Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="字符方法"><a href="#字符方法" class="headerlink" title="字符方法"></a>字符方法</h3><h4 id="访问字符串中特定字符的方法："><a href="#访问字符串中特定字符的方法：" class="headerlink" title="访问字符串中特定字符的方法："></a>访问字符串中特定字符的方法：</h4><p>  charAt()和charCodeAt()。这两个方法都接收一个参数，即基于0的字符位置。</p>
-<table>
-<thead>
-<tr>
-<th>charAt()</th>
-<th>charCodeAt()</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> <code>以单个字符字符串的形式返回给定位置的那个字符</code></td>
-<td><code>返回给定位置的那个字符的字符编码</code></td>
-</tr>
-<tr>
-<td> <code>var stringValue = &quot;hello world&quot;;  stringValue.charAt(1) //返回“e”</code></td>
-<td><code>var stringValue = &quot;hello world&quot;; stringValue.charCodeAt(1) //返回&quot;101&quot;</code></td>
-</tr>
-</tbody>
-</table>
-        
-          <a class="article-more-a" href="/2018/02/27/js-string/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/27/js-string/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-createVueProject" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/27/createVueProject/">vue项目的创建</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/27/createVueProject/" class="archive-article-date">
-  	<time datetime="2018-01-27T08:00:05.849Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="新创建一个vue-的项目需要干哪些工作："><a href="#新创建一个vue-的项目需要干哪些工作：" class="headerlink" title="新创建一个vue 的项目需要干哪些工作："></a>新创建一个vue 的项目需要干哪些工作：</h2><h3 id="一、node安装"><a href="#一、node安装" class="headerlink" title="一、node安装"></a>一、node安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1、判断是否安装nodeJS，没有安装先安装，对安装路径没有要求（node的下载地址：https://nodejs.org/en/ 或者 http://nodejs.cn/）</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2018/01/27/createVueProject/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/27/createVueProject/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Rendering-Engine" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/23/Rendering-Engine/">主流浏览器及其内核</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/23/Rendering-Engine/" class="archive-article-date">
-  	<time datetime="2018-01-23T08:05:50.223Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>只是简单的说明一下<a href="http://blog.csdn.net/ofsno/article/details/51164575" target="_blank" rel="external">主流浏览器</a>，不做详细介绍.</p>
-<h2 id="Let’s-go"><a href="#Let’s-go" class="headerlink" title="Let’s go"></a>Let’s go</h2><h3 id="主流浏览器"><a href="#主流浏览器" class="headerlink" title="主流浏览器"></a>主流浏览器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">IE  Chrome  Firefox   Safari   Opera</div></pre></td></tr></table></figure>
-<p>还有更多的浏览器，这几个只是我个人觉得所占市场份额较大的浏览器</p>
-<h3 id="浏览器及其内核"><a href="#浏览器及其内核" class="headerlink" title="浏览器及其内核"></a>浏览器及其内核</h3><table>
-<thead>
-<tr>
-<th>浏览器</th>
-<th>内核</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>IE</code></td>
-<td><code>Trident</code></td>
-</tr>
-<tr>
-<td><code>Chrome</code></td>
-<td><code>webkit/blink</code></td>
-</tr>
-<tr>
-<td><code>Firefox</code></td>
-<td><code>Gecko</code></td>
-</tr>
-<tr>
-<td><code>Safari</code></td>
-<td><code>webkit</code></td>
-</tr>
-<tr>
-<td><code>Opera</code></td>
-<td><code>Presto</code></td>
-</tr>
-</tbody>
-</table>
-<p>More info: <a href="https://baike.baidu.com/item/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8/10602413?fr=aladdin" target="_blank" rel="external">浏览器内核</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/23/Rendering-Engine/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-我的博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/22/我的博客/">我的博客</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/22/我的博客/" class="archive-article-date">
-  	<time datetime="2017-08-22T12:08:49.098Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/22/我的博客/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/22/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/22/hello-world/" class="archive-article-date">
-  	<time datetime="2017-08-22T07:40:18.314Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/22/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
+  
+
   
 
 
@@ -634,8 +366,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
