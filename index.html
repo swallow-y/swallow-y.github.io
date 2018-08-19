@@ -155,19 +155,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-“test" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JsPrototypeChain" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/19/“test/">js的原型链</a>
+      <a class="article-title" href="/2018/08/19/JsPrototypeChain/">js的原型链</a>
     </h1>
   
 
         
-        <a href="/2018/08/19/“test/" class="archive-article-date">
+        <a href="/2018/08/19/JsPrototypeChain/" class="archive-article-date">
   	<time datetime="2018-08-19T02:21:32.758Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-19</time>
 </a>
         
@@ -175,7 +175,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这篇文章的原文出自 <a href="https://blog.csdn.net/sinat_21274091/article/details/52741788" target="_blank" rel="external">CSDN上的博客</a>.<br>想要了解原型链的产生就看<a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html" target="_blank" rel="external">阮一峰的博客</a><br>（原型链顶端的原型对象：Object.prototype）<br>先贴一张原型链的图解<br><img src="/2018/08/19/“test/jsprototypeand__proto__.jpg" alt="enter description here" title="jsprototypeand__proto__.jpg"></p>
+        <p>这篇文章的原文出自 <a href="https://blog.csdn.net/sinat_21274091/article/details/52741788" target="_blank" rel="external">CSDN上的博客</a>.<br>想要了解原型链的产生就看<a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html" target="_blank" rel="external">阮一峰的博客</a><br>（原型链顶端的原型对象：Object.prototype）<br>先贴一张原型链的图解<br><img src="/2018/08/19/JsPrototypeChain/jsprototypeand__proto__.jpg" alt="enter description here" title="jsprototypeand__proto__.jpg"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">理解Javascript语言的继承机制。</div><div class="line"></div><div class="line">它没有<span class="string">"子类"</span>和<span class="string">"父类"</span>的概念，也没有<span class="string">"类"</span>（class）和<span class="string">"实例"</span>（instance）的区分，全靠一种很奇特的<span class="string">"原型链"</span>（prototype chain）模式，来实现继承。</div></pre></td></tr></table></figure>
 <h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>要弄清楚原型链，首先要清楚对象</p>
 <ol>
@@ -187,7 +187,7 @@
 <p>例子</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Array</div><div class="line">ƒ Array() &#123; [native code] &#125;</div><div class="line">Array.__proto__ === Function.prototype</div><div class="line">true</div><div class="line">Array是函数对象，是Function的实例对象，Array是通过newFunction创建出来的。因为Array是Function的实例，所以Array.__proto__ ===  Function.prototype</div></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2018/08/19/“test/#more">more >></a>
+          <a class="article-more-a" href="/2018/08/19/JsPrototypeChain/#more">more >></a>
         
       
 
@@ -200,7 +200,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/19/“test/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/08/19/JsPrototypeChain/">展开全文 >></a>
         </p>
       
 
@@ -868,81 +868,6 @@
 
 
   
-    <article id="post-JsPrototypeChain" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/20/JsPrototypeChain/">js的原型链</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/20/JsPrototypeChain/" class="archive-article-date">
-  	<time datetime="2018-04-20T07:42:45.285Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这篇文章的原文出自 <a href="https://blog.csdn.net/sinat_21274091/article/details/52741788" target="_blank" rel="external">CSDN上的博客</a>.<br>想要了解原型链的产生就看<a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html" target="_blank" rel="external">阮一峰的博客</a><br>（原型链顶端的原型对象：Object.prototype）<br>先贴一张原型链的图解<br><img src="/2018/04/20/JsPrototypeChain/jsprototypeand__proto__.jpg" alt="enter description here" title="jsprototypeand__proto__.jpg"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">理解Javascript语言的继承机制。</div><div class="line"></div><div class="line">它没有<span class="string">"子类"</span>和<span class="string">"父类"</span>的概念，也没有<span class="string">"类"</span>（class）和<span class="string">"实例"</span>（instance）的区分，全靠一种很奇特的<span class="string">"原型链"</span>（prototype chain）模式，来实现继承。</div></pre></td></tr></table></figure>
-<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>要弄清楚原型链，首先要清楚对象</p>
-<ol>
-<li>普通对象<br> 最普通的对象：有–proto–属性（指向其原型链），没有prototype属性。<br> 原型对象（person.prototype原型对象还有constructor属性（指向构造函数对象））</li>
-<li>函数对象<br> 凡是通过new Function()创建的都是函数对象，拥有–proto–、prototype属性（指向原型对象）。<br> Function、Object、Array、Date、String、自定义函数<br> 特例：Function.prototype(是原型对象，确实函数对象)</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">函数对象  </div><div class="line">function f1()&#123;&#125;;  </div><div class="line">var f2 = function()&#123;&#125;;  </div><div class="line">var f3 = function("n1","n2","return n1+n2");  </div><div class="line">  </div><div class="line">console.log(typeof f1);  //function  </div><div class="line">console.log(typeof f2);  //function  </div><div class="line">console.log(typeof f3);   //function  </div><div class="line">console.log(typeof Object);   //function  </div><div class="line">console.log(typeof Array);   //function  </div><div class="line">console.log(typeof String);   //function  </div><div class="line">console.log(typeof Date);   //function  </div><div class="line">console.log(typeof Function);   //function</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Array</div><div class="line">ƒ <span class="function"><span class="title">Array</span></span>() &#123; [native code] &#125;</div><div class="line">Array.__proto__ === Function.prototype</div><div class="line"><span class="literal">true</span></div><div class="line">Array是函数对象，是Function的实例对象，Array是通过newFunction创建出来的。因为Array是Function的实例，所以Array.__proto__ ===  Function.prototype</div></pre></td></tr></table></figure>
-<p>例子</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Array</div><div class="line">ƒ Array() &#123; [native code] &#125;</div><div class="line">Array.__proto__ === Function.prototype</div><div class="line">true</div><div class="line">Array是函数对象，是Function的实例对象，Array是通过newFunction创建出来的。因为Array是Function的实例，所以Array.__proto__ ===  Function.prototype</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2018/04/20/JsPrototypeChain/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/20/JsPrototypeChain/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Es5NewFeatures" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -980,6 +905,73 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/19/Es5NewFeatures/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JsBaseKnowledge" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/18/JsBaseKnowledge/">JavaScript的基本知识</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/18/JsBaseKnowledge/" class="archive-article-date">
+  	<time datetime="2018-04-18T07:54:55.586Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="JavaScript的数据类型"><a href="#JavaScript的数据类型" class="headerlink" title="JavaScript的数据类型"></a>JavaScript的数据类型</h3><p>这个是基本问题<br>JavaScript的基本数据类型含有：String、Number、Boolean、Null、Undefined<br>还有一个复杂的数据类型：Object</p>
+<hr>
+<h3 id="关于promise的简单介绍"><a href="#关于promise的简单介绍" class="headerlink" title="关于promise的简单介绍"></a>关于promise的简单介绍</h3><p>我主要是在谈与ajax的异步结合使用，（在Javascript中，所有代码都是单线程执行的，由于这个“缺陷”，导致JavaScript的所有网络操作，浏览器事件，都必须是异步执行。异步执行可以用回调函数实现）<br>window.promise是js的内置对象，我们可以直接拿出来用：var p = new Promise();</p>
+        
+          <a class="article-more-a" href="/2018/04/18/JsBaseKnowledge/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/18/JsBaseKnowledge/">展开全文 >></a>
         </p>
       
 
