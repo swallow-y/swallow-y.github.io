@@ -155,19 +155,258 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-git-project-version" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-baseSummaryOfHTTP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="OSI模型和TCP-IP模型"><a href="#OSI模型和TCP-IP模型" class="headerlink" title="OSI模型和TCP/IP模型"></a>OSI模型和TCP/IP模型</h4><p><img src="https://img-blog.csdn.net/20180718164130261?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWxsb3dfeQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="OSI模型"></p>
+<h4 id="客户端访问服务器资源协议概述"><a href="#客户端访问服务器资源协议概述" class="headerlink" title="客户端访问服务器资源协议概述"></a>客户端访问服务器资源协议概述</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">客户端访问服务器资源到底经历了什么协议，首先给大家先看一个概述图</div></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/2018071808595779?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWxsb3dfeQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="服务器资源请求概述图"></p>
+<h4 id="客户端和服务器端的通信连接"><a href="#客户端和服务器端的通信连接" class="headerlink" title="客户端和服务器端的通信连接"></a>客户端和服务器端的通信连接</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在客户端和服务器端的正式通信之前，需要先建立连接。</div><div class="line">连接主要是用到了TCP的三次握手来建立连接。</div></pre></td></tr></table></figure>
+<p>TCP的三次握手：</p>
+<p>第一次握手：客户端向服务器发送连接请求包，标志位SYN（同步序号）置为1，序号为X=0</p>
+<p>第二次握手：服务器由SYN=1知道客户端要求建立联机。向客户端发送一个SYN和ACK都置为1的TCP报文，设置初始序号Y=0（随机），将确认序号(Acknowledgement Number)设置为客户的序列号加1，即X+1 = 0+1=1</p>
+<p>第三次握手：客户端收到服务器发来的包后检查确认序号(Acknowledgement Number)是否正确，即第一次发送的序号加1（X+1=1）。以及标志位ACK是否为1。若正确，服务器再次发送确认包，ACK标志位为1，SYN标志位为0。确认序号(Acknowledgement Number)=Y+1=0+1=1，发送序号为X+1=1。客户端收到后确认序号值与ACK=1则连接建立成功，可以传送数据了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">通俗来讲就是：</div><div class="line">第一次握手：客户端发送请求给服务器端</div><div class="line">第二次握手：服务器端连接客户端</div><div class="line">第三次握手：客户端连接服务器端</div></pre></td></tr></table></figure>
+<h4 id="HTTP协议用于客户端和服务器端之间的通信"><a href="#HTTP协议用于客户端和服务器端之间的通信" class="headerlink" title="HTTP协议用于客户端和服务器端之间的通信"></a>HTTP协议用于客户端和服务器端之间的通信</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在实际情况下，服务器和客户端的角色是可以互换的，但，在确定的一条通信线路上，服务器和客户端的角色是确定了的。</div><div class="line">利用HTTP协议可以明确的区分哪端是客户端，哪端是服务器端。</div></pre></td></tr></table></figure>
+<h4 id="HTTP是一种不保存状态的协议"><a href="#HTTP是一种不保存状态的协议" class="headerlink" title="HTTP是一种不保存状态的协议"></a>HTTP是一种不保存状态的协议</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">在实际的HTTP通信情况下，HTTP是不会记录保存之前的通信信息(减少CPU的和内存资源的消耗)，</div><div class="line">但是在实际情况下，我们的很多系统登录需要确定用户是否登录系统了。</div><div class="line">所以，为了解决这个缺陷，引入了cookie技术。</div></pre></td></tr></table></figure>
+<h5 id="cookie的应用："><a href="#cookie的应用：" class="headerlink" title="cookie的应用："></a>cookie的应用：</h5><p> 1.Cookie技术通过在请求和响应报文中写入Cookie 信息来控制客户端的状态<br> 2.Cookie 会根据从服务器端发送的响应报文内的一个叫Set-Cookie的首部字段信息，通知客户端保存Cookie。<br> 3.当客户端再次往服务器发送请求时，客户端会自动在请求报文中加入Cookie值后再发送<br> 4.服务器发现客户端发过来的Cookie后，会去检查究竟是从哪个客户端发来的请求，对比服务器上的记录，得到之前的状态信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">现在 服务器和客户端的通信连接成功了。</div><div class="line">当客户端发送请求到服务器时，服务器会根据实际情况，给客户端返回HTTP状态码</div></pre></td></tr></table></figure></p>
+<h5 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">状态码的职责是当客户端向服务器端发送请求时，描述返回的请求结果。借助状态码，用户可以知道服务器端是正常处理了请求，还是出现了错误。</div></pre></td></tr></table></figure>
+<p>1、<strong>2XX表示成功</strong><br>1.1 <strong>200   OK</strong>(表示从客户端发来的请求在服务器端被正常处理了)<br>1.2 <strong>204   No content</strong>(表示服务器接收的请求已成功处理，但在返回的响应报文中，不含实体的主体部分)<br>1.3 <strong>206   Partial Content</strong>(表示客户端进行了范围请求，而服务器成功执行了这部分的GET请求)<br>2、<strong>3XX 重定向</strong><br>2.1   <strong>301 Moved  Permanently</strong>(永久重定向，表示请求的资源已被分配了新的URI，以后应使用现在新的URI来请求资源)<br>2.2   <strong>302  Found</strong>(临时重定向，表示请求的资源已被分配了新的URI，希望用户本次能使用新的URI访问)<br>2.3   <strong>303  See  Other</strong>(表示请求对应的资源存在另一个URI,应使用GET方法定向获取请求的资源，和302的区别就在于要求用GET进行请求)<br>2.4   <strong>304   Not Modified</strong>（表示客户端发送附带条件的请求时，服务器端允许请求访问资源，但未满足条件的情况）<br>2.5  <strong>307   Temporary Redirect</strong>(表示临时重定向，和302有相同的含义，302的标准是禁止将post转换成GET，但大家都没遵守，但是307会遵照浏览器标准，不会从POST变成GET)<br>3、<strong>4XX   客户端错误</strong><br>3.1  400  Bad  Request(表明客户端请求的报文中存在语法错误)<br>3.2  <strong>401  Unauthorized</strong>（表明客户端发送的请求有需要通过HTTP认证的认证信息，另外若之前已进行过一次请求，则表示用户认证失败）<br>3.3  <strong>403  Forbidden</strong>（表示客户端对请求资源的访问被服务器拒绝了）<br>3.4   <strong>404 Not Found</strong>（表示客户端请求的资源在服务器上没有找到）<br>4、 <strong>5XX 服务器错误</strong><br>4.1 <strong>501  Internal Server Error</strong>（表示服务器在执行请求时发生了错误，也有可能是Web 应用存在的bug或某些临时的故障）<br>4.2 <strong>503  Service Unavailable</strong>（表示服务器暂时处于超负载或正在进行停机维护）</p>
+<h4 id="客户端和服务器端的通信连接断开"><a href="#客户端和服务器端的通信连接断开" class="headerlink" title="客户端和服务器端的通信连接断开"></a>客户端和服务器端的通信连接断开</h4><p>HTTP通信的连接主要是依靠TCP，http通信断开主要是TCP的四次挥手。TCP的同学连接和断开都是客户端先主动的<br>TCP四次挥手：<br> 第一次挥手：客户端给服务器发送TCP包，用来关闭客户端到服务器的数据传送。将标志位FIN和ACK置为1，序号为X=1，确认序号为Z=1。</p>
+<p>第二次挥手：服务器收到FIN后，发回一个ACK(标志位ACK=1),确认序号为收到的序号加1，即X=X+1=2。序号为收到的确认序号=Z。</p>
+<p>第三次挥手：服务器关闭与客户端的连接，发送一个FIN。标志位FIN和ACK置为1，序号为Y=1，确认序号为X=2。</p>
+<p>第四次挥手：客户端收到服务器发送的FIN之后，发回ACK确认(标志位ACK=1),确认序号为收到的序号加1，即Y+1=2。序号为收到的确认序号X=2。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">第一次挥手：客户端发送关闭连接请求给服务器端,我这边没事了，你那边还有事吗？</div><div class="line">第二次挥手：服务器端发送确认消息给客户端，表示我收到客户端请求了</div><div class="line">第三次挥手：服务器端断开连接</div><div class="line">第四次挥手：客户端收到服务器端的确认消息信号后，发送一个确认消息给客户端，表示收到服务器的确认消息</div></pre></td></tr></table></figure>
+<hr>
+
+<p>以上就是HTTP通信的过程<br>下面我将说说HTTPS</p>
+<hr>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">为什么会考虑到HTTPS，因为HTTP存在不足，比如：</div><div class="line">1、通信使用明文（不加密），内容可能会被窃听</div><div class="line">2、不验证通信方的身份，有可能遭到伪装</div><div class="line">3、无法验证报文的完整性，有可能遭到篡改</div></pre></td></tr></table></figure>
+<p> HTTPS = HTTP+SSL(安全套接层，主要负责安全加密)</p>
+<h4 id="HTTPS-HTTP-加密-认证-完整性保护"><a href="#HTTPS-HTTP-加密-认证-完整性保护" class="headerlink" title="HTTPS  = HTTP + 加密  + 认证 + 完整性保护"></a>HTTPS  = HTTP + 加密  + 认证 + 完整性保护</h4><h5 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h5><p>主要由两种：共享密钥加密和公开密钥加密</p>
+<ul>
+<li><p>共享密钥加密：<br>公钥和私钥是一样的，当服务器端将公钥传送给客户端时，第三方可以截取到公钥，仍然可以破译密文</p>
+</li>
+<li><p>公开密钥加密：<br>公钥和私钥不同，因此，公钥可以发给任意人。但是公开密钥加密效率相对共享密钥加密低</p>
+</li>
+</ul>
+<p>因此，HTTPS将两者结合<br>使用公开密钥加密将共享密钥加密的公钥发送给客户端。这样可以避免共享密钥的公钥被第三方窃取。但是仍然存在问题，当第三方将公开密钥加密的公钥替换，整个内容替换，那么，客户端收到的是新的公开密钥，仍然存在问题。因此，考虑到了证书。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">公钥和私钥大体而言可以说是一种参数，是加密算法和解密算法的参数</div></pre></td></tr></table></figure></p>
+<h5 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h5><ol>
+<li>首先服务器的运营人员会向数字证书认证机构提出公开密钥的申请，数字证书认证机构在辨明提出申请者的身份之后，会对已申请的公开密钥做数字签名，然后分配这个已签名的公开密钥，并将该公开密钥放入公钥证书后，绑定在一起。</li>
+<li>服务器会将这份由数字证书认证机构颁发的公钥证书发送给客户端，以进行公开密钥加密方式通信。公钥证书也称为数字证书或证书。</li>
+<li>客户端收到证书后，可使用数字证书认证机构的公开密钥，对那张证书上的数字签名进行验证，一旦验证通过，可以说明：认证服务器的公开密钥的是真实有效的数字证书认证机构，服务器的公开密钥是值得信赖的。</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/19/baseSummaryOfHTTP/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-promise-Eventloop" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/24/git-project-version/">git仓库的基本使用</a>
+      <a class="article-title" href="/2018/08/19/promise-Eventloop/">Promise、事件循环、快速排序和希尔排序</a>
     </h1>
   
 
         
-        <a href="/2018/06/24/git-project-version/" class="archive-article-date">
+        <a href="/2018/08/19/promise-Eventloop/" class="archive-article-date">
+  	<time datetime="2018-08-19T00:52:59.985Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、Promise"><a href="#一、Promise" class="headerlink" title="一、Promise"></a>一、Promise</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在JavaScript的世界中，所有代码都是单线程执行的。</div><div class="line">由于这个“缺陷”，导致JavaScript的所有网络操作，浏览器事件，都必须是异步执行。</div></pre></td></tr></table></figure>
+<h2 id="处理异步的方法"><a href="#处理异步的方法" class="headerlink" title="处理异步的方法"></a>处理异步的方法</h2><h3 id="1、回调函数"><a href="#1、回调函数" class="headerlink" title="1、回调函数"></a>1、回调函数</h3><p>（回调是一个函数被作为一个参数传递到另一个函数里，在那个函数执行完后再执行。其优点是简单、容易理解和部署，缺点是不利于代码的阅读和维护，各个部分之间高度耦合（Coupling），流程会很混乱，而且每个任务只能指定一个回调函数。分为同步回调和异步回调）</p>
+<h3 id="2、事件监听"><a href="#2、事件监听" class="headerlink" title="2、事件监听"></a>2、事件监听</h3><p>（采用事件驱动模式。任务的执行不取决代码的顺序，而取决于某一个事件是否发生。监听函数有：on，bind，listen，addEventListener，observe）<br>例子：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function f1()&#123;</div><div class="line">    settimeout(function()&#123;</div><div class="line">       <span class="comment">//f1的任务代码</span></div><div class="line">       <span class="comment">//f1.trigger('done')表示，执行完成后，立即触发done事件，从而开始执行f2.</span></div><div class="line">       f1.trigger('done');  </div><div class="line">    &#125;,1000);</div><div class="line">&#125;</div><div class="line"><span class="comment">//当f1发生done事件，就执行f2。</span></div><div class="line">f1.on('done',f2);</div></pre></td></tr></table></figure>
+<p>这种方法的优点：比较容易理解，可以绑定多个事件，每一个事件可以指定多个回调函数，而且可以去耦合，有利于实现模块化。<br>这种方法的缺点：整个程序都要变成事件驱动型，运行流程会变得不清晰。</p>
+<h3 id="3、发布-订阅"><a href="#3、发布-订阅" class="headerlink" title="3、发布/订阅"></a>3、发布/订阅</h3><p>（假定，存在一个”信号中心”，某个任务执行完成，就向信号中心”发布”（publish）一个信号，其他任务可以向信号中心”订阅”（subscribe）这个信号，从而知道什么时候自己可以开始执行。这就叫做”发布/订阅模式”（publish-subscribe pattern），又称”观察者模式”（observer pattern）。）<br>例子：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//首先，f2向"信号中心"jQuery订阅"done"信号。</span></div><div class="line">jQuery.subscribe("done", f2);</div><div class="line">function f1()&#123;</div><div class="line">　　setTimeout(function () &#123;</div><div class="line">　　　　<span class="comment">// f1的任务代码</span></div><div class="line">       <span class="comment">// jQuery.publish("done")的意思是，f1执行完成后，向"信号中心"jQuery发布"done"信号，从而引发f2的执行。</span></div><div class="line">　　　　jQuery.publish("done");</div><div class="line">　　&#125;, 1000);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//此外，f2完成执行后，也可以取消订阅（unsubscribe）</span></div><div class="line">jQuery.unsubscribe("done", f2);</div></pre></td></tr></table></figure></p>
+<p>我们可以通过查看”消息中心”，了解存在多少信号、每个信号有多少订阅者，从而监控程序的运行。</p>
+<h3 id="4、async-await"><a href="#4、async-await" class="headerlink" title="4、async/await"></a>4、async/await</h3><h3 id="5、Promise对象"><a href="#5、Promise对象" class="headerlink" title="5、Promise对象"></a>5、Promise对象</h3><p>（promise对象是commonJS工作组提出的一种规范，一种模式由浏览器直接支持，目的是为了异步编程提供统一接口。promise可以帮忙管理异步方式返回的代码。他将代码进行封装并添加一个类似于事件处理的管理层。我们可以使用promise来注册代码，这些代码会在在promise成功或者失败后运行。）下面将详细讲解Promise</p>
+<h2 id="Promise基础"><a href="#Promise基础" class="headerlink" title="Promise基础"></a>Promise基础</h2><p>Promise是异步编程的一种解决方案，它有三种状态，分别是pending-进行中、resolved-已完成、rejected-已失败。并且状态一旦改变，就无法再次改变状态，<br>例子：生成一个0-2之间的随机数，如果小于1，则等待一段时间后返回成功，否则返回失败：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">function test(resolve, reject) &#123;</div><div class="line">    var timeOut = Math.random() * 2;</div><div class="line">    log('set timeout to: ' + timeOut + ' seconds.');</div><div class="line">    setTimeout(function () &#123;</div><div class="line">        <span class="keyword">if</span> (timeOut &lt; <span class="number">1</span>) &#123;</div><div class="line">            log('call resolve()...');</div><div class="line">            resolve('200 OK');</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            log('call reject()...');</div><div class="line">            reject('timeout in ' + timeOut + ' seconds.');</div><div class="line">        &#125;</div><div class="line">    &#125;, timeOut * 1000);</div><div class="line">&#125;</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">这个test()函数有两个参数，这两个参数都是函数，如果执行成功，我们将调用resolve('200 OK')，如果执行失败，我们将调用reject('timeout in ' + timeOut + ' seconds.')。可以看出，test()函数只关心自身的逻辑，并不关心具体的resolve和reject将如何处理结果。</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">有了执行函数，我们就可以用一个Promise对象来执行它，并在将来某个时刻获得成功或失败的结果：</span></div><div class="line"><span class="comment">**/</span></div><div class="line">var p1 = new Promise(test);</div><div class="line"><span class="selector-tag">var</span> p2 = p1.then(function (result) &#123;</div><div class="line">    console.log('成功：' + result);</div><div class="line">&#125;);</div><div class="line"><span class="selector-tag">var</span> p3 = p2.catch(function (reason) &#123;</div><div class="line">    console.log('失败：' + reason);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>由于then()本身就会返回一个新的promise，所以后一个then()针对的永远是一个新的promise，但是像上面代码中我们自己手动返回p4，那么我们就可以在返回的promise中再次通过 resolve() 和 reject() 来改变状态</p>
+<h2 id="Promise的其他API"><a href="#Promise的其他API" class="headerlink" title="Promise的其他API"></a>Promise的其他API</h2><h3 id="1、Promise-resolve-Promise-reject"><a href="#1、Promise-resolve-Promise-reject" class="headerlink" title="1、Promise.resolve() / Promise.reject()"></a>1、Promise.resolve() / Promise.reject()</h3><p>用来包装一个现有对象，将其转变为Promise对象，但Promise.resolve()会根据参数情况返回不同的Promise：</p>
+<p>参数是Promise：原样返回<br>参数带有then方法：转换为Promise后立即执行then方法<br>参数不带then方法、不是对象或没有参数：返回resolved状态的Promise</p>
+<p>Promise.reject()会直接返回rejected状态的Promise</p>
+<h3 id="2、Promise-all"><a href="#2、Promise-all" class="headerlink" title="2、Promise.all()"></a>2、Promise.all()</h3><p>参数为Promise对象数组，如果有不是Promise的对象，将会先通过上面的Promise.resolve()方法转换</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">var</span> promise = Promise.all( [p1, p2, p3] )</div><div class="line">promise.then(</div><div class="line">    ...</div><div class="line">).catch(</div><div class="line">    ...</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>当p1、p2、p3的状态都变成resolved时，promise才会变成resolved，并调用then()的已完成回调，但只要有一个变成rejected状态，promise就会立刻变成rejected状态</p>
+<h3 id="3、Promise-race"><a href="#3、Promise-race" class="headerlink" title="3、Promise.race()"></a>3、Promise.race()</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">var</span> promise = Promise.race( [p1, p2, p3] )</div><div class="line">promise.then(</div><div class="line">    ...</div><div class="line">).catch(</div><div class="line">    ...</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>“竞速”方法，参数与Promise.all()相同，不同的是，参数中的p1、p2、p3只要有一个改变状态，promise就会立刻变成相同的状态并执行对于的回调</p>
+<h3 id="4、Promise-done-Promise-finally"><a href="#4、Promise-done-Promise-finally" class="headerlink" title="4、Promise.done() / Promise. finally()"></a>4、Promise.done() / Promise. finally()</h3><p>Promise.done() 的用法类似 .then() ，可以提供resolved和rejected方法，也可以不提供任何参数，它的主要作用是在回调链的尾端捕捉前面没有被 .catch() 捕捉到的错误</p>
+<p>Promise. finally() 接受一个方法作为参数，这个方法不管promise最终的状态是怎样，都一定会被执行</p>
+<h2 id="Generator函数"><a href="#Generator函数" class="headerlink" title="Generator函数"></a>Generator函数</h2><h1 id="二、事件循环"><a href="#二、事件循环" class="headerlink" title="二、事件循环"></a>二、事件循环</h1><p><a href="https://www.jianshu.com/p/12b9f73c5a4f" target="_blank" rel="external">参考网址</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">事件循环机制从整体上的告诉了我们所写的JavaScript代码的执行顺序。</div></pre></td></tr></table></figure>
+<p>JavaScript代码的执行过程中，除了依靠函数调用栈来搞定函数的执行顺序外，还依靠任务队列(task queue    先进先出)来搞定另外一些代码的执行。</p>
+<ul>
+<li><p>一个线程中，事件循环是唯一的，但是任务队列可以拥有多个。</p>
+</li>
+<li><p>任务队列又分为macro-task（宏任务）与micro-task（微任务），在最新标准中，它们被分别称为task与jobs。</p>
+</li>
+<li><p>macro-task大概包括：script(整体代码), setTimeout, setInterval, setImmediate, I/O, UI rendering。</p>
+</li>
+<li><p>micro-task大概包括: process.nextTick, Promise, Object.observe(已废弃), MutationObserver(html5新特性)</p>
+</li>
+<li><p>setTimeout/Promise等我们称之为任务源。而进入任务队列的是他们指定的具体执行任务。</p>
+</li>
+</ul>
+<ul>
+<li><p>来自不同任务源的任务会进入到不同的任务队列。其中setTimeout与setInterval是同源的。</p>
+</li>
+<li><p>事件循环的顺序，决定了JavaScript代码的执行顺序。它从script(整体代码)开始第一次循环。之后全局上下文进入函数调用栈。直到调用栈清空(只剩全局)，然后执行所有的micro-task。当所有可执行的micro-task执行完毕之后。循环再次从macro-task开始，找到其中一个任务队列执行完毕，然后再执行所有的micro-task，这样一直循环下去。</p>
+</li>
+<li><p>其中每一个任务的执行，无论是macro-task还是micro-task，都是借助函数调用栈来完成。<br>例子：（有点复杂）</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line">console.log('golb1');</div><div class="line"></div><div class="line"><span class="function"><span class="title">setTimeout</span><span class="params">(function()</span></span> &#123;</div><div class="line">    console.log('timeout1');</div><div class="line">    process.nextTick(function() &#123;</div><div class="line">        console.log('timeout1_nextTick');</div><div class="line">    &#125;)</div><div class="line">    new Promise(function(resolve) &#123;</div><div class="line">        console.log('timeout1_promise');</div><div class="line">        resolve();</div><div class="line">    &#125;).then(function() &#123;</div><div class="line">        console.log(<span class="string">'timeout1_then'</span>)</div><div class="line">    &#125;)</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="function"><span class="title">setImmediate</span><span class="params">(function()</span></span> &#123;</div><div class="line">    console.log('immediate1');</div><div class="line">    process.nextTick(function() &#123;</div><div class="line">        console.log('immediate1_nextTick');</div><div class="line">    &#125;)</div><div class="line">    new Promise(function(resolve) &#123;</div><div class="line">        console.log('immediate1_promise');</div><div class="line">        resolve();</div><div class="line">    &#125;).then(function() &#123;</div><div class="line">        console.log(<span class="string">'immediate1_then'</span>)</div><div class="line">    &#125;)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">process.nextTick(function() &#123;</div><div class="line">    console.log('glob1_nextTick');</div><div class="line">&#125;)</div><div class="line">new Promise(function(resolve) &#123;</div><div class="line">    console.log('glob1_promise');</div><div class="line">    resolve();</div><div class="line">&#125;).then(function() &#123;</div><div class="line">    console.log(<span class="string">'glob1_then'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="function"><span class="title">setTimeout</span><span class="params">(function()</span></span> &#123;</div><div class="line">    console.log('timeout2');</div><div class="line">    process.nextTick(function() &#123;</div><div class="line">        console.log('timeout2_nextTick');</div><div class="line">    &#125;)</div><div class="line">    new Promise(function(resolve) &#123;</div><div class="line">        console.log('timeout2_promise');</div><div class="line">        resolve();</div><div class="line">    &#125;).then(function() &#123;</div><div class="line">        console.log(<span class="string">'timeout2_then'</span>)</div><div class="line">    &#125;)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">process.nextTick(function() &#123;</div><div class="line">    console.log('glob2_nextTick');</div><div class="line">&#125;)</div><div class="line">new Promise(function(resolve) &#123;</div><div class="line">    console.log('glob2_promise');</div><div class="line">    resolve();</div><div class="line">&#125;).then(function() &#123;</div><div class="line">    console.log(<span class="string">'glob2_then'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="function"><span class="title">setImmediate</span><span class="params">(function()</span></span> &#123;</div><div class="line">    console.log('immediate2');</div><div class="line">    process.nextTick(function() &#123;</div><div class="line">        console.log('immediate2_nextTick');</div><div class="line">    &#125;)</div><div class="line">    new Promise(function(resolve) &#123;</div><div class="line">        console.log('immediate2_promise');</div><div class="line">        resolve();</div><div class="line">    &#125;).then(function() &#123;</div><div class="line">        console.log(<span class="string">'immediate2_then'</span>)</div><div class="line">    &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>第一步：宏任务script首先执行。全局入栈。glob1输出。<br>第二步，执行过程遇到setTimeout。setTimeout作为任务分发器，将任务分发到对应的宏任务队列中。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">setTimeout</span><span class="params">(function()</span></span> &#123;</div><div class="line">    console.log('timeout1');</div><div class="line">    process.nextTick(function() &#123;</div><div class="line">        console.log('timeout1_nextTick');</div><div class="line">    &#125;)</div><div class="line">    new Promise(function(resolve) &#123;</div><div class="line">        console.log('timeout1_promise');</div><div class="line">        resolve();</div><div class="line">    &#125;).then(function() &#123;</div><div class="line">        console.log(<span class="string">'timeout1_then'</span>)</div><div class="line">    &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>第三步：执行过程遇到setImmediate。setImmediate也是一个宏任务分发器，将任务分发到对应的任务队列中。setImmediate的任务队列会在setTimeout队列的后面执行。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">setImmediate</span><span class="params">(function()</span></span> &#123;</div><div class="line">    console.log('immediate1');</div><div class="line">    process.nextTick(function() &#123;</div><div class="line">        console.log('immediate1_nextTick');</div><div class="line">    &#125;)</div><div class="line">    new Promise(function(resolve) &#123;</div><div class="line">        console.log('immediate1_promise');</div><div class="line">        resolve();</div><div class="line">    &#125;).then(function() &#123;</div><div class="line">        console.log(<span class="string">'immediate1_then'</span>)</div><div class="line">    &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>第四步：执行遇到nextTick，process.nextTick是一个微任务分发器，它会将任务分发到对应的微任务队列中去。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">process.nextTick(function() &#123;</div><div class="line">    console.log('glob1_nextTick');</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>第五步：执行遇到Promise。Promise的then方法会将任务分发到对应的微任务队列中，但是它构造函数中的方法会直接执行。因此，glob1_promise会第二个输出。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">new Promise(function(resolve) &#123;</div><div class="line">    console.log('glob1_promise');</div><div class="line">    resolve();</div><div class="line">&#125;).then(function() &#123;</div><div class="line">    console.log(<span class="string">'glob1_then'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>第六步：执行遇到第二个setTimeout。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">setTimeout</span><span class="params">(function()</span></span> &#123;</div><div class="line">    console.log('timeout2');</div><div class="line">    process.nextTick(function() &#123;</div><div class="line">        console.log('timeout2_nextTick');</div><div class="line">    &#125;)</div><div class="line">    new Promise(function(resolve) &#123;</div><div class="line">        console.log('timeout2_promise');</div><div class="line">        resolve();</div><div class="line">    &#125;).then(function() &#123;</div><div class="line">        console.log(<span class="string">'timeout2_then'</span>)</div><div class="line">    &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>第七步：先后遇到nextTick与Promise</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">process.nextTick(function() &#123;</div><div class="line">    console.log('glob2_nextTick');</div><div class="line">&#125;)</div><div class="line">new Promise(function(resolve) &#123;</div><div class="line">    console.log('glob2_promise');</div><div class="line">    resolve();</div><div class="line">&#125;).then(function() &#123;</div><div class="line">    console.log(<span class="string">'glob2_then'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>第八步：再次遇到setImmediate。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">setImmediate</span><span class="params">(function()</span></span> &#123;</div><div class="line">    console.log('immediate2');</div><div class="line">    process.nextTick(function() &#123;</div><div class="line">        console.log('immediate2_nextTick');</div><div class="line">    &#125;)</div><div class="line">    new Promise(function(resolve) &#123;</div><div class="line">        console.log('immediate2_promise');</div><div class="line">        resolve();</div><div class="line">    &#125;).then(function() &#123;</div><div class="line">        console.log(<span class="string">'immediate2_then'</span>)</div><div class="line">    &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>这个时候，script中的代码就执行完毕了，执行过程中，遇到不同的任务分发器，就将任务分发到各自对应的队列中去。接下来，将会执行所有的微任务队列中的任务。</p>
+<p>其中，nextTick队列会比Promie先执行。nextTick中的可执行任务执行完毕之后，才会开始执行Promise队列中的任务。</p>
+<p>当所有可执行的微任务执行完毕之后，这一轮循环就表示结束了。下一轮循环继续从宏任务队列开始执行。</p>
+<p>这个时候，script已经执行完毕，所以就从setTimeout队列开始执行。</p>
+<h1 id="三、快速排序"><a href="#三、快速排序" class="headerlink" title="三、快速排序"></a>三、快速排序</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。</div></pre></td></tr></table></figure>
+<p>JavaScript代码</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">function quickSort(array)&#123;</div><div class="line">function sort(prev, numsize)&#123;</div><div class="line">var nonius = prev;</div><div class="line">var j = numsize -1;</div><div class="line">var flag = array[prev];</div><div class="line"><span class="keyword">if</span> ((numsize - prev) &gt; <span class="number">1</span>) &#123;</div><div class="line"><span class="function"><span class="title">while</span><span class="params">(nonius &lt; j)</span></span>&#123;</div><div class="line"><span class="function"><span class="title">for</span><span class="params">(; nonius &lt; j; j--)</span></span>&#123;</div><div class="line"><span class="keyword">if</span> (array[j] &lt; flag) &#123;</div><div class="line">array[nonius++] = array[j];　//a[i] = a[j]; i += 1;</div><div class="line">break;</div><div class="line">&#125;;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="title">for</span><span class="params">( ; nonius &lt; j; nonius++)</span></span>&#123;</div><div class="line"><span class="keyword">if</span> (array[nonius] &gt; flag)&#123;</div><div class="line">array[j--] = array[nonius];</div><div class="line">break;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">array[nonius] = flag;</div><div class="line">sort(0, nonius);</div><div class="line">sort(nonius + 1, numsize);</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">sort(0, array.length);</div><div class="line">return array;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Java代码<br>方式一</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">class　Quick</div><div class="line">&#123;</div><div class="line">　public　void　sort(int　arr[],int　low,int　high)</div><div class="line">　&#123;</div><div class="line">　int　l=low;</div><div class="line">　int　h=high;</div><div class="line">　int　povit=arr[low];</div><div class="line"> </div><div class="line">　while(l&lt;h)</div><div class="line">　&#123;</div><div class="line">　while(l&lt;h&amp;&amp;arr[h]&gt;=povit)</div><div class="line">　h--;</div><div class="line">　<span class="keyword">if</span>(l&lt;h)&#123;</div><div class="line">　int　temp=arr[h];</div><div class="line">　arr[h]=arr[l];</div><div class="line">　arr[l]=temp;</div><div class="line">　l++;</div><div class="line">　&#125;</div><div class="line"> </div><div class="line">　while(l&lt;h&amp;&amp;arr[l]&lt;=povit)</div><div class="line">　l++;</div><div class="line"> </div><div class="line">　<span class="keyword">if</span>(l&lt;h)&#123;</div><div class="line">　int　temp=arr[h];</div><div class="line">　arr[h]=arr[l];</div><div class="line">　arr[l]=temp;</div><div class="line">　h--;</div><div class="line">　&#125;</div><div class="line">　&#125;</div><div class="line">　print(arr);</div><div class="line">　System.out.print("l="+(l+1)+"h="+(h+1)+"povit="+povit+"\n");</div><div class="line">　if(l&gt;low)sort(arr,low,l-1);</div><div class="line">　if(h&lt;high)sort(arr,l+1,high);</div><div class="line">　&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>方式二</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">更高效点的代码：</div><div class="line">public&lt;TextendsComparable&lt;?superT&gt;&gt;</div><div class="line">T[]quickSort(T[]targetArr,intstart,intend)</div><div class="line">&#123;</div><div class="line">inti=start+1,j=end;</div><div class="line">Tkey=targetArr[start];</div><div class="line">SortUtil&lt;T&gt;sUtil=newSortUtil&lt;T&gt;();</div><div class="line"> </div><div class="line">if(start&gt;=end)return(targetArr);</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment">/*从i++和j--两个方向搜索不满足条件的值并交换</span></div><div class="line"><span class="comment">*</span></div><div class="line"><span class="comment">*条件为：i++方向小于key，j--方向大于key</span></div><div class="line"><span class="comment">*/</span></div><div class="line"><span class="function"><span class="title">while</span><span class="params">(true)</span></span></div><div class="line">&#123;</div><div class="line">while(targetArr[j].compareTo(key)&gt;0)j--;</div><div class="line">while(targetArr[i].compareTo(key)&lt;0&amp;&amp;i&lt;j)i++;</div><div class="line">if(i&gt;=j)break;</div><div class="line">sUtil.swap(targetArr,i,j);</div><div class="line"><span class="function"><span class="title">if</span><span class="params">(targetArr[i]==key)</span></span></div><div class="line">&#123;</div><div class="line">j--;</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">i++;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">/*关键数据放到‘中间’*/</span></div><div class="line">sUtil.swap(targetArr,start,j);</div><div class="line"> </div><div class="line"><span class="function"><span class="title">if</span><span class="params">(start&lt;i-<span class="number">1</span>)</span></span></div><div class="line">&#123;</div><div class="line">this.quickSort(targetArr,start,i-1);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="title">if</span><span class="params">(j+<span class="number">1</span>&lt;end)</span></span></div><div class="line">&#123;</div><div class="line">this.quickSort(targetArr,j+1,end);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">returntargetArr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>方式三</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*//////////////方式三：减少交换次数，提高效率/////////////////////*/</span></div><div class="line">private&lt;TextendsComparable&lt;?superT&gt;&gt;</div><div class="line"><span class="function"><span class="title">voidquickSort</span><span class="params">(T[]targetArr,intstart,intend)</span></span></div><div class="line">&#123;</div><div class="line">inti=start,j=end;</div><div class="line">Tkey=targetArr[start];</div><div class="line"> </div><div class="line"><span class="function"><span class="title">while</span><span class="params">(i&lt;j)</span></span></div><div class="line">&#123;</div><div class="line"><span class="comment">/*按j--方向遍历目标数组，直到比key小的值为止*/</span></div><div class="line"><span class="function"><span class="title">while</span><span class="params">(j&gt;i&amp;&amp;targetArr[j].compareTo(key)</span></span>&gt;=<span class="number">0</span>)</div><div class="line">&#123;</div><div class="line">j--;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="title">if</span><span class="params">(i&lt;j)</span></span></div><div class="line">&#123;</div><div class="line"><span class="comment">/*targetArr[i]已经保存在key中，可将后面的数填入*/</span></div><div class="line">targetArr[i]=targetArr[j];</div><div class="line">i++;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*按i++方向遍历目标数组，直到比key大的值为止*/</span></div><div class="line"><span class="function"><span class="title">while</span><span class="params">(i&lt;j&amp;&amp;targetArr[i].compareTo(key)</span></span>&lt;=<span class="number">0</span>)</div><div class="line"><span class="comment">/*此处一定要小于等于零，假设数组之内有一亿个1，0交替出现的话，而key的值又恰巧是1的话，那么这个小于等于的作用就会使下面的if语句少执行一亿次。*/</span></div><div class="line">&#123;</div><div class="line">i++;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="title">if</span><span class="params">(i&lt;j)</span></span></div><div class="line">&#123;</div><div class="line"><span class="comment">/*targetArr[j]已保存在targetArr[i]中，可将前面的值填入*/</span></div><div class="line">targetArr[j]=targetArr[i];</div><div class="line">j--;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*此时i==j*/</span></div><div class="line">targetArr[i]=key;</div><div class="line"> </div><div class="line"><span class="comment">/*递归调用，把key前面的完成排序*/</span></div><div class="line">this.quickSort(targetArr,start,i-1);</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment">/*递归调用，把key后面的完成排序*/</span></div><div class="line">this.quickSort(targetArr,j+1,end);</div><div class="line"> </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最坏情况：T(n)=θ（n2）。<br>这个运行时间与插入排序是一样的。<br>最好情况：T(n)=θ（nlogn)<br>快速排序的平均运行时间为θ(nlogn)</p>
+<h1 id="四、希尔排序"><a href="#四、希尔排序" class="headerlink" title="四、希尔排序"></a>四、希尔排序</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">希尔排序(Shell<span class="string">'s Sort)是插入排序的一种又称“缩小增量排序”（Diminishing Increment Sort），</span></div><div class="line"><span class="string">是直接插入排序算法的一种更高效的改进版本。希尔排序是非稳定排序算法。</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">基本思想先取一个小于n的整数d1作为第一个增量，</div><div class="line">把文件的全部记录分组。所有距离为d1的倍数的记录放在同一个组中。</div><div class="line">先在各组内进行直接插入排序；然后，取第二个增量d2&lt;d1重复上述的分组和排序，</div><div class="line">直至所取的增量  =1(  &lt;  …&lt;d2&lt;d1)，</div><div class="line">即所有记录放在同一组中进行直接插入排序为止。</div></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180801093029736?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWxsb3dfeQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>javascript代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var arr = [49, 38, 65, 97, 76, 13, 27, 49, 55, 04];</div><div class="line">var len = arr.length;</div><div class="line">for (var fraction = Math.floor(len / 2); fraction &gt; 0; fraction = Math.floor(fraction / 2)) &#123;</div><div class="line">    for (var i = fraction; i &lt; len; i++) &#123;</div><div class="line">        for (var j = i - fraction; j &gt;= 0 &amp;&amp; arr[j] &gt; arr[fraction + j]; j -= fraction) &#123;</div><div class="line">            var temp = arr[j];</div><div class="line">            arr[j] = arr[fraction + j];</div><div class="line">            arr[fraction + j] = temp;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">console.log(arr);</div></pre></td></tr></table></figure></p>
+<p>Java代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">public static void main(String [] args)</div><div class="line">&#123;</div><div class="line">    int[]a=&#123;49,38,65,97,76,13,27,49,78,34,12,64,1&#125;;</div><div class="line">        System.out.println(&quot;排序之前：&quot;);</div><div class="line">        for(int i=0;i&lt;a.length;i++)</div><div class="line">        &#123;</div><div class="line">            System.out.print(a[i]+&quot; &quot;);</div><div class="line">        &#125;</div><div class="line">        //希尔排序</div><div class="line">        int d=a.length;</div><div class="line">            while(true)</div><div class="line">            &#123;</div><div class="line">                d=d/2;</div><div class="line">                for(int x=0;x&lt;d;x++)</div><div class="line">                &#123;</div><div class="line">                    for(int i=x+d;i&lt;a.length;i=i+d)</div><div class="line">                    &#123;</div><div class="line">                        int temp=a[i];</div><div class="line">                        int j;</div><div class="line">                        for(j=i-d;j&gt;=0&amp;&amp;a[j]&gt;temp;j=j-d)</div><div class="line">                        &#123;</div><div class="line">                            a[j+d]=a[j];</div><div class="line">                        &#125;</div><div class="line">                        a[j+d]=temp;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                if(d==1)</div><div class="line">                &#123;</div><div class="line">                    break;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            System.out.println();</div><div class="line">            System.out.println(&quot;排序之后：&quot;);</div><div class="line">                for(int i=0;i&lt;a.length;i++)</div><div class="line">                &#123;</div><div class="line">                    System.out.print(a[i]+&quot; &quot;);</div><div class="line">                &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>希尔排序时间复杂度：O(n^2)</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Promise,事件循环,快速排序,希尔排序</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/19/promise-Eventloop/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-basicUseOfGit" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/basicUseOfGit/">git仓库的基本使用</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/basicUseOfGit/" class="archive-article-date">
   	<time datetime="2018-06-24T02:21:59.464Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
 </a>
         
@@ -181,7 +420,7 @@
 <h2 id="开始（这个是基本前提工作都完成的情况：比如git-已经安装）"><a href="#开始（这个是基本前提工作都完成的情况：比如git-已经安装）" class="headerlink" title="开始（这个是基本前提工作都完成的情况：比如git 已经安装）"></a>开始（这个是基本前提工作都完成的情况：比如git 已经安装）</h2><h3 id="在github上创建仓库-这一步只是管理者需要做的事情"><a href="#在github上创建仓库-这一步只是管理者需要做的事情" class="headerlink" title="在github上创建仓库(这一步只是管理者需要做的事情)"></a>在github上创建仓库(这一步只是管理者需要做的事情)</h3><p><img src="https://img-blog.csdn.net/2018051817295986?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWxsb3dfeQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="怎么在github上创建仓库"></p>
 <h3 id="在本地创建仓库（以下是都需要做的）"><a href="#在本地创建仓库（以下是都需要做的）" class="headerlink" title="在本地创建仓库（以下是都需要做的）"></a>在本地创建仓库（以下是都需要做的）</h3>
         
-          <a class="article-more-a" href="/2018/06/24/git-project-version/#more">more >></a>
+          <a class="article-more-a" href="/2018/06/24/basicUseOfGit/#more">more >></a>
         
       
 
@@ -194,7 +433,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/24/git-project-version/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/06/24/basicUseOfGit/">展开全文 >></a>
         </p>
       
 
@@ -548,7 +787,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这篇文章的原文出自 <a href="https://blog.csdn.net/sinat_21274091/article/details/52741788" target="_blank" rel="external">CSDN上的博客</a>.<br>想要了解原型链的产生就看<a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html" target="_blank" rel="external">阮一峰的博客</a><br>（原型链顶端的原型对象：Object.prototype）</p>
+        <p>这篇文章的原文出自 <a href="https://blog.csdn.net/sinat_21274091/article/details/52741788" target="_blank" rel="external">CSDN上的博客</a>.<br>想要了解原型链的产生就看<a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html" target="_blank" rel="external">阮一峰的博客</a><br>（原型链顶端的原型对象：Object.prototype）<br>先贴一张原型链的图解<br><img src="./images/jsprototypeand__proto__.jpg" alt="enter description here" title="jsprototypeand__proto__.jpg"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">理解Javascript语言的继承机制。</div><div class="line"></div><div class="line">它没有<span class="string">"子类"</span>和<span class="string">"父类"</span>的概念，也没有<span class="string">"类"</span>（class）和<span class="string">"实例"</span>（instance）的区分，全靠一种很奇特的<span class="string">"原型链"</span>（prototype chain）模式，来实现继承。</div></pre></td></tr></table></figure>
 <h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>要弄清楚原型链，首先要清楚对象</p>
 <ol>
@@ -736,144 +975,6 @@
 
 
   
-    <article id="post-pushBlog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/05/pushBlog/">将本地修改或添加的博客推送到gitbub上</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/05/pushBlog/" class="archive-article-date">
-  	<time datetime="2018-04-05T03:13:42.208Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#将本地的博客推到gitbub上的简单指令<br>-<strong>hexo g</strong><br>-<strong>hexo d</strong><br>-<strong>hexo s</strong><br>-<strong>hexo g 相当于将改的东西放到缓存区</strong><br>-<strong>hexo d 相当于把缓存区的东西推送到远程仓库，</strong><br>-<strong>hexo s是在本地服务器上预览</strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/05/pushBlog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-jsOperateArray" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/05/jsOperateArray/">JavaScript（原生js）操作array的方法</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/05/jsOperateArray/" class="archive-article-date">
-  	<time datetime="2018-04-05T02:52:12.318Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="原生js操作数组的方法"><a href="#原生js操作数组的方法" class="headerlink" title="原生js操作数组的方法"></a><strong>原生js操作数组的方法</strong></h1><ul>
-<li><strong>Array 对象方法 </strong></li>
-<li><strong>concat() 连接两个或更多的数组，并返回结果</strong></li>
-<li><strong>join() 把数组的所有元素放入一个字符串。元素通过指定的分隔符进行分隔。</strong></li>
-<li><strong>pop() 删除并返回数组的最后一个元素 </strong></li>
-<li><strong>reverse() 颠倒数组中元素的顺序。</strong></li>
-<li><strong>shift() 删除并返回数组的第一个元素</strong></li>
-<li><strong>slice() 从某个已有的数组返回选定的元素 </strong></li>
-<li><strong>sort() 对数组的元素进行排序</strong></li>
-<li><strong>toSource() 返回该对象的源代码。 </strong></li>
-<li><strong>toLocaleString() 把数组转换为本地数组，并返回结果。</strong></li>
-<li><strong>valueOf() 返回数组对象的原始值</strong></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/05/jsOperateArray/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -970,6 +1071,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Promise,事件循环,快速排序,希尔排序</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
