@@ -155,31 +155,39 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-css-Positioning-mechanism" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JsPrototypeChain" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/19/css-Positioning-mechanism/">css定位机制</a>
+      <a class="article-title" href="/2018/08/01/JsPrototypeChain/">js的原型链</a>
     </h1>
   
 
         
-        <a href="/2018/08/19/css-Positioning-mechanism/" class="archive-article-date">
-  	<time datetime="2018-08-19T03:14:45.496Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-19</time>
+        <a href="/2018/08/01/JsPrototypeChain/" class="archive-article-date">
+  	<time datetime="2018-08-01T03:38:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>css定位机制有三种：文档流、浮动（float）、定位（position）</p>
-<h2 id="一、文档流（常规流）"><a href="#一、文档流（常规流）" class="headerlink" title="一、文档流（常规流）"></a>一、文档流（常规流）</h2><h3 id="什么是文档流"><a href="#什么是文档流" class="headerlink" title="什么是文档流"></a>什么是文档流</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">从直观上理解文档流（正常流）指的是元素按照其在HTML中的位置顺序决定排布的过程，主要形式是自上而下，一行接一行，每行从左到右的顺序排列页面元素。</div></pre></td></tr></table></figure>
-<h3 id="文档流的类型"><a href="#文档流的类型" class="headerlink" title="文档流的类型"></a>文档流的类型</h3><p>1.块级元素的块级格式<br>2.行内元素的行内格式<br>3.两种元素的相互定位方式<br></p>
+        <p>这篇文章的原文出自 <a href="https://blog.csdn.net/sinat_21274091/article/details/52741788" target="_blank" rel="external">CSDN上的博客</a>.<br>想要了解原型链的产生就看<a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html" target="_blank" rel="external">阮一峰的博客</a><br>（原型链顶端的原型对象：Object.prototype）<br>先贴一张原型链的图解<br><img src="/2018/08/01/JsPrototypeChain/jsprototypeand__proto__.jpg" alt="enter description here" title="jsprototypeand__proto__.jpg"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">理解Javascript语言的继承机制。</div><div class="line"></div><div class="line">它没有<span class="string">"子类"</span>和<span class="string">"父类"</span>的概念，也没有<span class="string">"类"</span>（class）和<span class="string">"实例"</span>（instance）的区分，全靠一种很奇特的<span class="string">"原型链"</span>（prototype chain）模式，来实现继承。</div></pre></td></tr></table></figure>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>要弄清楚原型链，首先要清楚对象</p>
+<ol>
+<li>普通对象<br> 最普通的对象：有–proto–属性（指向其原型链），没有prototype属性。<br> 原型对象（person.prototype原型对象还有constructor属性（指向构造函数对象））</li>
+<li>函数对象<br> 凡是通过new Function()创建的都是函数对象，拥有–proto–、prototype属性（指向原型对象）。<br> Function、Object、Array、Date、String、自定义函数<br> 特例：Function.prototype(是原型对象，确实函数对象)</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">函数对象  </div><div class="line">function f1()&#123;&#125;;  </div><div class="line">var f2 = function()&#123;&#125;;  </div><div class="line">var f3 = function("n1","n2","return n1+n2");  </div><div class="line">  </div><div class="line">console.log(typeof f1);  //function  </div><div class="line">console.log(typeof f2);  //function  </div><div class="line">console.log(typeof f3);   //function  </div><div class="line">console.log(typeof Object);   //function  </div><div class="line">console.log(typeof Array);   //function  </div><div class="line">console.log(typeof String);   //function  </div><div class="line">console.log(typeof Date);   //function  </div><div class="line">console.log(typeof Function);   //function</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Array</div><div class="line">ƒ <span class="function"><span class="title">Array</span></span>() &#123; [native code] &#125;</div><div class="line">Array.__proto__ === Function.prototype</div><div class="line"><span class="literal">true</span></div><div class="line">Array是函数对象，是Function的实例对象，Array是通过newFunction创建出来的。因为Array是Function的实例，所以Array.__proto__ ===  Function.prototype</div></pre></td></tr></table></figure>
+<p>例子</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Array</div><div class="line">ƒ Array() &#123; [native code] &#125;</div><div class="line">Array.__proto__ === Function.prototype</div><div class="line">true</div><div class="line">Array是函数对象，是Function的实例对象，Array是通过newFunction创建出来的。因为Array是Function的实例，所以Array.__proto__ ===  Function.prototype</div></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2018/08/19/css-Positioning-mechanism/#more">more >></a>
+          <a class="article-more-a" href="/2018/08/01/JsPrototypeChain/#more">more >></a>
         
       
 
@@ -192,7 +200,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/19/css-Positioning-mechanism/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/08/01/JsPrototypeChain/">展开全文 >></a>
         </p>
       
 
@@ -229,13 +237,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/19/promise-Eventloop/">Promise、事件循环、快速排序和希尔排序</a>
+      <a class="article-title" href="/2018/07/31/promise-Eventloop/">Promise、事件循环、快速排序和希尔排序</a>
     </h1>
   
 
         
-        <a href="/2018/08/19/promise-Eventloop/" class="archive-article-date">
-  	<time datetime="2018-08-19T02:59:53.756Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-19</time>
+        <a href="/2018/07/31/promise-Eventloop/" class="archive-article-date">
+  	<time datetime="2018-07-31T03:38:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-31</time>
 </a>
         
       </header>
@@ -317,7 +325,7 @@
 <p>最坏情况：T(n)=θ（n2）。<br>这个运行时间与插入排序是一样的。<br>最好情况：T(n)=θ（nlogn)<br>快速排序的平均运行时间为θ(nlogn)</p>
 <h1 id="四、希尔排序"><a href="#四、希尔排序" class="headerlink" title="四、希尔排序"></a>四、希尔排序</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">希尔排序(Shell<span class="string">'s Sort)是插入排序的一种又称“缩小增量排序”（Diminishing Increment Sort），</span></div><div class="line"><span class="string">是直接插入排序算法的一种更高效的改进版本。希尔排序是非稳定排序算法。</span></div></pre></td></tr></table></figure>
 <p>基本思想<br>先取一个小于n的整数d1作为第一个增量，把文件的全部记录分组。所有距离为d1的倍数的记录放在同一个组中。先在各组内进行直接插入排序；然后，取第二个增量d2&lt;d1重复上述的分组和排序，直至所取的增量  =1(  &lt;  …&lt;d2&lt;d1)，即所有记录放在同一组中进行直接插入排序为止。</p>
-<p><img src="/2018/08/19/promise-Eventloop/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F.jpg" alt="enter description here" title="希尔排序.jpg"></p>
+<p><img src="/2018/07/31/promise-Eventloop/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F.jpg" alt="enter description here" title="希尔排序.jpg"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var arr = [49, 38, 65, 97, 76, 13, 27, 49, 55, 04];</div><div class="line">var len = arr.length;</div><div class="line">for (var fraction = Math.floor(len / 2); fraction &gt; 0; fraction = Math.floor(fraction / 2)) &#123;</div><div class="line">    for (var i = fraction; i &lt; len; i++) &#123;</div><div class="line">        for (var j = i - fraction; j &gt;= 0 &amp;&amp; arr[j] &gt; arr[fraction + j]; j -= fraction) &#123;</div><div class="line">            var temp = arr[j];</div><div class="line">            arr[j] = arr[fraction + j];</div><div class="line">            arr[fraction + j] = temp;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">console.log(arr);</div></pre></td></tr></table></figure>
 <p>Java代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">public static void main(String [] args)</div><div class="line">&#123;</div><div class="line">    int[]a=&#123;49,38,65,97,76,13,27,49,78,34,12,64,1&#125;;</div><div class="line">        System.out.println(&quot;排序之前：&quot;);</div><div class="line">        for(int i=0;i&lt;a.length;i++)</div><div class="line">        &#123;</div><div class="line">            System.out.print(a[i]+&quot; &quot;);</div><div class="line">        &#125;</div><div class="line">        //希尔排序</div><div class="line">        int d=a.length;</div><div class="line">            while(true)</div><div class="line">            &#123;</div><div class="line">                d=d/2;</div><div class="line">                for(int x=0;x&lt;d;x++)</div><div class="line">                &#123;</div><div class="line">                    for(int i=x+d;i&lt;a.length;i=i+d)</div><div class="line">                    &#123;</div><div class="line">                        int temp=a[i];</div><div class="line">                        int j;</div><div class="line">                        for(j=i-d;j&gt;=0&amp;&amp;a[j]&gt;temp;j=j-d)</div><div class="line">                        &#123;</div><div class="line">                            a[j+d]=a[j];</div><div class="line">                        &#125;</div><div class="line">                        a[j+d]=temp;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                if(d==1)</div><div class="line">                &#123;</div><div class="line">                    break;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            System.out.println();</div><div class="line">            System.out.println(&quot;排序之后：&quot;);</div><div class="line">                for(int i=0;i&lt;a.length;i++)</div><div class="line">                &#123;</div><div class="line">                    System.out.print(a[i]+&quot; &quot;);</div><div class="line">                &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
@@ -345,7 +353,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/19/promise-Eventloop/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/07/31/promise-Eventloop/">展开全文 >></a>
         </p>
       
 
@@ -382,22 +390,22 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/19/baseSummaryOfHTTP/">HTTP的简单总结</a>
+      <a class="article-title" href="/2018/07/18/baseSummaryOfHTTP/">HTTP的简单总结</a>
     </h1>
   
 
         
-        <a href="/2018/08/19/baseSummaryOfHTTP/" class="archive-article-date">
-  	<time datetime="2018-08-19T02:54:18.135Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-19</time>
+        <a href="/2018/07/18/baseSummaryOfHTTP/" class="archive-article-date">
+  	<time datetime="2018-07-18T03:38:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="OSI模型和TCP-IP模型"><a href="#OSI模型和TCP-IP模型" class="headerlink" title="OSI模型和TCP/IP模型"></a>OSI模型和TCP/IP模型</h4><p><img src="/2018/08/19/baseSummaryOfHTTP/OSI%E6%A8%A1%E5%9E%8B%E5%92%8CTCPip%E6%A8%A1%E5%9E%8B.png" alt="enter description here" title="OSI模型和TCPip模型.png"></p>
+        <h4 id="OSI模型和TCP-IP模型"><a href="#OSI模型和TCP-IP模型" class="headerlink" title="OSI模型和TCP/IP模型"></a>OSI模型和TCP/IP模型</h4><p><img src="/2018/07/18/baseSummaryOfHTTP/OSI%E6%A8%A1%E5%9E%8B%E5%92%8CTCPip%E6%A8%A1%E5%9E%8B.png" alt="enter description here" title="OSI模型和TCPip模型.png"></p>
 <h4 id="客户端访问服务器资源协议概述"><a href="#客户端访问服务器资源协议概述" class="headerlink" title="客户端访问服务器资源协议概述"></a>客户端访问服务器资源协议概述</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">客户端访问服务器资源到底经历了什么协议，首先给大家先看一个概述图</div></pre></td></tr></table></figure>
-<p><img src="/2018/08/19/baseSummaryOfHTTP/%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8.png" alt="enter description here" title="客户端访问服务器.png"></p>
+<p><img src="/2018/07/18/baseSummaryOfHTTP/%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8.png" alt="enter description here" title="客户端访问服务器.png"></p>
 <h4 id="客户端和服务器端的通信连接"><a href="#客户端和服务器端的通信连接" class="headerlink" title="客户端和服务器端的通信连接"></a>客户端和服务器端的通信连接</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在客户端和服务器端的正式通信之前，需要先建立连接。</div><div class="line">连接主要是用到了TCP的三次握手来建立连接。</div></pre></td></tr></table></figure>
 <p>TCP的三次握手：</p>
 <p>第一次握手：客户端向服务器发送连接请求包，标志位SYN（同步序号）置为1，序号为X=0</p>
@@ -457,82 +465,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/19/baseSummaryOfHTTP/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JsPrototypeChain" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/19/JsPrototypeChain/">js的原型链</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/19/JsPrototypeChain/" class="archive-article-date">
-  	<time datetime="2018-08-19T02:47:05.354Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这篇文章的原文出自 <a href="https://blog.csdn.net/sinat_21274091/article/details/52741788" target="_blank" rel="external">CSDN上的博客</a>.<br>想要了解原型链的产生就看<a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html" target="_blank" rel="external">阮一峰的博客</a><br>（原型链顶端的原型对象：Object.prototype）<br>先贴一张原型链的图解<br><img src="/2018/08/19/JsPrototypeChain/jsprototypeand__proto__.jpg" alt="enter description here" title="jsprototypeand__proto__.jpg"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">理解Javascript语言的继承机制。</div><div class="line"></div><div class="line">它没有<span class="string">"子类"</span>和<span class="string">"父类"</span>的概念，也没有<span class="string">"类"</span>（class）和<span class="string">"实例"</span>（instance）的区分，全靠一种很奇特的<span class="string">"原型链"</span>（prototype chain）模式，来实现继承。</div></pre></td></tr></table></figure>
-<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>要弄清楚原型链，首先要清楚对象</p>
-<ol>
-<li>普通对象<br> 最普通的对象：有–proto–属性（指向其原型链），没有prototype属性。<br> 原型对象（person.prototype原型对象还有constructor属性（指向构造函数对象））</li>
-<li>函数对象<br> 凡是通过new Function()创建的都是函数对象，拥有–proto–、prototype属性（指向原型对象）。<br> Function、Object、Array、Date、String、自定义函数<br> 特例：Function.prototype(是原型对象，确实函数对象)</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">函数对象  </div><div class="line">function f1()&#123;&#125;;  </div><div class="line">var f2 = function()&#123;&#125;;  </div><div class="line">var f3 = function("n1","n2","return n1+n2");  </div><div class="line">  </div><div class="line">console.log(typeof f1);  //function  </div><div class="line">console.log(typeof f2);  //function  </div><div class="line">console.log(typeof f3);   //function  </div><div class="line">console.log(typeof Object);   //function  </div><div class="line">console.log(typeof Array);   //function  </div><div class="line">console.log(typeof String);   //function  </div><div class="line">console.log(typeof Date);   //function  </div><div class="line">console.log(typeof Function);   //function</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Array</div><div class="line">ƒ <span class="function"><span class="title">Array</span></span>() &#123; [native code] &#125;</div><div class="line">Array.__proto__ === Function.prototype</div><div class="line"><span class="literal">true</span></div><div class="line">Array是函数对象，是Function的实例对象，Array是通过newFunction创建出来的。因为Array是Function的实例，所以Array.__proto__ ===  Function.prototype</div></pre></td></tr></table></figure>
-<p>例子</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Array</div><div class="line">ƒ Array() &#123; [native code] &#125;</div><div class="line">Array.__proto__ === Function.prototype</div><div class="line">true</div><div class="line">Array是函数对象，是Function的实例对象，Array是通过newFunction创建出来的。因为Array是Function的实例，所以Array.__proto__ ===  Function.prototype</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2018/08/19/JsPrototypeChain/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/19/JsPrototypeChain/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/07/18/baseSummaryOfHTTP/">展开全文 >></a>
         </p>
       
 
@@ -599,6 +532,73 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/06/24/MistakeAnalysis/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-css-Positioning-mechanism" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/22/css-Positioning-mechanism/">css定位机制</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/22/css-Positioning-mechanism/" class="archive-article-date">
+  	<time datetime="2018-06-22T03:38:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>css定位机制有三种：文档流、浮动（float）、定位（position）</p>
+<h2 id="一、文档流（常规流）"><a href="#一、文档流（常规流）" class="headerlink" title="一、文档流（常规流）"></a>一、文档流（常规流）</h2><h3 id="什么是文档流"><a href="#什么是文档流" class="headerlink" title="什么是文档流"></a>什么是文档流</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">从直观上理解文档流（正常流）指的是元素按照其在HTML中的位置顺序决定排布的过程，主要形式是自上而下，一行接一行，每行从左到右的顺序排列页面元素。</div></pre></td></tr></table></figure>
+<h3 id="文档流的类型"><a href="#文档流的类型" class="headerlink" title="文档流的类型"></a>文档流的类型</h3><p>1.块级元素的块级格式<br>2.行内元素的行内格式<br>3.两种元素的相互定位方式<br></p>
+        
+          <a class="article-more-a" href="/2018/06/22/css-Positioning-mechanism/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/22/css-Positioning-mechanism/">展开全文 >></a>
         </p>
       
 
@@ -1107,11 +1107,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">push,github</a>
+                <a href="javascript:void(0)" class="js-tag color3">Promise,事件循环,快速排序,希尔排序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Promise,事件循环,快速排序,希尔排序</a>
+                <a href="javascript:void(0)" class="js-tag color2">push,github</a>
               </li>
             
             <div class="clearfix"></div>

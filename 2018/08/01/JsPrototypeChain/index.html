@@ -6,18 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>ES5的新特性 | Swallow的博客</title>
+  <title>js的原型链 | Swallow的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ES5的新特性严格模式（Strict Mode）是ECMAScript 5的新特性1234567891011121314它允许你把整个程序，或者某个函数，放置在“严格”的操作语境中。这种严格的语境会防止某些特定的操作并抛出更多的异常。严格模式下主要变化有： 1. 未使用var创建的变量会报错 2. 函数顶层的this不在指向window，而是undefined 3. 强制为eval创建新作用域 4">
+  <meta name="description" content="这篇文章的原文出自 CSDN上的博客.想要了解原型链的产生就看阮一峰的博客（原型链顶端的原型对象：Object.prototype）先贴一张原型链的图解 123理解Javascript语言的继承机制。它没有&quot;子类&quot;和&quot;父类&quot;的概念，也没有&quot;类&quot;（class）和&quot;实例&quot;（instance）的区分，全靠一种很奇特的&quot;原型链&quot;（prototype chain）模式，来实现继承。 对象要弄清楚原型链，首先">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ES5的新特性">
-<meta property="og:url" content="http://yoursite.com/2018/06/24/MistakeAnalysis/index.html">
+<meta property="og:title" content="js的原型链">
+<meta property="og:url" content="http://yoursite.com/2018/08/01/JsPrototypeChain/index.html">
 <meta property="og:site_name" content="Swallow的博客">
-<meta property="og:description" content="ES5的新特性严格模式（Strict Mode）是ECMAScript 5的新特性1234567891011121314它允许你把整个程序，或者某个函数，放置在“严格”的操作语境中。这种严格的语境会防止某些特定的操作并抛出更多的异常。严格模式下主要变化有： 1. 未使用var创建的变量会报错 2. 函数顶层的this不在指向window，而是undefined 3. 强制为eval创建新作用域 4">
-<meta property="og:updated_time" content="2018-04-22T11:36:55.278Z">
+<meta property="og:description" content="这篇文章的原文出自 CSDN上的博客.想要了解原型链的产生就看阮一峰的博客（原型链顶端的原型对象：Object.prototype）先贴一张原型链的图解 123理解Javascript语言的继承机制。它没有&quot;子类&quot;和&quot;父类&quot;的概念，也没有&quot;类&quot;（class）和&quot;实例&quot;（instance）的区分，全靠一种很奇特的&quot;原型链&quot;（prototype chain）模式，来实现继承。 对象要弄清楚原型链，首先">
+<meta property="og:image" content="http://yoursite.com/2018/08/01/JsPrototypeChain/jsprototypeand__proto__.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/08/01/JsPrototypeChain/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%E3%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81%E5%AE%9E%E4%BE%8B%E5%AF%B9%E8%B1%A1.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/01/JsPrototypeChain/%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/01/JsPrototypeChain/%E5%9B%BE%E8%A7%A3.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/01/JsPrototypeChain/%E8%AF%A6%E7%BB%86%E5%9B%BE.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/01/JsPrototypeChain/%E6%80%BB%E7%BB%93.png">
+<meta property="og:updated_time" content="2018-08-19T03:44:18.478Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ES5的新特性">
-<meta name="twitter:description" content="ES5的新特性严格模式（Strict Mode）是ECMAScript 5的新特性1234567891011121314它允许你把整个程序，或者某个函数，放置在“严格”的操作语境中。这种严格的语境会防止某些特定的操作并抛出更多的异常。严格模式下主要变化有： 1. 未使用var创建的变量会报错 2. 函数顶层的this不在指向window，而是undefined 3. 强制为eval创建新作用域 4">
+<meta name="twitter:title" content="js的原型链">
+<meta name="twitter:description" content="这篇文章的原文出自 CSDN上的博客.想要了解原型链的产生就看阮一峰的博客（原型链顶端的原型对象：Object.prototype）先贴一张原型链的图解 123理解Javascript语言的继承机制。它没有&quot;子类&quot;和&quot;父类&quot;的概念，也没有&quot;类&quot;（class）和&quot;实例&quot;（instance）的区分，全靠一种很奇特的&quot;原型链&quot;（prototype chain）模式，来实现继承。 对象要弄清楚原型链，首先">
+<meta name="twitter:image" content="http://yoursite.com/2018/08/01/JsPrototypeChain/jsprototypeand__proto__.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Swallow的博客" type="application/atom+xml">
   
@@ -157,185 +164,62 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-MistakeAnalysis" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-JsPrototypeChain" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      ES5的新特性
+      js的原型链
     </h1>
   
 
         
-        <a href="/2018/06/24/MistakeAnalysis/" class="archive-article-date">
-  	<time datetime="2018-06-24T01:49:15.973Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+        <a href="/2018/08/01/JsPrototypeChain/" class="archive-article-date">
+  	<time datetime="2018-08-01T03:38:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="ES5的新特性"><a href="#ES5的新特性" class="headerlink" title="ES5的新特性"></a>ES5的新特性</h3><h4 id="严格模式（Strict-Mode）是ECMAScript-5的新特性"><a href="#严格模式（Strict-Mode）是ECMAScript-5的新特性" class="headerlink" title="严格模式（Strict Mode）是ECMAScript 5的新特性"></a>严格模式（Strict Mode）是ECMAScript 5的新特性</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">它允许你把整个程序，或者某个函数，放置在“严格”的操作语境中。这种严格的语境会防止某些特定的操作并抛出更多的异常。严格模式下主要变化有：</div><div class="line"></div><div class="line"> 1. 未使用var创建的变量会报错</div><div class="line"> 2. 函数顶层的this不在指向window，而是undefined</div><div class="line"> 3. 强制为<span class="built_in">eval</span>创建新作用域</div><div class="line"> 4. 禁止用delete删除变量</div><div class="line"> 5. 禁止使用arguments,callee,<span class="built_in">caller</span>属性</div><div class="line"> 6. 禁止使用width语句</div><div class="line"> 7. 禁止函数参数重名</div><div class="line"> 8. 禁止对象属性重名</div><div class="line"> 9. 禁止使用八进制数字</div><div class="line"> 10. 不允许在非函数的代码块内声明函数。</div><div class="line"> 11. 新增保留字：implements, interface, <span class="built_in">let</span>, package, private, protected,</div><div class="line">     public, static, yield。</div></pre></td></tr></table></figure>
-<h4 id="Object新增方法"><a href="#Object新增方法" class="headerlink" title="Object新增方法"></a>Object新增方法</h4><a id="more"></a> 
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.create()</div></pre></td></tr></table></figure>
-<p>创建一个具有指定原型且可选择性地包含指定属性的对象</p>
-<p>Object.create(proto, [ propertiesObject ])</p>
-<p>proto:一个对象，作为新创建对象的原型。或者为 null。<br>propertiesObject:可选。该参数对象是一组属性与值，该对象的属性名称将是新创建的对象的属性名称，值是属性描述符。注意：该参数对象不能是 undefined，另外只有该对象中自身拥有的可枚举的属性才有效，也就是说该对象的原型链上属性是无效的。<br>示例：</p>
-<p>//Shape - superclass<br>function Shape() {<br>  this.x = 0;<br>  this.y = 0;<br>}</p>
-<p>Shape.prototype.move = function(x, y) {<br>    this.x += x;<br>    this.y += y;<br>    console.info(“Shape moved.”);<br>};</p>
-<p>// Rectangle - subclass<br>function Rectangle() {<br>  Shape.call(this); //call super constructor.<br>}</p>
-<p>Rectangle.prototype = Object.create(Shape.prototype);</p>
-<p>var rect = new Rectangle();<br>rect instanceof Rectangle //true.<br>rect instanceof Shape //true.<br>rect.move(1, 1); //Outputs, “Shape moved.”</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.getPrototypeOf()</div></pre></td></tr></table></figure>
-<p>返回该对象的原型(也就是该对象内部属性[[prototype]]的值)</p>
-<p>Object.getPrototypeOf(object)</p>
-<p>在 ES5 中，如果参数不是一个对象类型，将抛出一个 TypeError 异常。在ES6中，参数被强制转换为Object。<br>示例：</p>
-<p>var proto = {};<br>var obj = Object.create(proto);<br>Object.getPrototypeOf(obj) === proto; // true</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.getOwnPropertyNames()</div></pre></td></tr></table></figure>
-<p>返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性）组成的数组。</p>
-<p>Object.getOwnPropertyNames(obj)</p>
-<p>obj:一个对象，其自身的可枚举和不可枚举属性的名称被返回。<br>示例：</p>
-<p>var arr = [“a”, “b”, “c”];<br>console.log(Object.getOwnPropertyNames(arr).sort()); // [“0”, “1”, “2”, “length”]</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.defineProperty()</div></pre></td></tr></table></figure>
-<p>直接在一个对象上定义一个新属性，或者修改一个已经存在的属性， 并返回这个对象。</p>
-<p>Object.defineProperty(obj, prop, descriptor)</p>
-<p>obj:需要定义属性的对象。<br>prop:需定义或修改的属性的名字。<br>descriptor:将被定义或修改的属性的描述符。<br>示例：</p>
-<p>Object.defineProperty(obj, “key”, {<br>  enumerable: false,<br>  configurable: false,<br>  writable: false,<br>  value: “static”<br>});</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.defineProperties()</div></pre></td></tr></table></figure>
-<p>在一个对象上添加或修改一个或者多个自有属性，并返回该对象。</p>
-<p>Object.defineProperties(obj, props)</p>
-<p>obj:将要被添加属性或修改属性的对象<br>props:该对象的一个或多个键值对定义了将要为对象添加或修改的属性的具体配置<br>示例：</p>
-<p>var obj = {};<br>Object.defineProperties(obj, {<br>  “property1”: {<br>    value: true,<br>    writable: true<br>  },<br>  “property2”: {<br>    value: “Hello”,<br>    writable: false<br>  }<br>});<br>console.log(obj) //{property1:true,property2:”Hello”}</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.getOwnPropertyDescriptor()</div></pre></td></tr></table></figure>
-<p>指定对象上一个自有属性对应的属性描述符（自有属性指的是直接赋予该对象的属性，不需要从原型链上进行查找的属性）。如果指定的属性存在于对象上，则返回其属性描述符（property descriptor），否则返回 undefined。</p>
-<p>Object.getOwnPropertyDescriptor(obj, prop)</p>
-<p>obj:在该对象上查看属性<br>prop:一个属性名称，该属性的属性描述符将被返回<br>示例：</p>
-<p>var o, d;<br>o = { bar: 42 };<br>d = Object.getOwnPropertyDescriptor(o, “bar”);<br>console.log(d);//{ configurable: true, enumerable: true, value: 42, writable: true }</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.seal()</div></pre></td></tr></table></figure>
-<p>可以让一个对象密封，并返回被密封后的对象。密封对象是指那些不能添加新的属性，不能删除已有属性，以及不能修改已有属性的可枚举性、可配置性、可写性，但可能可以修改已有属性的值的对象。</p>
-<p>Object.seal(obj)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.freeze()</div></pre></td></tr></table></figure>
-<p>可以冻结一个对象，冻结指的是不能向这个对象添加新的属性，不能修改其已有属性的值，不能删除已有属性，以及不能修改该对象已有属性的可枚举性、可配置性、可写性。也就是说，这个对象永远是不可变的。该方法返回被冻结的对象。</p>
-<p>Object.freeze(obj)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.preventExtensions()</div></pre></td></tr></table></figure>
-<p>让一个对象变的不可扩展，也就是永远不能再添加新的属性。</p>
-<p>Object.preventExtensions(obj)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.isExtrensible()</div></pre></td></tr></table></figure>
-<p>判断一个对象是否是可扩展的（是否可以在它上面添加新的属性）。</p>
-<p>Object.isExtensible(obj)</p>
-<p>示例：</p>
-<p>// 新对象默认是可扩展的.<br>var empty = {};<br>Object.isExtensible(empty); // === true<br>// …可以变的不可扩展.<br>Object.preventExtensions(empty);<br>Object.isExtensible(empty); // === false</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.isSealed()</div></pre></td></tr></table></figure>
-<p>判断一个对象是否是密封的（sealed）。</p>
-<p>Object.isSealed(obj)</p>
-<p>示例：</p>
-<p>// 新建的对象默认不是密封的.<br>var empty = {};<br>Object.isSealed(empty); // === false</p>
-<p>// 如果你把一个空对象变的不可扩展,则它同时也会变成个密封对象.<br>Object.preventExtensions(empty);<br>Object.isSealed(empty); // === true</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.isFrozen()</div></pre></td></tr></table></figure>
-<p>判断一个对象是否被冻结（frozen）。</p>
-<p>Object.isFrozen(obj)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.keys()</div></pre></td></tr></table></figure>
-<p>返回一个由给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和使用 for…in 循环遍历该对象时返回的顺序一致 （两者的主要区别是 一个 for-in 循环还会枚举其原型链上的属性）。</p>
-<p>Object.keys(obj)</p>
-<p>示例：</p>
-<p>var arr = [“a”, “b”, “c”];<br>console.log(Object.keys(arr));// [ ‘0’, ‘1’, ‘2’ ]</p>
-<h5 id="Object-prototype新增方法"><a href="#Object-prototype新增方法" class="headerlink" title="Object.prototype新增方法"></a>Object.prototype新增方法</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.prototype.isPrototypeOf()</div></pre></td></tr></table></figure>
-<p>用于测试一个对象是否存在于另一个对象的原型链上。</p>
-<p>Obj.prototype.isPrototypeOf(object)</p>
-<p>object:在该对象的原型链上搜寻<br>示例：</p>
-<p>var arr = [];<br>console.log(arr instanceof Array);//true<br>console.log(Array.prototype.isPrototypeOf(arr));//true<br>isPrototypeOf 和 instanceof operator 是不一样的。在表达式 object instanceof AFunction 中，检测的是 AFunction.prototype 是否在object 的原型链中，而不是检测 AFunction 自身。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.prototype.propertyIsEnumerable()</div></pre></td></tr></table></figure>
-<p>返回一个布尔值，表明指定的属性名是否是当前对象可枚举的自身属性。</p>
-<p>obj.propertyIsEnumerable(prop)</p>
-<p>示例：</p>
-<p>var o = {};<br>o.prop = ‘is enumerable’;<br>o.propertyIsEnumerable(‘prop’);   //  返回 true</p>
-<h4 id="Function-prototype新增方法"><a href="#Function-prototype新增方法" class="headerlink" title="Function.prototype新增方法"></a>Function.prototype新增方法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Function.prototype.bind()</div></pre></td></tr></table></figure>
-<p>bind()方法会创建一个新函数。当这个新函数被调用时，bind()的第一个参数将作为它运行时的 this, 之后的一序列参数将会在传递的实参前传入作为它的参数。</p>
-<p>fun.bind(thisArg[, arg1[, arg2[, …]]])</p>
-<p>thisArg:当绑定函数被调用时，该参数会作为原函数运行时的 this 指向。当使用new 操作符调用绑定函数时，该参数无效。<br>arg1, arg2, …:当绑定函数被调用时，这些参数将置于实参之前传递给被绑定的方法。</p>
-<p>示例：</p>
-<p>this.x = 9;<br>var module = {<br>  x: 81,<br>  getX: function() { return this.x; }<br>};<br>module.getX(); // 返回 81<br>var retrieveX = module.getX;<br>retrieveX(); // 返回 9, 在这种情况下，”this”指向全局作用域<br>// 创建一个新函数，将”this”绑定到module对象<br>// 新手可能会被全局的x变量和module里的属性x所迷惑<br>var boundGetX = retrieveX.bind(module);<br>boundGetX(); // 返回 81</p>
-<h4 id="Array新增方法："><a href="#Array新增方法：" class="headerlink" title="Array新增方法："></a>Array新增方法：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Array.isArray()</div></pre></td></tr></table></figure>
-<p>该方法适用于确定传递的值是否为Array。</p>
-<p>Array.isArray(obj)</p>
-<p>示例：</p>
-<p>Array.isArray([1, 2, 3]);  // true<br>Array.isArray({foo: 123}); // false<br>Array.isArray(“foobar”);   // false<br>Array.isArray(undefined);  // false</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">位置方法：</div><div class="line">Array.prototype.indexOf()</div></pre></td></tr></table></figure>
-<p>返回在数组中可以找到给定元素的第一个索引，如果不存在，则返回-1。</p>
-<p>arr.indexOf(searchElement)</p>
-<p>示例：</p>
-<p>var a = [2, 9, 9];<br>a.indexOf(2); // 0<br>Array.prototype.lastIndexOf()<br>返回指定元素（也即有效的 JavaScript 值或变量）在数组中的最后一个的索引，如果不存在则返回 -1。从数组的后面向前查找，从 fromIndex 处开始。</p>
-<p>arr.lastIndexOf(searchElement[, fromIndex = arr.length - 1])</p>
-<p>searchElement:被查找的元素。<br>fromIndex:从此位置开始逆向查找。默认为数组的长度减 1，即整个数组都被查找。如果该值大于或等于数组的长度，则整个数组会被查找。如果为负值，将其视为从数组末尾向前的偏移。即使该值为负，数组仍然会被从后向前查找。如果该值为负时，其绝对值大于数组长度，则方法返回 -1，即数组不会被查找。</p>
-<p>示例：</p>
-<p>var array = [2, 5, 9, 2];<br>var index = array.lastIndexOf(2);//3</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">迭代方法：</div><div class="line">Array.prototype.every()</div></pre></td></tr></table></figure>
-<p>测试数组的所有元素是否都通过了指定函数的测试。<br>every 方法为数组中的每个元素执行一次 callback 函数，直到它找到一个使 callback 返回 false（表示可转换为布尔值 false 的值）的元素。如果发现了一个这样的元素，every 方法将会立即返回 false。否则，callback 为每一个元素返回 true，every 就会返回 true。</p>
-<p>arr.every(callback[, thisArg])</p>
-<p>callback:用来测试每个元素的函数。<br>thisArg:执行 callback 时使用的 this 值。</p>
-<p>示例：</p>
-<p>function isBigEnough(element, index, array) {<br>  return (element &gt;= 10);<br>}<br>var passed = [12, 5, 8, 130, 44].every(isBigEnough);// false<br>passed = [12, 54, 18, 130, 44].every(isBigEnough);// true</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Array.prototype.some()</div></pre></td></tr></table></figure>
-<p>测试数组中的某些元素是否通过了指定函数的测试。<br>some 为数组中的每一个元素执行一次 callback 函数，直到找到一个使得 callback 返回一个“真值”（即可转换为布尔值 true 的值）。如果找到了这样一个值，some 将会立即返回 true。否则，some 返回 false。</p>
-<p>arr.some(callback[, thisArg])</p>
-<p>示例：</p>
-<p>function isBigEnough(element, index, array) {<br>  return (element &gt;= 10);<br>}<br>var passed = [2, 5, 8, 1, 4].some(isBigEnough);<br>// passed is false<br>passed = [12, 5, 8, 1, 4].some(isBigEnough);<br>// passed is true</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Array.prototype.filter()</div></pre></td></tr></table></figure>
-<p>使用指定的函数测试所有元素，并创建一个包含所有通过测试的元素的新数组。<br>filter 为数组中的每个元素调用一次 callback 函数，并利用所有使得 callback 返回 true 或 等价于 true 的值 的元素创建一个新数组。</p>
-<p>var new_arrary = arr.filter(callback[, thisArg])</p>
-<p>示例：</p>
-<p>function isBigEnough(value) {<br>  return value &gt;= 10;<br>}</p>
-<p>var filtered = [12, 5, 8, 130, 44].filter(isBigEnough);//[12, 130, 44]</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Array.prototype.forEach()</div></pre></td></tr></table></figure>
-<p>方法对数组的每个元素执行一次提供的函数。</p>
-<p>array.forEach(callback[, thisArg])</p>
-<p>示例：</p>
-<p>var a = [‘a’, ‘b’, ‘c’];</p>
-<p>a.forEach(function(element) {<br>    console.log(element);<br>});<br>// a<br>// b<br>// c<br>forEach() 为每个数组元素执行callback函数；不像map() 或者reduce() ，它总是返回 undefined值，并且不可链式调用。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Array.prototype.map()</div></pre></td></tr></table></figure>
-<p>创建一个新数组，其结果是该数组中的每个元素调用一个提供的函数。<br>map 方法会给原数组中的每个元素都按顺序调用一次 callback 函数。callback 每次执行后的返回值（包括 undefined）组合起来形成一个新数组。</p>
-<p>var new_array = arr.map(callback[, thisArg])</p>
-<p>示例：</p>
-<p>var numbers = [1, 5, 10, 15];<br>var roots = numbers.map(function(x) {<br>    return x * 2;<br>});<br>// roots is now [2, 10, 20, 30]<br>// numbers is still [1, 5, 10, 15]</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">归并方法：</div><div class="line">Array.prototype.reduce()</div></pre></td></tr></table></figure>
-<p>对累加器和数组的每个值 (从左到右)应用一个函数，以将其减少为单个值。</p>
-<p>arr.reduce(callback,[initialValue])</p>
-<p>callback:执行数组中每个值的函数，包含四个参数<br>accumulator:上一次调用回调返回的值，或者是提供的初始值（initialValue）<br>currentValue:数组中正在处理的元素<br>currentIndex:数据中正在处理的元素索引，如果提供了 initialValue ，从0开始；否则从1开始<br>array:调用 reduce 的数组<br>initialValue:可选项，其值用于第一次调用 callback 的第一个参数。</p>
-<p>示例：</p>
-<p>var sum = [0, 1, 2, 3].reduce(function(acc, val) {<br>  return acc + val;<br>}, 0);</p>
-<p>console.log(sum);// 6<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Array.prototype.reduceRight();</div></pre></td></tr></table></figure></p>
-<p>reduceRight() 方法接受一个函数作为累加器（accumulator），让每个值（从右到左，亦即从尾到头）缩减为一个值。（与 reduce() 的执行方向相反）</p>
-<p>arr.reduceRight(callback[, initialValue])</p>
-<p>示例：</p>
-<p>var flattened = [[0, 1], [2, 3], [4, 5]].reduceRight(function(a, b) {<br>    return a.concat(b);<br>}, []);<br>// flattened is [4, 5, 2, 3, 0, 1]</p>
-<h4 id="String"><a href="#String" class="headerlink" title="String"></a>String</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String.trim()</div></pre></td></tr></table></figure>
-<p>会删除一个字符串两端的空白字符。</p>
-<p>var newStr = str.trim()</p>
-<p>示例：</p>
-<p>var orig = ‘   foo  ‘;<br>console.log(orig.trim()); // ‘foo’</p>
-<h4 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Date.now()</div></pre></td></tr></table></figure>
-<p>返回自1970年1月1日 00:00:00 UTC到当前时间的毫秒数。</p>
-<p>var timeInMs = Date.now();</p>
-<p>IE8及以下可以用以下代码来兼容：</p>
-<p>if (!Date.now) {<br>  Date.now = function now() {<br>    return new Date().getTime();<br>  };<br>}</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Date.prototype.toISOString()</div></pre></td></tr></table></figure>
-<p>返回一个 ISO（ISO 8601 Extended Format）格式的字符串： YYYY-MM-DDTHH:mm:ss.sssZ。时区总是UTC（协调世界时），加一个后缀“Z”标识。</p>
-<p>dateObj.toISOString()</p>
-<p>示例：</p>
-<p>var today = new Date(“05 October 2011 14:48 UTC”);<br>console.log(today.toISOString()); // 返回2011-10-05T14:48:00.000Z</p>
-<h4 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">JSON.parse()</div></pre></td></tr></table></figure>
-<p>解析一个JSON字符串，构造由字符串描述的JavaScript值或对象。可以提供可选的reviver函数以在返回之前对所得到的对象执行变换。</p>
-<p>JSON.parse(text[, reviver])</p>
-<p>text:要被解析成JavaSctipt值的字符串，查看 JSON 对象学习的JSON 语法的说明。<br>reviver: 可选,如果是一个函数，则规定了原始值如何被解析改造，在被返回之前。</p>
-<p>示例：</p>
-<p>JSON.parse(‘{“name” : “jesse”,”age”:25 }’);//{ name: ‘jesse’, age: 25 }</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">JSON.stringfy()</div></pre></td></tr></table></figure>
-<p>JSON.stringify() 方法将JavaScript值转换为JSON字符串</p>
-<p>JSON.stringify(value[, replacer [, space]])</p>
-<p>示例：</p>
-<p>JSON.stringify({ name: ‘jesse’, age: 25 });//{“name”:”jesse”,”age”:25}</p>
+        <p>这篇文章的原文出自 <a href="https://blog.csdn.net/sinat_21274091/article/details/52741788" target="_blank" rel="external">CSDN上的博客</a>.<br>想要了解原型链的产生就看<a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html" target="_blank" rel="external">阮一峰的博客</a><br>（原型链顶端的原型对象：Object.prototype）<br>先贴一张原型链的图解<br><img src="/2018/08/01/JsPrototypeChain/jsprototypeand__proto__.jpg" alt="enter description here" title="jsprototypeand__proto__.jpg"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">理解Javascript语言的继承机制。</div><div class="line"></div><div class="line">它没有<span class="string">"子类"</span>和<span class="string">"父类"</span>的概念，也没有<span class="string">"类"</span>（class）和<span class="string">"实例"</span>（instance）的区分，全靠一种很奇特的<span class="string">"原型链"</span>（prototype chain）模式，来实现继承。</div></pre></td></tr></table></figure>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>要弄清楚原型链，首先要清楚对象</p>
+<ol>
+<li>普通对象<br> 最普通的对象：有–proto–属性（指向其原型链），没有prototype属性。<br> 原型对象（person.prototype原型对象还有constructor属性（指向构造函数对象））</li>
+<li>函数对象<br> 凡是通过new Function()创建的都是函数对象，拥有–proto–、prototype属性（指向原型对象）。<br> Function、Object、Array、Date、String、自定义函数<br> 特例：Function.prototype(是原型对象，确实函数对象)</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">函数对象  </div><div class="line">function f1()&#123;&#125;;  </div><div class="line">var f2 = function()&#123;&#125;;  </div><div class="line">var f3 = function("n1","n2","return n1+n2");  </div><div class="line">  </div><div class="line">console.log(typeof f1);  //function  </div><div class="line">console.log(typeof f2);  //function  </div><div class="line">console.log(typeof f3);   //function  </div><div class="line">console.log(typeof Object);   //function  </div><div class="line">console.log(typeof Array);   //function  </div><div class="line">console.log(typeof String);   //function  </div><div class="line">console.log(typeof Date);   //function  </div><div class="line">console.log(typeof Function);   //function</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Array</div><div class="line">ƒ <span class="function"><span class="title">Array</span></span>() &#123; [native code] &#125;</div><div class="line">Array.__proto__ === Function.prototype</div><div class="line"><span class="literal">true</span></div><div class="line">Array是函数对象，是Function的实例对象，Array是通过newFunction创建出来的。因为Array是Function的实例，所以Array.__proto__ ===  Function.prototype</div></pre></td></tr></table></figure>
+<p>例子</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Array</div><div class="line">ƒ Array() &#123; [native code] &#125;</div><div class="line">Array.__proto__ === Function.prototype</div><div class="line">true</div><div class="line">Array是函数对象，是Function的实例对象，Array是通过newFunction创建出来的。因为Array是Function的实例，所以Array.__proto__ ===  Function.prototype</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="原型对象"><a href="#原型对象" class="headerlink" title="原型对象"></a>原型对象</h3><p>(原型对象Foo.prototype保存着实例共享的方法，有一个指针constructor指回构造函数。)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">首先感谢苏墨橘，弄清楚了这段内容</div><div class="line">__proto__隐式原型，prototype显式原型</div><div class="line">1、显式原型（作用：用来实现基于原型的继承与属性的共享）</div><div class="line">每一个函数在创建之后都会拥有一个名为prototype的属性，这个属性指向函数的原型对象。</div><div class="line">Note：通过Function.prototype.bind方法构造出来的函数是个例外，它没有prototype属性。</div><div class="line">2、隐式原型</div><div class="line">JavaScript中任意对象都有一个内置属性[[prototype]]，在ES5之前没有标准的方法访问这个内置属性，但是大多数浏览器都支持通过__proto__来访问。ES5中有了对于这个内置属性标准的Get方法Object.getPrototypeOf().                     Note: Object.prototype 这个对象是个例外，它的__proto__值为null</div><div class="line">3、两者的关系</div><div class="line">隐式原型指向创建这个对象的函数(constructor)的prototype</div><div class="line"></div><div class="line"></div><div class="line">JS中对象被创建的方式，一眼看过去似乎有三种方式：（1）对象字面量的方式 （2）new 的方式 （3）ES5中的Object.create() 但是我认为本质上只有一种方式，也就是通过new来创建。为什么这么说呢，首先字面量的方式是一种为了开发人员更方便创建对象的一个语法糖，本质就是 var o = new Object(); o.xx = xx;o.yy=yy; 再来看看Object.create(),这是ES5中新增的方法，在这之前这被称为原型式继承，</div><div class="line"></div><div class="line">一个对象的__proto__指向创建这个对象的  对象的prototype：var f = new F();f.__proto__ === F.prototype;</div><div class="line"></div><div class="line">instanceof操作符的内部实现机制和隐式原型、显式原型有直接的关系</div><div class="line">instanceof的左值一般是一个对象，右值一般是一个构造函数，用来判断左值是否是右值的实例</div><div class="line">例子：</div><div class="line">//设 L instanceof R </div><div class="line">//通过判断</div><div class="line"> L.__proto__.__proto__ ..... === R.prototype ？</div><div class="line">//最终返回 <span class="literal">false</span></div><div class="line"> L.__proto__ === R.prototype ？</div><div class="line"> //最终返回 <span class="literal">true</span></div><div class="line"></div><div class="line">Function instanceof Object // <span class="literal">true</span> </div><div class="line"> Object instanceof Function // <span class="literal">true</span> </div><div class="line"> Function instanceof Function //<span class="literal">true</span></div><div class="line"> Object instanceof Object // <span class="literal">true</span></div><div class="line"> Number instanceof Number //<span class="literal">false</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">对象具有属性__proto__，可称为隐式原型，一个对象的隐式原型指向构造该对象的构造函数的原型，这也保证了实例能够访问在构造函数原型中定义的属性和方法</div><div class="line">构造函数Foo()除了是方法，也是对象啊，它也有__proto__属性指向它的构造函数的原型对象呗。函数的构造函数不就是Function嘛，因此这里的__proto__指向了Function.prototype。</div><div class="line"></div><div class="line">其实除了Foo()，Function(), Object()也是一样的道理。原型对象也是对象啊，它的__proto__属性，又指向谁呢？同理，指向它的构造函数的原型对象呗。这里是Object.prototype.最后，Object.prototype的__proto__属性指向null。</div></pre></td></tr></table></figure></p>
+<p>每创建一个函数都会有一个prototype属性，这个属性是一个指针，指向一个对象（通过该构造函数创建实例对象的原型对象）。原型对象是包含特定类型的所有实例共享的属性和方法。原型对象的好处是可以让所有实例对象共享它所包含的属性和方法。<br>第一块中提到，原型对象属于普通对象。Function.prototype是个例外，它是原型对象，却又是函数对象，作为一个函数对象，它又没有prototype属性。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function person()&#123;&#125;;  </div><div class="line">  </div><div class="line">console.log(typeof person.prototype) <span class="comment">//Object  </span></div><div class="line">console.log(typeof Object.prototype) <span class="comment">// Object  </span></div><div class="line">console.log(typeof Function.prototype) <span class="comment">// 特殊 Function  </span></div><div class="line">console.log(typeof Function<span class="selector-class">.prototype</span><span class="selector-class">.prototype</span>) <span class="comment">//undefined 函数对象却没有prototype属性</span></div></pre></td></tr></table></figure>
+<p>解释：<br>  function person(){};<br>   其实原型对象就是构造函数的一个实例对象。person.prototype就是person的一个实例对象。相当于在person创建的时候，自动创建了一个它的实例，并且把这个实例赋值给了prototype。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> function person()&#123;&#125;;  </div><div class="line">var temp = new person();  </div><div class="line">person.prototype = temp;  </div><div class="line">  </div><div class="line">function Function()&#123;&#125;;  </div><div class="line">var temp = new Function();  </div><div class="line">Function.prototype = temp; //由new Function()产生的对象都是函数对象</div></pre></td></tr></table></figure>
+<p>从一张图看懂原型对象、构造函数、实例对象之间的关系</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function Dog()&#123;&#125;;  </div><div class="line">  </div><div class="line">Dog.prototype.name = "小黄";  </div><div class="line">Dog.prototype.age =  13;  </div><div class="line">Dog<span class="selector-class">.prototype</span><span class="selector-class">.getAge</span> = function()&#123;  </div><div class="line">    return this.age;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">var dog1 = new Dog();  </div><div class="line">var dog2 = new Dog();  </div><div class="line">  </div><div class="line">dog2.name = "小黑";  </div><div class="line">console.log(dog1.name); // 小黄 来自原型  </div><div class="line">console.log(dog2.name); // 小黑 来自实例</div></pre></td></tr></table></figure>
+<p><img src="/2018/08/01/JsPrototypeChain/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%E3%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81%E5%AE%9E%E4%BE%8B%E5%AF%B9%E8%B1%A1.png" alt="enter description here" title="原型对象、构造函数、实例对象.png"></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//图中的一些关系  </span></div><div class="line">dog1.__proto__ === Dog.prototype  </div><div class="line">  </div><div class="line">Dog.prototype.__proto__ === Object.prototype //继承Object 下面原型链说  </div><div class="line">  </div><div class="line">dog1.__proto__.__proto__ === Object.prototype  </div><div class="line">  </div><div class="line">Dog.prototype.constructor === Dog   </div><div class="line">  </div><div class="line">Dog<span class="selector-class">.prototype</span><span class="selector-class">.isPrototypeOf</span>(dog1)  </div><div class="line">  </div><div class="line">获取对象的原型  </div><div class="line">dog1.__proto__  <span class="comment">//不推荐  </span></div><div class="line">Object.getPrototypeOf(dog1) === Dog.prototype   //推荐</div></pre></td></tr></table></figure>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>原型链是实现继承的主要方法。</p>
+<p>先说一下继承，许多OO语言都支持两张继承方式：接口继承、实现继承。</p>
+<p>|- 接口继承：只继承方法签名</p>
+<p>|- 实现继承：继承实际的方法</p>
+<p>由于函数没有签名，在ECMAScript中无法实现接口继承，只支持实现继承，而实现继承主要是依靠原型链来实现。</p>
+<p>原型链基本思路：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> 利用原型让一个引用类型继承另一个引用类型的属性和方法。</div><div class="line"></div><div class="line">每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数想指针(constructor)，而实例对象都包含一个指向原型对象的内部指针( __proto__ )。如果让原型对象等于另一个类型的实例，此时的原型对象将包含一个指向另一个原型的指针(__proto__)，另一个原型也包含着一个指向另一个构造函数的指针(constructor)。假如另一个原型又是另一个类型的实例……这就构成了实例与原型的链条。</div></pre></td></tr></table></figure>
+<p>原型链基本思路（图解）：<br><img src="/2018/08/01/JsPrototypeChain/%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF.png" alt="enter description here" title="原型链基本思路.png"></p>
+<p>举例说明：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">function animal()&#123;  </div><div class="line">    this.type = "animal";  </div><div class="line">&#125;  </div><div class="line">animal<span class="selector-class">.prototype</span><span class="selector-class">.getType</span> = function()&#123;  </div><div class="line">    return this.type;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">function dog()&#123;  </div><div class="line">    this.name = "dog";  </div><div class="line">&#125;  </div><div class="line">dog.prototype = new animal();  </div><div class="line">  </div><div class="line">dog<span class="selector-class">.prototype</span><span class="selector-class">.getName</span> = function()&#123;  </div><div class="line">    return this.name;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">var xiaohuang = new dog();</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//原型链关系  </span></div><div class="line">xiaohuang.__proto__ === dog.prototype  </div><div class="line">dog.prototype.__proto__ === animal.prototype  </div><div class="line">animal.prototype.__proto__ === Object.prototype  </div><div class="line">Object.prototype.__proto__ === null</div></pre></td></tr></table></figure>
+<p>图解：<br><img src="/2018/08/01/JsPrototypeChain/%E5%9B%BE%E8%A7%A3.png" alt="enter description here" title="图解.png"></p>
+<p>详细图：<br><img src="/2018/08/01/JsPrototypeChain/%E8%AF%A6%E7%BB%86%E5%9B%BE.png" alt="enter description here" title="详细图.png"><br>从xiaohuang这个实例，看出整个链条</p>
+<p>总结：</p>
+<p>Xiaohuang这个Dog的实例对象继承了Animal，Animal继承了Object。<br><img src="/2018/08/01/JsPrototypeChain/%E6%80%BB%E7%BB%93.png" alt="enter description here" title="总结.png"></p>
 
       
 
@@ -420,7 +304,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/06/24/MistakeAnalysis/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/08/01/JsPrototypeChain/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -434,18 +318,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/07/18/baseSummaryOfHTTP/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          HTTP的简单总结
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/06/22/css-Positioning-mechanism/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">css定位机制</div>
+    <a href="/2018/07/31/promise-Eventloop/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Promise、事件循环、快速排序和希尔排序</div>
       <i class="icon-circle-right"></i>
     </a>
   
