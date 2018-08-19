@@ -11,20 +11,20 @@
   <meta name="description" content="这篇文章的原文出自 CSDN上的博客.想要了解原型链的产生就看阮一峰的博客（原型链顶端的原型对象：Object.prototype）先贴一张原型链的图解 123理解Javascript语言的继承机制。它没有&quot;子类&quot;和&quot;父类&quot;的概念，也没有&quot;类&quot;（class）和&quot;实例&quot;（instance）的区分，全靠一种很奇特的&quot;原型链&quot;（prototype chain）模式，来实现继承。 对象要弄清楚原型链，首先">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js的原型链">
-<meta property="og:url" content="http://yoursite.com/2018/04/20/JsPrototypeChain/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/08/19/“test/index.html">
 <meta property="og:site_name" content="Swallow的博客">
 <meta property="og:description" content="这篇文章的原文出自 CSDN上的博客.想要了解原型链的产生就看阮一峰的博客（原型链顶端的原型对象：Object.prototype）先贴一张原型链的图解 123理解Javascript语言的继承机制。它没有&quot;子类&quot;和&quot;父类&quot;的概念，也没有&quot;类&quot;（class）和&quot;实例&quot;（instance）的区分，全靠一种很奇特的&quot;原型链&quot;（prototype chain）模式，来实现继承。 对象要弄清楚原型链，首先">
-<meta property="og:image" content="http://yoursite.com/2018/04/20/JsPrototypeChain/jsprototypeand__proto__.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/04/20/JsPrototypeChain/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%E3%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81%E5%AE%9E%E4%BE%8B%E5%AF%B9%E8%B1%A1.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/20/JsPrototypeChain/%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/20/JsPrototypeChain/%E5%9B%BE%E8%A7%A3.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/20/JsPrototypeChain/%E8%AF%A6%E7%BB%86%E5%9B%BE.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/20/JsPrototypeChain/%E6%80%BB%E7%BB%93.png">
-<meta property="og:updated_time" content="2018-08-19T01:14:08.172Z">
+<meta property="og:image" content="http://yoursite.com/2018/08/19/“test/jsprototypeand__proto__.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/08/19/“test/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%E3%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81%E5%AE%9E%E4%BE%8B%E5%AF%B9%E8%B1%A1.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/19/“test/%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/19/“test/%E5%9B%BE%E8%A7%A3.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/19/“test/%E8%AF%A6%E7%BB%86%E5%9B%BE.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/19/“test/%E6%80%BB%E7%BB%93.png">
+<meta property="og:updated_time" content="2018-08-19T02:36:03.581Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js的原型链">
 <meta name="twitter:description" content="这篇文章的原文出自 CSDN上的博客.想要了解原型链的产生就看阮一峰的博客（原型链顶端的原型对象：Object.prototype）先贴一张原型链的图解 123理解Javascript语言的继承机制。它没有&quot;子类&quot;和&quot;父类&quot;的概念，也没有&quot;类&quot;（class）和&quot;实例&quot;（instance）的区分，全靠一种很奇特的&quot;原型链&quot;（prototype chain）模式，来实现继承。 对象要弄清楚原型链，首先">
-<meta name="twitter:image" content="http://yoursite.com/2018/04/20/JsPrototypeChain/jsprototypeand__proto__.jpg">
+<meta name="twitter:image" content="http://yoursite.com/2018/08/19/“test/jsprototypeand__proto__.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Swallow的博客" type="application/atom+xml">
   
@@ -164,7 +164,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-JsPrototypeChain" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-“test" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -176,15 +176,15 @@
   
 
         
-        <a href="/2018/04/20/JsPrototypeChain/" class="archive-article-date">
-  	<time datetime="2018-04-20T07:42:45.285Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-20</time>
+        <a href="/2018/08/19/“test/" class="archive-article-date">
+  	<time datetime="2018-08-19T02:21:32.758Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这篇文章的原文出自 <a href="https://blog.csdn.net/sinat_21274091/article/details/52741788" target="_blank" rel="external">CSDN上的博客</a>.<br>想要了解原型链的产生就看<a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html" target="_blank" rel="external">阮一峰的博客</a><br>（原型链顶端的原型对象：Object.prototype）<br>先贴一张原型链的图解<br><img src="/2018/04/20/JsPrototypeChain/jsprototypeand__proto__.jpg" alt="enter description here" title="jsprototypeand__proto__.jpg"></p>
+        <p>这篇文章的原文出自 <a href="https://blog.csdn.net/sinat_21274091/article/details/52741788" target="_blank" rel="external">CSDN上的博客</a>.<br>想要了解原型链的产生就看<a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html" target="_blank" rel="external">阮一峰的博客</a><br>（原型链顶端的原型对象：Object.prototype）<br>先贴一张原型链的图解<br><img src="/2018/08/19/“test/jsprototypeand__proto__.jpg" alt="enter description here" title="jsprototypeand__proto__.jpg"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">理解Javascript语言的继承机制。</div><div class="line"></div><div class="line">它没有<span class="string">"子类"</span>和<span class="string">"父类"</span>的概念，也没有<span class="string">"类"</span>（class）和<span class="string">"实例"</span>（instance）的区分，全靠一种很奇特的<span class="string">"原型链"</span>（prototype chain）模式，来实现继承。</div></pre></td></tr></table></figure>
 <h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>要弄清楚原型链，首先要清楚对象</p>
 <ol>
@@ -203,7 +203,7 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> function person()&#123;&#125;;  </div><div class="line">var temp = new person();  </div><div class="line">person.prototype = temp;  </div><div class="line">  </div><div class="line">function Function()&#123;&#125;;  </div><div class="line">var temp = new Function();  </div><div class="line">Function.prototype = temp; //由new Function()产生的对象都是函数对象</div></pre></td></tr></table></figure>
 <p>从一张图看懂原型对象、构造函数、实例对象之间的关系</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function Dog()&#123;&#125;;  </div><div class="line">  </div><div class="line">Dog.prototype.name = "小黄";  </div><div class="line">Dog.prototype.age =  13;  </div><div class="line">Dog<span class="selector-class">.prototype</span><span class="selector-class">.getAge</span> = function()&#123;  </div><div class="line">    return this.age;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">var dog1 = new Dog();  </div><div class="line">var dog2 = new Dog();  </div><div class="line">  </div><div class="line">dog2.name = "小黑";  </div><div class="line">console.log(dog1.name); // 小黄 来自原型  </div><div class="line">console.log(dog2.name); // 小黑 来自实例</div></pre></td></tr></table></figure>
-<p><img src="/2018/04/20/JsPrototypeChain/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%E3%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81%E5%AE%9E%E4%BE%8B%E5%AF%B9%E8%B1%A1.png" alt="enter description here" title="原型对象、构造函数、实例对象.png"></p>
+<p><img src="/2018/08/19/“test/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%E3%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81%E5%AE%9E%E4%BE%8B%E5%AF%B9%E8%B1%A1.png" alt="enter description here" title="原型对象、构造函数、实例对象.png"></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//图中的一些关系  </span></div><div class="line">dog1.__proto__ === Dog.prototype  </div><div class="line">  </div><div class="line">Dog.prototype.__proto__ === Object.prototype //继承Object 下面原型链说  </div><div class="line">  </div><div class="line">dog1.__proto__.__proto__ === Object.prototype  </div><div class="line">  </div><div class="line">Dog.prototype.constructor === Dog   </div><div class="line">  </div><div class="line">Dog<span class="selector-class">.prototype</span><span class="selector-class">.isPrototypeOf</span>(dog1)  </div><div class="line">  </div><div class="line">获取对象的原型  </div><div class="line">dog1.__proto__  <span class="comment">//不推荐  </span></div><div class="line">Object.getPrototypeOf(dog1) === Dog.prototype   //推荐</div></pre></td></tr></table></figure>
 <h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>原型链是实现继承的主要方法。</p>
 <p>先说一下继承，许多OO语言都支持两张继承方式：接口继承、实现继承。</p>
@@ -212,14 +212,14 @@
 <p>由于函数没有签名，在ECMAScript中无法实现接口继承，只支持实现继承，而实现继承主要是依靠原型链来实现。</p>
 <p>原型链基本思路：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> 利用原型让一个引用类型继承另一个引用类型的属性和方法。</div><div class="line"></div><div class="line">每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数想指针(constructor)，而实例对象都包含一个指向原型对象的内部指针( __proto__ )。如果让原型对象等于另一个类型的实例，此时的原型对象将包含一个指向另一个原型的指针(__proto__)，另一个原型也包含着一个指向另一个构造函数的指针(constructor)。假如另一个原型又是另一个类型的实例……这就构成了实例与原型的链条。</div></pre></td></tr></table></figure>
-<p>原型链基本思路（图解）：<br><img src="/2018/04/20/JsPrototypeChain/%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF.png" alt="enter description here" title="原型链基本思路.png"></p>
+<p>原型链基本思路（图解）：<br><img src="/2018/08/19/“test/%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF.png" alt="enter description here" title="原型链基本思路.png"></p>
 <p>举例说明：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">function animal()&#123;  </div><div class="line">    this.type = "animal";  </div><div class="line">&#125;  </div><div class="line">animal<span class="selector-class">.prototype</span><span class="selector-class">.getType</span> = function()&#123;  </div><div class="line">    return this.type;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">function dog()&#123;  </div><div class="line">    this.name = "dog";  </div><div class="line">&#125;  </div><div class="line">dog.prototype = new animal();  </div><div class="line">  </div><div class="line">dog<span class="selector-class">.prototype</span><span class="selector-class">.getName</span> = function()&#123;  </div><div class="line">    return this.name;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">var xiaohuang = new dog();</div></pre></td></tr></table></figure>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//原型链关系  </span></div><div class="line">xiaohuang.__proto__ === dog.prototype  </div><div class="line">dog.prototype.__proto__ === animal.prototype  </div><div class="line">animal.prototype.__proto__ === Object.prototype  </div><div class="line">Object.prototype.__proto__ === null</div></pre></td></tr></table></figure>
-<p>图解：<br><img src="/2018/04/20/JsPrototypeChain/%E5%9B%BE%E8%A7%A3.png" alt="enter description here" title="图解.png"></p>
-<p>详细图：<br><img src="/2018/04/20/JsPrototypeChain/%E8%AF%A6%E7%BB%86%E5%9B%BE.png" alt="enter description here" title="详细图.png"><br>从xiaohuang这个实例，看出整个链条</p>
+<p>图解：<br><img src="/2018/08/19/“test/%E5%9B%BE%E8%A7%A3.png" alt="enter description here" title="图解.png"></p>
+<p>详细图：<br><img src="/2018/08/19/“test/%E8%AF%A6%E7%BB%86%E5%9B%BE.png" alt="enter description here" title="详细图.png"><br>从xiaohuang这个实例，看出整个链条</p>
 <p>总结：</p>
-<p>Xiaohuang这个Dog的实例对象继承了Animal，Animal继承了Object。<br><img src="/2018/04/20/JsPrototypeChain/%E6%80%BB%E7%BB%93.png" alt="enter description here" title="总结.png"></p>
+<p>Xiaohuang这个Dog的实例对象继承了Animal，Animal继承了Object。<br><img src="/2018/08/19/“test/%E6%80%BB%E7%BB%93.png" alt="enter description here" title="总结.png"></p>
 
       
 
@@ -304,7 +304,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/04/20/JsPrototypeChain/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/08/19/“test/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -318,18 +318,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/04/23/mobileAdaptation/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          移动端的自适应
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/04/19/Es5NewFeatures/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">ES5的新特性</div>
+    <a href="/2018/08/19/baseSummaryOfHTTP/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HTTP的简单总结</div>
       <i class="icon-circle-right"></i>
     </a>
   
