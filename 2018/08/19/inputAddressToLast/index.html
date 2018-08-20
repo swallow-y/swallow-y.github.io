@@ -6,18 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>ES5的新特性 | Swallow的博客</title>
+  <title>从地址栏输入一个URL 地址到最后页面的呈现 | Swallow的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ES5的新特性严格模式（Strict Mode）是ECMAScript 5的新特性1234567891011121314它允许你把整个程序，或者某个函数，放置在“严格”的操作语境中。这种严格的语境会防止某些特定的操作并抛出更多的异常。严格模式下主要变化有： 1. 未使用var创建的变量会报错 2. 函数顶层的this不在指向window，而是undefined 3. 强制为eval创建新作用域 4">
+  <meta name="description" content="第一步  浏览器（客户端）进行地址解析，12345用户在浏览器输入URL地址，点击回车之后，浏览器获取到的是一个字符串。浏览器此时要对这个地址进行解析，获取协议，主机，端口，路径等信息。URL的一般格式为:&amp;lt;scheme&amp;gt;://&amp;lt;user&amp;gt;:&amp;lt;password&amp;gt;@&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/&amp;lt;path&amp;gt;;&amp;lt;params&amp;">
+<meta name="keywords" content="浏览器，地址，HTTP，渲染">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ES5的新特性">
-<meta property="og:url" content="http://yoursite.com/2018/06/24/MistakeAnalysis/index.html">
+<meta property="og:title" content="从地址栏输入一个URL 地址到最后页面的呈现">
+<meta property="og:url" content="http://yoursite.com/2018/08/19/inputAddressToLast/index.html">
 <meta property="og:site_name" content="Swallow的博客">
-<meta property="og:description" content="ES5的新特性严格模式（Strict Mode）是ECMAScript 5的新特性1234567891011121314它允许你把整个程序，或者某个函数，放置在“严格”的操作语境中。这种严格的语境会防止某些特定的操作并抛出更多的异常。严格模式下主要变化有： 1. 未使用var创建的变量会报错 2. 函数顶层的this不在指向window，而是undefined 3. 强制为eval创建新作用域 4">
-<meta property="og:updated_time" content="2018-04-22T11:36:55.278Z">
+<meta property="og:description" content="第一步  浏览器（客户端）进行地址解析，12345用户在浏览器输入URL地址，点击回车之后，浏览器获取到的是一个字符串。浏览器此时要对这个地址进行解析，获取协议，主机，端口，路径等信息。URL的一般格式为:&amp;lt;scheme&amp;gt;://&amp;lt;user&amp;gt;:&amp;lt;password&amp;gt;@&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/&amp;lt;path&amp;gt;;&amp;lt;params&amp;">
+<meta property="og:image" content="http://yoursite.com/2018/08/19/inputAddressToLast/%E7%AC%AC%E4%B8%80%E6%AD%A5.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/19/inputAddressToLast/%E7%AC%AC%E4%BA%8C%E6%AD%A5.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/19/inputAddressToLast/%E7%AC%AC%E4%B8%89%E6%AD%A5.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/19/inputAddressToLast/TCP%E8%BF%9E%E6%8E%A5.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/08/19/inputAddressToLast/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87.jpg">
+<meta property="og:updated_time" content="2018-08-20T07:26:17.552Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ES5的新特性">
-<meta name="twitter:description" content="ES5的新特性严格模式（Strict Mode）是ECMAScript 5的新特性1234567891011121314它允许你把整个程序，或者某个函数，放置在“严格”的操作语境中。这种严格的语境会防止某些特定的操作并抛出更多的异常。严格模式下主要变化有： 1. 未使用var创建的变量会报错 2. 函数顶层的this不在指向window，而是undefined 3. 强制为eval创建新作用域 4">
+<meta name="twitter:title" content="从地址栏输入一个URL 地址到最后页面的呈现">
+<meta name="twitter:description" content="第一步  浏览器（客户端）进行地址解析，12345用户在浏览器输入URL地址，点击回车之后，浏览器获取到的是一个字符串。浏览器此时要对这个地址进行解析，获取协议，主机，端口，路径等信息。URL的一般格式为:&amp;lt;scheme&amp;gt;://&amp;lt;user&amp;gt;:&amp;lt;password&amp;gt;@&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/&amp;lt;path&amp;gt;;&amp;lt;params&amp;">
+<meta name="twitter:image" content="http://yoursite.com/2018/08/19/inputAddressToLast/%E7%AC%AC%E4%B8%80%E6%AD%A5.png">
   
     <link rel="alternative" href="/atom.xml" title="Swallow的博客" type="application/atom+xml">
   
@@ -157,185 +164,59 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-MistakeAnalysis" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-inputAddressToLast" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      ES5的新特性
+      从地址栏输入一个URL 地址到最后页面的呈现
     </h1>
   
 
         
-        <a href="/2018/06/24/MistakeAnalysis/" class="archive-article-date">
-  	<time datetime="2018-06-24T01:49:15.973Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+        <a href="/2018/08/19/inputAddressToLast/" class="archive-article-date">
+  	<time datetime="2018-08-19T08:24:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="ES5的新特性"><a href="#ES5的新特性" class="headerlink" title="ES5的新特性"></a>ES5的新特性</h3><h4 id="严格模式（Strict-Mode）是ECMAScript-5的新特性"><a href="#严格模式（Strict-Mode）是ECMAScript-5的新特性" class="headerlink" title="严格模式（Strict Mode）是ECMAScript 5的新特性"></a>严格模式（Strict Mode）是ECMAScript 5的新特性</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">它允许你把整个程序，或者某个函数，放置在“严格”的操作语境中。这种严格的语境会防止某些特定的操作并抛出更多的异常。严格模式下主要变化有：</div><div class="line"></div><div class="line"> 1. 未使用var创建的变量会报错</div><div class="line"> 2. 函数顶层的this不在指向window，而是undefined</div><div class="line"> 3. 强制为<span class="built_in">eval</span>创建新作用域</div><div class="line"> 4. 禁止用delete删除变量</div><div class="line"> 5. 禁止使用arguments,callee,<span class="built_in">caller</span>属性</div><div class="line"> 6. 禁止使用width语句</div><div class="line"> 7. 禁止函数参数重名</div><div class="line"> 8. 禁止对象属性重名</div><div class="line"> 9. 禁止使用八进制数字</div><div class="line"> 10. 不允许在非函数的代码块内声明函数。</div><div class="line"> 11. 新增保留字：implements, interface, <span class="built_in">let</span>, package, private, protected,</div><div class="line">     public, static, yield。</div></pre></td></tr></table></figure>
-<h4 id="Object新增方法"><a href="#Object新增方法" class="headerlink" title="Object新增方法"></a>Object新增方法</h4><a id="more"></a> 
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.create()</div></pre></td></tr></table></figure>
-<p>创建一个具有指定原型且可选择性地包含指定属性的对象</p>
-<p>Object.create(proto, [ propertiesObject ])</p>
-<p>proto:一个对象，作为新创建对象的原型。或者为 null。<br>propertiesObject:可选。该参数对象是一组属性与值，该对象的属性名称将是新创建的对象的属性名称，值是属性描述符。注意：该参数对象不能是 undefined，另外只有该对象中自身拥有的可枚举的属性才有效，也就是说该对象的原型链上属性是无效的。<br>示例：</p>
-<p>//Shape - superclass<br>function Shape() {<br>  this.x = 0;<br>  this.y = 0;<br>}</p>
-<p>Shape.prototype.move = function(x, y) {<br>    this.x += x;<br>    this.y += y;<br>    console.info(“Shape moved.”);<br>};</p>
-<p>// Rectangle - subclass<br>function Rectangle() {<br>  Shape.call(this); //call super constructor.<br>}</p>
-<p>Rectangle.prototype = Object.create(Shape.prototype);</p>
-<p>var rect = new Rectangle();<br>rect instanceof Rectangle //true.<br>rect instanceof Shape //true.<br>rect.move(1, 1); //Outputs, “Shape moved.”</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.getPrototypeOf()</div></pre></td></tr></table></figure>
-<p>返回该对象的原型(也就是该对象内部属性[[prototype]]的值)</p>
-<p>Object.getPrototypeOf(object)</p>
-<p>在 ES5 中，如果参数不是一个对象类型，将抛出一个 TypeError 异常。在ES6中，参数被强制转换为Object。<br>示例：</p>
-<p>var proto = {};<br>var obj = Object.create(proto);<br>Object.getPrototypeOf(obj) === proto; // true</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.getOwnPropertyNames()</div></pre></td></tr></table></figure>
-<p>返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性）组成的数组。</p>
-<p>Object.getOwnPropertyNames(obj)</p>
-<p>obj:一个对象，其自身的可枚举和不可枚举属性的名称被返回。<br>示例：</p>
-<p>var arr = [“a”, “b”, “c”];<br>console.log(Object.getOwnPropertyNames(arr).sort()); // [“0”, “1”, “2”, “length”]</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.defineProperty()</div></pre></td></tr></table></figure>
-<p>直接在一个对象上定义一个新属性，或者修改一个已经存在的属性， 并返回这个对象。</p>
-<p>Object.defineProperty(obj, prop, descriptor)</p>
-<p>obj:需要定义属性的对象。<br>prop:需定义或修改的属性的名字。<br>descriptor:将被定义或修改的属性的描述符。<br>示例：</p>
-<p>Object.defineProperty(obj, “key”, {<br>  enumerable: false,<br>  configurable: false,<br>  writable: false,<br>  value: “static”<br>});</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.defineProperties()</div></pre></td></tr></table></figure>
-<p>在一个对象上添加或修改一个或者多个自有属性，并返回该对象。</p>
-<p>Object.defineProperties(obj, props)</p>
-<p>obj:将要被添加属性或修改属性的对象<br>props:该对象的一个或多个键值对定义了将要为对象添加或修改的属性的具体配置<br>示例：</p>
-<p>var obj = {};<br>Object.defineProperties(obj, {<br>  “property1”: {<br>    value: true,<br>    writable: true<br>  },<br>  “property2”: {<br>    value: “Hello”,<br>    writable: false<br>  }<br>});<br>console.log(obj) //{property1:true,property2:”Hello”}</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.getOwnPropertyDescriptor()</div></pre></td></tr></table></figure>
-<p>指定对象上一个自有属性对应的属性描述符（自有属性指的是直接赋予该对象的属性，不需要从原型链上进行查找的属性）。如果指定的属性存在于对象上，则返回其属性描述符（property descriptor），否则返回 undefined。</p>
-<p>Object.getOwnPropertyDescriptor(obj, prop)</p>
-<p>obj:在该对象上查看属性<br>prop:一个属性名称，该属性的属性描述符将被返回<br>示例：</p>
-<p>var o, d;<br>o = { bar: 42 };<br>d = Object.getOwnPropertyDescriptor(o, “bar”);<br>console.log(d);//{ configurable: true, enumerable: true, value: 42, writable: true }</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.seal()</div></pre></td></tr></table></figure>
-<p>可以让一个对象密封，并返回被密封后的对象。密封对象是指那些不能添加新的属性，不能删除已有属性，以及不能修改已有属性的可枚举性、可配置性、可写性，但可能可以修改已有属性的值的对象。</p>
-<p>Object.seal(obj)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.freeze()</div></pre></td></tr></table></figure>
-<p>可以冻结一个对象，冻结指的是不能向这个对象添加新的属性，不能修改其已有属性的值，不能删除已有属性，以及不能修改该对象已有属性的可枚举性、可配置性、可写性。也就是说，这个对象永远是不可变的。该方法返回被冻结的对象。</p>
-<p>Object.freeze(obj)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.preventExtensions()</div></pre></td></tr></table></figure>
-<p>让一个对象变的不可扩展，也就是永远不能再添加新的属性。</p>
-<p>Object.preventExtensions(obj)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.isExtrensible()</div></pre></td></tr></table></figure>
-<p>判断一个对象是否是可扩展的（是否可以在它上面添加新的属性）。</p>
-<p>Object.isExtensible(obj)</p>
-<p>示例：</p>
-<p>// 新对象默认是可扩展的.<br>var empty = {};<br>Object.isExtensible(empty); // === true<br>// …可以变的不可扩展.<br>Object.preventExtensions(empty);<br>Object.isExtensible(empty); // === false</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.isSealed()</div></pre></td></tr></table></figure>
-<p>判断一个对象是否是密封的（sealed）。</p>
-<p>Object.isSealed(obj)</p>
-<p>示例：</p>
-<p>// 新建的对象默认不是密封的.<br>var empty = {};<br>Object.isSealed(empty); // === false</p>
-<p>// 如果你把一个空对象变的不可扩展,则它同时也会变成个密封对象.<br>Object.preventExtensions(empty);<br>Object.isSealed(empty); // === true</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.isFrozen()</div></pre></td></tr></table></figure>
-<p>判断一个对象是否被冻结（frozen）。</p>
-<p>Object.isFrozen(obj)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.keys()</div></pre></td></tr></table></figure>
-<p>返回一个由给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和使用 for…in 循环遍历该对象时返回的顺序一致 （两者的主要区别是 一个 for-in 循环还会枚举其原型链上的属性）。</p>
-<p>Object.keys(obj)</p>
-<p>示例：</p>
-<p>var arr = [“a”, “b”, “c”];<br>console.log(Object.keys(arr));// [ ‘0’, ‘1’, ‘2’ ]</p>
-<h5 id="Object-prototype新增方法"><a href="#Object-prototype新增方法" class="headerlink" title="Object.prototype新增方法"></a>Object.prototype新增方法</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.prototype.isPrototypeOf()</div></pre></td></tr></table></figure>
-<p>用于测试一个对象是否存在于另一个对象的原型链上。</p>
-<p>Obj.prototype.isPrototypeOf(object)</p>
-<p>object:在该对象的原型链上搜寻<br>示例：</p>
-<p>var arr = [];<br>console.log(arr instanceof Array);//true<br>console.log(Array.prototype.isPrototypeOf(arr));//true<br>isPrototypeOf 和 instanceof operator 是不一样的。在表达式 object instanceof AFunction 中，检测的是 AFunction.prototype 是否在object 的原型链中，而不是检测 AFunction 自身。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.prototype.propertyIsEnumerable()</div></pre></td></tr></table></figure>
-<p>返回一个布尔值，表明指定的属性名是否是当前对象可枚举的自身属性。</p>
-<p>obj.propertyIsEnumerable(prop)</p>
-<p>示例：</p>
-<p>var o = {};<br>o.prop = ‘is enumerable’;<br>o.propertyIsEnumerable(‘prop’);   //  返回 true</p>
-<h4 id="Function-prototype新增方法"><a href="#Function-prototype新增方法" class="headerlink" title="Function.prototype新增方法"></a>Function.prototype新增方法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Function.prototype.bind()</div></pre></td></tr></table></figure>
-<p>bind()方法会创建一个新函数。当这个新函数被调用时，bind()的第一个参数将作为它运行时的 this, 之后的一序列参数将会在传递的实参前传入作为它的参数。</p>
-<p>fun.bind(thisArg[, arg1[, arg2[, …]]])</p>
-<p>thisArg:当绑定函数被调用时，该参数会作为原函数运行时的 this 指向。当使用new 操作符调用绑定函数时，该参数无效。<br>arg1, arg2, …:当绑定函数被调用时，这些参数将置于实参之前传递给被绑定的方法。</p>
-<p>示例：</p>
-<p>this.x = 9;<br>var module = {<br>  x: 81,<br>  getX: function() { return this.x; }<br>};<br>module.getX(); // 返回 81<br>var retrieveX = module.getX;<br>retrieveX(); // 返回 9, 在这种情况下，”this”指向全局作用域<br>// 创建一个新函数，将”this”绑定到module对象<br>// 新手可能会被全局的x变量和module里的属性x所迷惑<br>var boundGetX = retrieveX.bind(module);<br>boundGetX(); // 返回 81</p>
-<h4 id="Array新增方法："><a href="#Array新增方法：" class="headerlink" title="Array新增方法："></a>Array新增方法：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Array.isArray()</div></pre></td></tr></table></figure>
-<p>该方法适用于确定传递的值是否为Array。</p>
-<p>Array.isArray(obj)</p>
-<p>示例：</p>
-<p>Array.isArray([1, 2, 3]);  // true<br>Array.isArray({foo: 123}); // false<br>Array.isArray(“foobar”);   // false<br>Array.isArray(undefined);  // false</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">位置方法：</div><div class="line">Array.prototype.indexOf()</div></pre></td></tr></table></figure>
-<p>返回在数组中可以找到给定元素的第一个索引，如果不存在，则返回-1。</p>
-<p>arr.indexOf(searchElement)</p>
-<p>示例：</p>
-<p>var a = [2, 9, 9];<br>a.indexOf(2); // 0<br>Array.prototype.lastIndexOf()<br>返回指定元素（也即有效的 JavaScript 值或变量）在数组中的最后一个的索引，如果不存在则返回 -1。从数组的后面向前查找，从 fromIndex 处开始。</p>
-<p>arr.lastIndexOf(searchElement[, fromIndex = arr.length - 1])</p>
-<p>searchElement:被查找的元素。<br>fromIndex:从此位置开始逆向查找。默认为数组的长度减 1，即整个数组都被查找。如果该值大于或等于数组的长度，则整个数组会被查找。如果为负值，将其视为从数组末尾向前的偏移。即使该值为负，数组仍然会被从后向前查找。如果该值为负时，其绝对值大于数组长度，则方法返回 -1，即数组不会被查找。</p>
-<p>示例：</p>
-<p>var array = [2, 5, 9, 2];<br>var index = array.lastIndexOf(2);//3</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">迭代方法：</div><div class="line">Array.prototype.every()</div></pre></td></tr></table></figure>
-<p>测试数组的所有元素是否都通过了指定函数的测试。<br>every 方法为数组中的每个元素执行一次 callback 函数，直到它找到一个使 callback 返回 false（表示可转换为布尔值 false 的值）的元素。如果发现了一个这样的元素，every 方法将会立即返回 false。否则，callback 为每一个元素返回 true，every 就会返回 true。</p>
-<p>arr.every(callback[, thisArg])</p>
-<p>callback:用来测试每个元素的函数。<br>thisArg:执行 callback 时使用的 this 值。</p>
-<p>示例：</p>
-<p>function isBigEnough(element, index, array) {<br>  return (element &gt;= 10);<br>}<br>var passed = [12, 5, 8, 130, 44].every(isBigEnough);// false<br>passed = [12, 54, 18, 130, 44].every(isBigEnough);// true</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Array.prototype.some()</div></pre></td></tr></table></figure>
-<p>测试数组中的某些元素是否通过了指定函数的测试。<br>some 为数组中的每一个元素执行一次 callback 函数，直到找到一个使得 callback 返回一个“真值”（即可转换为布尔值 true 的值）。如果找到了这样一个值，some 将会立即返回 true。否则，some 返回 false。</p>
-<p>arr.some(callback[, thisArg])</p>
-<p>示例：</p>
-<p>function isBigEnough(element, index, array) {<br>  return (element &gt;= 10);<br>}<br>var passed = [2, 5, 8, 1, 4].some(isBigEnough);<br>// passed is false<br>passed = [12, 5, 8, 1, 4].some(isBigEnough);<br>// passed is true</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Array.prototype.filter()</div></pre></td></tr></table></figure>
-<p>使用指定的函数测试所有元素，并创建一个包含所有通过测试的元素的新数组。<br>filter 为数组中的每个元素调用一次 callback 函数，并利用所有使得 callback 返回 true 或 等价于 true 的值 的元素创建一个新数组。</p>
-<p>var new_arrary = arr.filter(callback[, thisArg])</p>
-<p>示例：</p>
-<p>function isBigEnough(value) {<br>  return value &gt;= 10;<br>}</p>
-<p>var filtered = [12, 5, 8, 130, 44].filter(isBigEnough);//[12, 130, 44]</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Array.prototype.forEach()</div></pre></td></tr></table></figure>
-<p>方法对数组的每个元素执行一次提供的函数。</p>
-<p>array.forEach(callback[, thisArg])</p>
-<p>示例：</p>
-<p>var a = [‘a’, ‘b’, ‘c’];</p>
-<p>a.forEach(function(element) {<br>    console.log(element);<br>});<br>// a<br>// b<br>// c<br>forEach() 为每个数组元素执行callback函数；不像map() 或者reduce() ，它总是返回 undefined值，并且不可链式调用。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Array.prototype.map()</div></pre></td></tr></table></figure>
-<p>创建一个新数组，其结果是该数组中的每个元素调用一个提供的函数。<br>map 方法会给原数组中的每个元素都按顺序调用一次 callback 函数。callback 每次执行后的返回值（包括 undefined）组合起来形成一个新数组。</p>
-<p>var new_array = arr.map(callback[, thisArg])</p>
-<p>示例：</p>
-<p>var numbers = [1, 5, 10, 15];<br>var roots = numbers.map(function(x) {<br>    return x * 2;<br>});<br>// roots is now [2, 10, 20, 30]<br>// numbers is still [1, 5, 10, 15]</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">归并方法：</div><div class="line">Array.prototype.reduce()</div></pre></td></tr></table></figure>
-<p>对累加器和数组的每个值 (从左到右)应用一个函数，以将其减少为单个值。</p>
-<p>arr.reduce(callback,[initialValue])</p>
-<p>callback:执行数组中每个值的函数，包含四个参数<br>accumulator:上一次调用回调返回的值，或者是提供的初始值（initialValue）<br>currentValue:数组中正在处理的元素<br>currentIndex:数据中正在处理的元素索引，如果提供了 initialValue ，从0开始；否则从1开始<br>array:调用 reduce 的数组<br>initialValue:可选项，其值用于第一次调用 callback 的第一个参数。</p>
-<p>示例：</p>
-<p>var sum = [0, 1, 2, 3].reduce(function(acc, val) {<br>  return acc + val;<br>}, 0);</p>
-<p>console.log(sum);// 6<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Array.prototype.reduceRight();</div></pre></td></tr></table></figure></p>
-<p>reduceRight() 方法接受一个函数作为累加器（accumulator），让每个值（从右到左，亦即从尾到头）缩减为一个值。（与 reduce() 的执行方向相反）</p>
-<p>arr.reduceRight(callback[, initialValue])</p>
-<p>示例：</p>
-<p>var flattened = [[0, 1], [2, 3], [4, 5]].reduceRight(function(a, b) {<br>    return a.concat(b);<br>}, []);<br>// flattened is [4, 5, 2, 3, 0, 1]</p>
-<h4 id="String"><a href="#String" class="headerlink" title="String"></a>String</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String.trim()</div></pre></td></tr></table></figure>
-<p>会删除一个字符串两端的空白字符。</p>
-<p>var newStr = str.trim()</p>
-<p>示例：</p>
-<p>var orig = ‘   foo  ‘;<br>console.log(orig.trim()); // ‘foo’</p>
-<h4 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Date.now()</div></pre></td></tr></table></figure>
-<p>返回自1970年1月1日 00:00:00 UTC到当前时间的毫秒数。</p>
-<p>var timeInMs = Date.now();</p>
-<p>IE8及以下可以用以下代码来兼容：</p>
-<p>if (!Date.now) {<br>  Date.now = function now() {<br>    return new Date().getTime();<br>  };<br>}</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Date.prototype.toISOString()</div></pre></td></tr></table></figure>
-<p>返回一个 ISO（ISO 8601 Extended Format）格式的字符串： YYYY-MM-DDTHH:mm:ss.sssZ。时区总是UTC（协调世界时），加一个后缀“Z”标识。</p>
-<p>dateObj.toISOString()</p>
-<p>示例：</p>
-<p>var today = new Date(“05 October 2011 14:48 UTC”);<br>console.log(today.toISOString()); // 返回2011-10-05T14:48:00.000Z</p>
-<h4 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">JSON.parse()</div></pre></td></tr></table></figure>
-<p>解析一个JSON字符串，构造由字符串描述的JavaScript值或对象。可以提供可选的reviver函数以在返回之前对所得到的对象执行变换。</p>
-<p>JSON.parse(text[, reviver])</p>
-<p>text:要被解析成JavaSctipt值的字符串，查看 JSON 对象学习的JSON 语法的说明。<br>reviver: 可选,如果是一个函数，则规定了原始值如何被解析改造，在被返回之前。</p>
-<p>示例：</p>
-<p>JSON.parse(‘{“name” : “jesse”,”age”:25 }’);//{ name: ‘jesse’, age: 25 }</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">JSON.stringfy()</div></pre></td></tr></table></figure>
-<p>JSON.stringify() 方法将JavaScript值转换为JSON字符串</p>
-<p>JSON.stringify(value[, replacer [, space]])</p>
-<p>示例：</p>
-<p>JSON.stringify({ name: ‘jesse’, age: 25 });//{“name”:”jesse”,”age”:25}</p>
+        <h1 id="第一步-浏览器（客户端）进行地址解析，"><a href="#第一步-浏览器（客户端）进行地址解析，" class="headerlink" title="第一步  浏览器（客户端）进行地址解析，"></a>第一步  浏览器（客户端）进行地址解析，</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">用户在浏览器输入URL地址，点击回车之后，浏览器获取到的是一个字符串。浏览器此时要对这个地址进行解析，获取协议，主机，端口，路径等信息。</div><div class="line">URL的一般格式为:</div><div class="line">&lt;scheme&gt;://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;params&gt;?&lt;query&gt;<span class="comment">#&lt;flag&gt;</span></div><div class="line"></div><div class="line">http://www.imooc.com/article/draft/id/430 这个网址缺少了一些东西，端口号，用户名，密码，query和flag都没有。这些东西都是非必须的，甚至协议、路径都可以不要，最简洁的方式为imooc.com，浏览器会对一些默认的东西进行补齐。例如：互联网url默认端口号为80，浏览器默认补齐功能会补齐协议http，有些还会直接在域名前面补上www。所以实际上，即使我们输入的是imooc.com，然而实际访问的却是http://www.imooc.com。</div></pre></td></tr></table></figure>
+<h1 id="第二步-解析出的域名进行DNS解析"><a href="#第二步-解析出的域名进行DNS解析" class="headerlink" title="第二步  解析出的域名进行DNS解析"></a>第二步  解析出的域名进行DNS解析</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DNS是由域名解析器和域名服务器组成的。（查看自己电脑的DNS服务器的步骤如下图）</div></pre></td></tr></table></figure>
+<p>第一步：win+R打开命令行<br><img src="/2018/08/19/inputAddressToLast/%E7%AC%AC%E4%B8%80%E6%AD%A5.png" alt="enter description here" title="第一步.png"></p>
+<p>第二步：输入ipconfig/all<br><img src="/2018/08/19/inputAddressToLast/%E7%AC%AC%E4%BA%8C%E6%AD%A5.png" alt="enter description here" title="第二步.png"></p>
+<p>第三步：查看DNS‘<br><img src="/2018/08/19/inputAddressToLast/%E7%AC%AC%E4%B8%89%E6%AD%A5.png" alt="enter description here" title="第三步.png"></p>
+<h3 id="dns解析分为以下几个步骤"><a href="#dns解析分为以下几个步骤" class="headerlink" title="dns解析分为以下几个步骤"></a>dns解析分为以下几个步骤</h3><p>1、查看浏览器dns缓存中是否存在有域名对应的ip<br>2、如果没有，则查看操作系统dns缓存中是否有对应的ip（例如windows的hosts文件）<br>3、依旧没有则对本地区的dns服务器发起请求<br>4、如果还是没有，就直接到Root Server 域名服务器请求解析</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">DNS在进行区域传输的时候使用TCP协议，其它时候则使用UDP协议；</div><div class="line">全球只有十三台**逻辑**根服务器，为什么是十三台，请参考https://www.zhihu.com/question/22587247?answer_deleted_redirect=<span class="literal">true</span>。 其中任何一次解析成功就返回对应的ip地址。</div></pre></td></tr></table></figure>
+<h1 id="第三步-进行tcp三次握手，建立tcp连接"><a href="#第三步-进行tcp三次握手，建立tcp连接" class="headerlink" title="第三步 进行tcp三次握手，建立tcp连接"></a>第三步 进行tcp三次握手，建立tcp连接</h1><p>获取到了ip，此时直接通过ip寻址找到ip对应的服务器，然后通过arp协议找到服务器的mac地址。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">这里有几点需要注意：</div><div class="line"></div><div class="line">1、ip地址（ipv4， 32位）。ip地址是IP协议提供的一种统一的地址格式，它为互联网上的每一个网络和每一台主机分配一个逻辑地址，以此来屏蔽物理地址的差异。ip地址分为A、B、C、D、E五大类：</div><div class="line"></div><div class="line">A类地址：一个字节（8位）的网络地址和三个字节的主机地址。地址范围为：1.0.0.0~126.255.255.255。</div><div class="line"></div><div class="line">B类地址：二个字节的网络地址和二个字节的主机地址。地址范围为：128.0.0.0~191.255.255.255。</div><div class="line"></div><div class="line">C类地址：三个字节的网络地址和一个字节的主机地址。地址范围为：192.0.0.0~223.255.255.255。</div><div class="line"></div><div class="line">D类地址：D类地址用于多点广播（Multicast），D类IP地址第一个字节以“lll0”开始，它是一个专门保留的地址。地址范围为：224.0.0.0~239.255.255.255。</div><div class="line"></div><div class="line">E类地址： E类IP地址 以“llll0”开始，为将来使用保留。地址范围为：240.0.0.0~255.255.255.254。，255.255.255.255用于广播地址。</div><div class="line"></div><div class="line">其中缺失了两部分，一个是0开头的，“0”表示该地址是本地主机，不能传送。一个是127开头的，127开头的是网卡自身，常用于测试。这里为什么是十进制的数字，为什么中间有‘.’，其实这都是为了方便人类而人为加上去的。转化为计算机语言就是二进制的，每一个字节八位，八位二进制能表示的最大数字就是255，这样ip地址就齐全了。可能有些人还发现ip地址为 10.170.8.61/23 ，这里涉及到局域网、保留地址和子网掩码。这里的意思是，前23位表示为该台主机的网络地址，该网络有 2^(32-23) = 512台主机。具体就不展开讲了，涉及的内容太深，太多。感兴趣的可以参考https://www.zhihu.com/question/56895036</div><div class="line"></div><div class="line">2、IP寻址如何工作？</div><div class="line"></div><div class="line">ip寻址主要有两种方式，一种是同一网段，一种是不同网段。要判断两个IP地址是不是在同一个网段，就将它们的IP地址分别与子网掩码做与运算，得到的结果一网络号，如果网络号相同，就在同一子网，否则，不在同一子网。</div><div class="line"></div><div class="line">同一网段的情况：</div><div class="line"></div><div class="line">主机A和主机B，首先主机A通过本机的hosts表或者wins系统或dns系统先将主机B的计算机名  转换为Ip地址，然后用自己的 Ip地址与子网掩码计算出自己所出的网段，比较目的主机B的ip地址与自己的子网掩码，发现与自己是出于相同的网段，于是在自己的ARP缓存中查找是否有主机B 的mac地址，如果能找到就直接做数据链路层封装并且通过网卡将封装好的以太网帧发送有物理线路上去：如果arp缓存中没有主机B的的mac地址，主机A将启动arp协议通过在本地网络上的arp广播来查询主机B的mac地址，获得主机B的mac地址厚写入arp缓存表，进行数据链路层的封装，发送数据。</div><div class="line"></div><div class="line">不同网段的情况：</div><div class="line"></div><div class="line">不同的数据链路层网络必须分配不同网段的Ip地址并且由路由器将其连接起来。和上面一样，主机A发现和主机B不在同一个网段，于是主机A将知道应该将次数据包发送给自己的缺省网关，即路由器的本地接口。主机A在自己的ARP缓存中查找是否有缺省网关的MAC地址，如果能够找到就直接做数据链路层封装并通过网卡 将封装好的以太网数据帧发送到物理线路上去，如果arp缓存表中没有缺省网关的Mac地址，主机A将启动arp协议通过在本地网络上的arp广播来查询缺省网关的mac地址，获得缺省网关的mac地址后写入arp缓存表，进行数据链路层的封装，发送数据。数据帧到达路由器的接受接口后首先解封装，变成ip数据包，对ip 包进行处理，根据目的Ip地址查找路由表，决定转发接口后做适应转发接口数据链路层协议帧的封装，并且发送到下一跳路由器，次过程继续直至到达目的的网络与目的主机。整个过程有点像dns解析，只是dns服务器换成了下一跳路由器，udp编程了tcp，其他差别不大。</div><div class="line"></div><div class="line">3、arp。arp就是地址转化协议，也就是把ip地址转化为mac地址。和dns很像，先查缓存，然后查路由器。</div><div class="line"></div><div class="line">4、mac地址。mac地址就是计算机的物理地址，每个网卡出厂时，被生产厂家烧制在网卡上。采用十六进制数表示，共六个字节（48位）。三个字节是由IEEE的注册管理机构RA负责给不同厂家分配的代码(高位24位），也称为“编制上唯一的标识符”（Organizationally Unique Identifier），后三个字节(低位24位)由各厂家自行指派给生产的适配器接口，称为扩展标识符（唯一性）。如何修改mac地址呢？一个方法就是直接修改网卡上烧制的mac地址，自己烧制。这个基本不靠谱，失误性也高。另一个方法就是修改注册表中的mac地址，因为网络中访问的mac地址都是访问的注册表中的mac地址，不会直接访问网卡。这个比较简单直接。</div><div class="line"></div><div class="line">5、为什么有了ip地址，还要mac地址？这个问题很关键，就像是我有驾驶证了你非要让我提供身份证。这个涉及一些历史问题，因为一开始没有互联网的时候就只有mac地址，还不存在ip地址。后来互联网越来越大之后，发现mac地址找起来太麻烦，并且耗时也越来越久，就发明了ip地址。并且mac地址在一个局域网中还是很有用的，所以就两个一起存在了。详细的信息，大家可以参考https://www.zhihu.com/question/21546408。</div></pre></td></tr></table></figure></p>
+<h1 id="第四步-进行tcp三次握手，建立tcp连接"><a href="#第四步-进行tcp三次握手，建立tcp连接" class="headerlink" title="第四步  进行tcp三次握手，建立tcp连接"></a>第四步  进行tcp三次握手，建立tcp连接</h1><p>tcp三次握手，简述一下，第三步我们找到了目标ip，并获得了服务器ip的mac地址。此时浏览器就会请求和服务器连接，用来传输数据。tcp 是稳定双向面向连接的，断开时也会分两边分别断开。面向连接不是说tcp一个双方一直开着的通道，而是维持一个连接的状态，让它看起来有连接。</p>
+<h2 id="简单讲述一下TCP的三次握手"><a href="#简单讲述一下TCP的三次握手" class="headerlink" title="简单讲述一下TCP的三次握手"></a>简单讲述一下TCP的三次握手</h2><p><img src="/2018/08/19/inputAddressToLast/TCP%E8%BF%9E%E6%8E%A5.jpg" alt="enter description here" title="TCP连接.jpg"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">SYN(SYNchronization) ： 在连接建立时用来同步序号。当SYN=1而ACK=0时，表明这是一个连接请求报文。对方若同意建立连接，则应在响应报文中使SYN=1和ACK=1. 因此, SYN置1就表示这是一个连接请求或连接接受报文。</div><div class="line"></div><div class="line">ACK ： TCP协议规定，只有ACK=1时有效，也规定连接建立后所有发送的报文的ACK必须为1</div><div class="line"></div><div class="line">seq： (sequence number) 顺序号码</div><div class="line"></div><div class="line">ack: (acknowledge number) 确认号码</div><div class="line"></div><div class="line">首先由Client发出请求连接即 SYN=1 ACK=0 (请看头字段的介绍), TCP规定SYN=1时不能携带数据，但要消耗一个序号,因此声明自己的序号是 seq=x</div><div class="line">然后 Server 进行回复确认，即 SYN=1 ACK=1 seq=y, ack=x+1,</div><div class="line">再然后 Client 再进行一次确认，但不用SYN 了，这时即为 ACK=1, seq=x+1, ack=y+1.然后连接建立。</div><div class="line"></div><div class="line"></div><div class="line">作者：maoruibin</div><div class="line">链接：http://www.imooc.com/article/20812</div><div class="line">来源：慕课网</div></pre></td></tr></table></figure>
+<h2 id="为什么要三次握手呢？"><a href="#为什么要三次握手呢？" class="headerlink" title="为什么要三次握手呢？"></a>为什么要三次握手呢？</h2><p>主要是防止已失效的请求连接报文忽然又传送到了，从而浪费服务器资源和产生错误。<br>具体讲解如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">假定：A向B发送一个连接请求。</div><div class="line">*如果只有两次握手，那么，遇到网络不好或其他情况，导致A发出的请求逗留在一个网络节点，一段时间后，客户端会抛弃这个请求重新发送连接请求给B，但是实际上逗留在网络节点的请求并没有消失。所以后面B会接到两个来自A的连接请求。如果两次握手就建立连接，那么B会一直等待A发送数据，从而浪费B的资源。</div><div class="line"></div><div class="line">*如果是三次握手，那么由于A没有发起连接请求，也就不会理会B的连接响应，B没有收到A的确认连接，就会关闭掉本次连接</div></pre></td></tr></table></figure></p>
+<h1 id="第五步-浏览器发送数据，等待服务器响应。"><a href="#第五步-浏览器发送数据，等待服务器响应。" class="headerlink" title="第五步 浏览器发送数据，等待服务器响应。"></a>第五步 浏览器发送数据，等待服务器响应。</h1><p>第四步已经建立了连接，此时就要发送数据了。浏览器会对请求进行包装，包装成请求报文。请求报文的格式如下：<br>起始行：如 GET / HTTP/1.0 （请求的方法  请求的URL 请求所使用的协议）<br>头部信息：User-Agent  Host等成对出现的值</p>
+<p>主体</p>
+<p>请求头部和主体之间有一个回车换行。如果是get请求，则没有主体部分，post请求有主体部分。当然里面还有些请求头部比较重要，可以参考<a href="./inputAddressToLast/%E7%AC%AC%E4%BA%8C%E6%AD%A5.png" title="第二步.png">http你不得不知道的那些事（五）-报文头</a>。</p>
+<h1 id="第六步-服务器处理请求，并对请求做出响应。"><a href="#第六步-服务器处理请求，并对请求做出响应。" class="headerlink" title="第六步 服务器处理请求，并对请求做出响应。"></a>第六步 服务器处理请求，并对请求做出响应。</h1><p>浏览器请求报文到达服务器之后，服务器接口会对请求报文进行处理，执行接口对应的代码，处理完成后响应客户端。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">由于http是无状态的，正常情况下，客户端收到响应后就会直接断开连接，然后一次http事物就完成了。但是http1.0有一个keep-alive的请求字段，可以在一定时间内不断开连接（有时时间甚至很长）。http1.1直接就默认开启了keep-alive选项。这导致了一个后果是服务器已经处理完了请求，但是客户端不会主动断开连接，这就导致服务器资源一直被占用。这时服务器就不得不自己主动断开连接，而主动断开连接的一方会出现TIME_WAIT，占用连接池，这就是产生SYN Flood攻击的原因。</div><div class="line"></div><div class="line">此时有三种处理方式，第一是客户端主动断开连接，第二是服务器主动断开连接，第三是对tcp连接经行设置。</div><div class="line">第一种情况，如果服务器返回的数据都有确定的content-length属性，或者客户端知道服务器返回的内容终止，则客户端主动断开连接。 第二种情况，服务器可以通过设置一个最大超市时间，可以主动断开tcp连接。第三种情况，调整t三个tcp参数，第一个是：tcp_synack_retries 可以用他来减少重试次数；第二个是：tcp_max_syn_backlog，可以增大syn连接数；第三个是：tcp_abort_on_overflow 处理不过来干脆就直接拒绝连接了。</div></pre></td></tr></table></figure></p>
+<h1 id="第七步-浏览器收到服务器响应，得到html代码。"><a href="#第七步-浏览器收到服务器响应，得到html代码。" class="headerlink" title="第七步 浏览器收到服务器响应，得到html代码。"></a>第七步 浏览器收到服务器响应，得到html代码。</h1><p>请求报文如下：<br><img src="/2018/08/19/inputAddressToLast/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87.jpg" alt="enter description here" title="请求报文.jpg"></p>
+<p>accept报文头 代表发送端（客户端）希望接受的数据类型，这是浏览器自动封装的请求头。如果服务器返回的content-type是accept中的任何一个，浏览器都能解析，并直接展示在网页上。如果服务器返回的content-type是其他类型，此时浏览器有三种处理状态：</p>
+<p>1、正常显示。例如返回类型为text/javascript，浏览器能直接处理并展示。</p>
+<p>2、下载。例如返回类型为application/octet-stream（二进制流，不知道下载文件类型），这种浏览器不能直接处理的，会被下载。</p>
+<p>3、报错。当我们返回一个字符串hello world，却使用text/xml，格式时，浏览器不能正确解析，就会报错，并把报错信息呈现在网页中。</p>
+<p>浏览器能直接处理很多种格式，并直接呈现在网页中，并不限于accept中规定的字段，具体有哪些，就需要自己亲自动手试试了。<br>附上一张content-type常用对照表地址：<a href="http://tool.oschina.net/commons" target="_blank" rel="external">http content-type常用对照表</a></p>
+<h1 id="第八步-渲染页面"><a href="#第八步-渲染页面" class="headerlink" title="第八步 渲染页面"></a>第八步 渲染页面</h1><p>获取到服务器相应之后，浏览器会根据相应的content-type字段对响应字符串进行解析。能够解析并成功解析就显示，能够解析但解析错误就报错，不能解析就下载。由于浏览器采用至上而下的方式解析，所以会先解析html，直到遇到外部样式和外部脚本。这时会阻塞浏览器的解析，外部样式和外部脚本（在没有async、defer属性下）会并行加载，但是外部样式会阻塞外部脚本的执行，dom加载完毕，js脚本执行成功后dom树构建完成（DOMContentLoaded），之后就加载dom中引用的图片等静态资源。（参考文章地址：<a href="http://blog.csdn.net/u014168594/article/details/52196460）" target="_blank" rel="external">http://blog.csdn.net/u014168594/article/details/52196460）</a></p>
+<p>即：html解析-&gt;外部样式、脚本加载-&gt;外部样式执行-&gt;外部脚本执行-&gt;html继续解析-&gt;dom树构建完成-&gt;加载图片-&gt;页面加载完成。</p>
+<p>  情况一：如果是动态脚本（即内联脚本）则不受样式影响，在解析到它时会执行。</p>
+<p>  情况二：外部样式后续外部脚本含有async属性（IE下为defer），外部样式不会阻塞该脚本的加载与执行</p>
+<p>  在外部样式执行完毕后，css附着于DOM，创建了一个渲染树（渲染树是一些被渲染对象的集）。每个渲染对象都包含了与之对应的计算过样式的DOM对象，对于每个渲染元素来说，位置都经过计算，所以这里被叫做“布局”。然后将“布局”显示在浏览器窗口，称之为“绘制”。</p>
+<p>  接着脚本的执行完毕后，DOM树构建完成。这时，可以触发DOMContentLoaded事件。DOMContentLoaded事件的触发条件是：在所有的DOM全部加载完毕并且JS加载执行后触发。</p>
+<p> 情况一：如果脚本是动态加载，则不会影响DOMContentLoaded时间的触发，浏览器会等css加载完成后再加载图片，因为不确定图片的样式会如何。 </p>
+<p>  要点一：CSS样式表会阻塞图片的加载，如果想让图片尽快加载，就不要给图片使用样式，比如宽高采用标签属性即可。</p>
+<p>  要点二：脚本不会阻塞图片的加载</p>
+<p>  最后页面加载完成，页面load。</p>
+<p>本篇文章主要参考 <a href="https://blog.csdn.net/weixin_38150378/article/details/79408886" target="_blank" rel="external">在浏览器地址栏输入地址到页面渲染完成发生了什么？（超详细）（上）</a> 和 <a href="https://blog.csdn.net/weixin_38150378/article/details/79443584" target="_blank" rel="external">在浏览器地址栏输入地址到页面渲染完成发生了什么？（超详细）（下）</a><br>，感谢毛瑞彬博主。</p>
 
       
 
@@ -370,6 +251,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">浏览器，地址，HTTP，渲染</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -420,7 +312,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/06/24/MistakeAnalysis/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/08/19/inputAddressToLast/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -434,18 +326,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/07/18/baseSummaryOfHTTP/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          HTTP的简单总结
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/06/22/css-Positioning-mechanism/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">css定位机制</div>
+    <a href="/2018/08/01/JsPrototypeChain/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">js的原型链</div>
       <i class="icon-circle-right"></i>
     </a>
   
