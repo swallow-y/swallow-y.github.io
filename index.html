@@ -155,6 +155,99 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-baseUseWebpack" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/29/baseUseWebpack/">baseUseWebpack</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/29/baseUseWebpack/" class="archive-article-date">
+  	<time datetime="2018-08-29T02:40:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天我准备总结的就是最近看的webpack4.17.1版本</p>
+<h2 id="一、为什么要用webpack"><a href="#一、为什么要用webpack" class="headerlink" title="一、为什么要用webpack"></a>一、为什么要用webpack</h2><p>现今的很多网页其实可以看做是功能丰富的应用，它们拥有着复杂的JavaScript代码和一大堆依赖包。为了简化开发的复杂度，前端社区涌现出了很多好的实践方法<br>1.模块化，让我们可以把复杂的程序细化为小的文件;<br>2.类似于TypeScript这种在JavaScript基础上拓展的开发语言：使我们能够实现目前版本的JavaScript不能直接使用的特性，并且之后还能转换为JavaScript文件使浏览器可以识别；<br>3.Scss，less等CSS预处理器</p>
+<h2 id="二、webpack的工作方式"><a href="#二、webpack的工作方式" class="headerlink" title="二、webpack的工作方式"></a>二、webpack的工作方式</h2><p>把我们的项目当做一个整体，通过一个给定的主文件（如：index.js），Webpack将从这个文件开始找到我们的项目的所有依赖文件，使用loaders处理它们，最后打包为一个（或多个）浏览器可识别的JavaScript文件。</p>
+<h2 id="三、怎么使用webpack"><a href="#三、怎么使用webpack" class="headerlink" title="三、怎么使用webpack"></a>三、怎么使用webpack</h2><p>1、首先安装webpack之前需要先安装node：</p>
+<ul>
+<li>在官网中下载node，然后安装。</li>
+<li>使用npm 安装webpack<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//全局安装webpack</span></div><div class="line">npm install -g webpack</div><div class="line"><span class="comment">//安装到我们的项目目录下</span></div><div class="line">npm install --save-dev  webpack</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>2、创建package.json文件<br>(在创建文件的过程中，会需要我们输入项目各种信息，如果没有要求严格，可以直接回车)<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm init</div></pre></td></tr></table></figure></p>
+<p>3、在当前目录下安装webpack<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev webpack</div></pre></td></tr></table></figure></p>
+<p>4、创建html页面、js文件（我是创建了两个，一个用来集合所有的js文件）</p>
+<p>webpack打包的优势：将所有文件都加载成为静态资源，放在一个文件中。（webpack有多文件打包入口）<br><img src="/2018/08/29/baseUseWebpack/webpack%E7%9B%AE%E5%BD%95.png" alt="enter description here" title="webpack目录.png"></p>
+<p>现在我来介绍一下我的目录：<br>str.js主要提供一些静态的变量、方法等，<br>index.js主要将使用的js全部集合起来。<br><img src="/2018/08/29/baseUseWebpack/index.png" alt="indexJs" title="index.png"><br>index.html就是展示页面，index.html里面需要引入我们的打包好的文件，现在还未打包，是没有的，但是我们可以假装引入<br><img src="/2018/08/29/baseUseWebpack/indexHtml.png" alt="indexHtml文件" title="indexHtml.png"><br>那么现在我们的准备工作已经完成<br>5、打包文件<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">webpack index<span class="selector-class">.js</span> -o bundle.js</div></pre></td></tr></table></figure></p>
+<p> 命令非常简单，bundle.js就是我们打包好的文件，bundle是打包的意思，所以可以使用这个命名。<br> 下面是我打包好的bundle.js文件<br> <img src="/2018/08/29/baseUseWebpack/bundle.png" alt="bundleJs" title="bundle.png"></p>
+<p> 当我们需要引入CSS样式文件的时候，我们需要<br> 创建style.css文件<br> 使用npm安装style-loader和css-loader<br> <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev style-loader css-loader</div></pre></td></tr></table></figure></p>
+<p>在index.js文件中引入css文件，<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">require</span><span class="params">(<span class="string">"!style-loader!css-loader!./style.css"</span>)</span></span></div></pre></td></tr></table></figure></p>
+<p>但是每次引入一个css样式文件都写!style-loader!css-loader!太过于繁琐，所以，我们可以在webpack.config.js中配置</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">module: &#123;</div><div class="line">     rules:[</div><div class="line">         &#123;</div><div class="line">             test:/\.css$/,</div><div class="line">             use:[<span class="string">"style-loader"</span>,<span class="string">"css-loader"</span>]</div><div class="line">         &#125;</div><div class="line">     ]</div><div class="line"> &#125;,</div></pre></td></tr></table></figure>
+<p>以上就是我看的简单的webpack的使用</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">webpack、4.17.1</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/29/baseUseWebpack/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-inputAddressToLast" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -978,72 +1071,6 @@
 
 
   
-    <article id="post-Es5NewFeatures" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/19/Es5NewFeatures/">ES5的新特性</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/19/Es5NewFeatures/" class="archive-article-date">
-  	<time datetime="2018-04-19T02:45:33.683Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="ES5的新特性"><a href="#ES5的新特性" class="headerlink" title="ES5的新特性"></a>ES5的新特性</h3><h4 id="严格模式（Strict-Mode）是ECMAScript-5的新特性"><a href="#严格模式（Strict-Mode）是ECMAScript-5的新特性" class="headerlink" title="严格模式（Strict Mode）是ECMAScript 5的新特性"></a>严格模式（Strict Mode）是ECMAScript 5的新特性</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">它允许你把整个程序，或者某个函数，放置在“严格”的操作语境中。这种严格的语境会防止某些特定的操作并抛出更多的异常。严格模式下主要变化有：</div><div class="line"></div><div class="line"> 1. 未使用var创建的变量会报错</div><div class="line"> 2. 函数顶层的this不在指向window，而是undefined</div><div class="line"> 3. 强制为<span class="built_in">eval</span>创建新作用域</div><div class="line"> 4. 禁止用delete删除变量</div><div class="line"> 5. 禁止使用arguments,callee,<span class="built_in">caller</span>属性</div><div class="line"> 6. 禁止使用width语句</div><div class="line"> 7. 禁止函数参数重名</div><div class="line"> 8. 禁止对象属性重名</div><div class="line"> 9. 禁止使用八进制数字</div><div class="line"> 10. 不允许在非函数的代码块内声明函数。</div><div class="line"> 11. 新增保留字：implements, interface, <span class="built_in">let</span>, package, private, protected,</div><div class="line">     public, static, yield。</div></pre></td></tr></table></figure>
-<h4 id="Object新增方法"><a href="#Object新增方法" class="headerlink" title="Object新增方法"></a>Object新增方法</h4>
-        
-          <a class="article-more-a" href="/2018/04/19/Es5NewFeatures/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/19/Es5NewFeatures/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1150,15 +1177,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">浏览器，地址，HTTP，渲染</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Promise,事件循环,快速排序,希尔排序</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">push,github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">浏览器，地址，HTTP，渲染</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">webpack、4.17.1</a>
               </li>
             
             <div class="clearfix"></div>
